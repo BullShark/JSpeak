@@ -69,6 +69,9 @@ public class ClipReader {
   //TODO Read http://www.javaworld.com/javaworld/jw-12-2000/jw-1229-traps.html?page=2
 
   public void readIt(String readme) {
+    // Incase espeak is already running, kill it
+    stopPlayBack();
+
     // Set the text to be read
     espeakcmd[6] = readme;
 
@@ -90,7 +93,6 @@ public class ClipReader {
   }
 
   public void replay() {
-    stopPlayBack();
     readIt(espeakcmd[6]);
   }
 
@@ -108,6 +110,16 @@ public class ClipReader {
      */
     if(debug) {
       printPsOutErr(ps);
+    }
+
+    /*
+     * Prevents a new espeak instance from starting before the current
+     * If any espeak process running, is killed
+     */
+    try {
+      ps.waitFor();
+    } catch (InterruptedException ex) {
+      Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
 
