@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package jspeak;
 
 import java.io.IOException;
@@ -17,12 +12,13 @@ public class ClipReader {
   String[] command;
   Process ps;
   public ClipReader() {
-    command = new String[]{""};
+    command = new String[]{"espeak", ""};
     ps = null;
   }
 
   public void readIt(String readme) {
     try {
+      command[1] = readme;
       Process ps = Runtime.getRuntime().exec(command);
     } catch (IOException ex) {
       Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,7 +1,15 @@
+Install needed software:
+
 Ubuntu/Debian:
-$ sudo apt-get install lib-miglayout
+$ sudo apt-get install libmiglayout
+$ sudo apt-get install espeak
 
 Fedora/Suse:
 # yum install miglayout
+# yum install espeak
 
+Windows Users:
+Install Linux
+
+Support for Mbrola voices soon!
 For help, visit ##blackhats on Freenode
