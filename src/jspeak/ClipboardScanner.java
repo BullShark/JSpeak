@@ -53,8 +53,8 @@ public class ClipboardScanner implements Runnable {
 	}
 
 	/*
-	* Wait before checking the clipboard again
-	*/
+	 * Wait before checking the clipboard again
+	 */
 	try {
 	  Thread.sleep(pollTime);
 	} catch (InterruptedException ex) {

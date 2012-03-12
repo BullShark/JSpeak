@@ -1,0 +1,7 @@
+Ubuntu/Debian:
+$ sudo apt-get install lib-miglayout
+
+Fedora/Suse:
+# yum install miglayout
+
+For help, visit ##blackhats on Freenode
