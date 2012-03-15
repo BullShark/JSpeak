@@ -36,32 +36,32 @@ public class ClipboardScanner implements Runnable {
       tempContents = contents;
 
       if(transfer != null && transfer.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-	      try {
-					contents = (String)transfer.getTransferData(DataFlavor.stringFlavor);
-					if(tempContents.equals(contents)) {
-						changed = false;
-					} else {
-						changed = true;
-						clipReader.readIt(contents);
-					}
-	      } catch (UnsupportedFlavorException ex) {
-					Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
-	      } catch (IOException ex) {
-					Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
-	      }
+        try {
+          contents = (String)transfer.getTransferData(DataFlavor.stringFlavor);
+          if(tempContents.equals(contents)) {
+            changed = false;
+          } else {
+            changed = true;
+            clipReader.readIt(contents);
+          }
+        } catch (UnsupportedFlavorException ex) {
+          Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+          Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-	      if(hasChanged()) {
-					System.out.println("New Contents:\n\t" + getClipboardContents() + "\n");
-	      }
+        if(hasChanged()) {
+          System.out.println("New Contents:\n\t" + getClipboardContents() + "\n");
+        }
 
-	      /*
-	       * Wait before checking the clipboard again
-	       */
-	      try {
-					Thread.sleep(pollTime);
-	      } catch (InterruptedException ex) {
-					Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
-	      }
+        /*
+         * Wait before checking the clipboard again
+         */
+        try {
+          Thread.sleep(pollTime);
+        } catch (InterruptedException ex) {
+          Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
+        }
       }
     }
   }
