@@ -45,6 +45,8 @@ public class JSpeak extends JPanel
     button.addActionListener(this);
     button.setBackground(Color.RED);
 
+    //TODO Add Progress bar below buttons
+
     // Add gui components
 //    add(scanB);
 //    add(noScanB, "wrap");
