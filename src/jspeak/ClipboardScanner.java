@@ -17,7 +17,7 @@ public class ClipboardScanner implements Runnable {
   private String contents, tempContents;
   private boolean changed;
   private long pollTime;
-  private ClipReader clipReader;
+  private static ClipReader clipReader;
 
   public ClipboardScanner() {
     transfer = null;
@@ -39,10 +39,10 @@ public class ClipboardScanner implements Runnable {
 	      try {
 					contents = (String)transfer.getTransferData(DataFlavor.stringFlavor);
 					if(tempContents.equals(contents)) {
-		  		changed = false;
+						changed = false;
 					} else {
-		  			changed = true;
-		  			clipReader.readIt(contents);
+						changed = true;
+						clipReader.readIt(contents);
 					}
 	      } catch (UnsupportedFlavorException ex) {
 					Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,5 +78,12 @@ public class ClipboardScanner implements Runnable {
    */
   public String getClipboardContents() {
     return contents;
+  }
+
+  /*
+   * Useful for calling its methods from the GUI
+   */
+  public static ClipReader getClipReader() {
+    return clipReader;
   }
 }
