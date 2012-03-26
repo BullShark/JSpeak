@@ -9,12 +9,15 @@ import java.util.logging.Logger;
  * @author Christopher Lemire <christopher.lemire@gmail.com>
  */
 public class ClipReader {
-  String[] command;
-  Process ps;
+  private String[] command;
+  private Process ps;
+  private String str;
   public ClipReader() {
     // Options get default values to start with
     command = new String[]{"espeak", "-a 10", "-p 50", "-s 160", ""};
     ps = null;
+    str = "";
+    //TODO espeak --stdout could be useful with mbrola
   }
 
   public void readIt(String readme) {
@@ -60,5 +63,24 @@ public class ClipReader {
     command[3] = "-s " + new Integer(wpm).toString();
 
     return true;
+  }
+
+  public boolean setWordGap(int wg) {
+    //TODO Implement me
+    return true;
+  }
+
+  @Override
+  public String toString() {
+    str = "{";
+
+    for(int x = 0; x < command.length; x++) {
+      str += "\"" + command[x] + "\", ";
+    }
+
+    str.trim();
+    str += "}";
+
+    return str;
   }
 }
