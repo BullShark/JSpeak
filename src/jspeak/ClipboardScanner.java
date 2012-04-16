@@ -18,6 +18,7 @@ public class ClipboardScanner implements Runnable {
   private boolean changed;
   private long pollTime;
   private static ClipReader clipReader;
+  private boolean firstRun;
 
   public ClipboardScanner() {
     transfer = null;
@@ -26,10 +27,9 @@ public class ClipboardScanner implements Runnable {
     changed = false;
     pollTime = 500; // In millisecons
     clipReader = new ClipReader();
+    firstRun = true;
   }
   
-  //TODO firstRun ignore clipboard contents
-
   @Override
   public void run() {
     while(!Thread.interrupted()) {
@@ -37,7 +37,7 @@ public class ClipboardScanner implements Runnable {
 
       tempContents = contents;
 
-      if(transfer != null && transfer.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+      if(transfer != null && transfer.isDataFlavorSupported(DataFlavor.stringFlavor) && !firstRun) {
         try {
           contents = (String)transfer.getTransferData(DataFlavor.stringFlavor);
           if(tempContents.equals(contents)) {
@@ -64,6 +64,8 @@ public class ClipboardScanner implements Runnable {
         } catch (InterruptedException ex) {
           Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
         }
+      } else {
+        firstRun = false;
       }
     }
   }
