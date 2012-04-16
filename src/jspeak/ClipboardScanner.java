@@ -27,6 +27,8 @@ public class ClipboardScanner implements Runnable {
     pollTime = 500; // In millisecons
     clipReader = new ClipReader();
   }
+  
+  //TODO firstRun ignore clipboard contents
 
   @Override
   public void run() {
