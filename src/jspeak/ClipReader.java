@@ -11,7 +11,6 @@ import java.util.logging.Logger;
  */
 public class ClipReader {
   private String[] espeakcmd, mbrolacmd, aplaycmd;
-  private Process ps;
   private String str;
   private Process p1, p2, p3;
   private Runtime rt;
@@ -22,26 +21,20 @@ public class ClipReader {
     espeakcmd = new String[]{"espeak", "-a 10", "-p 50", "-s 160", ""};
     mbrolacmd = new String[]{"mbrola", "mbrola /usr/share/mbrola/us1/us1", "--"};
     aplaycmd  = new String[]{"aplay"}; //TODO aplay cmdline options
-    ps = null;
     str = "";
+    rt = Runtime.getRuntime();
     //TODO espeak --stdout could be useful with mbrola
   }
 
   public void readIt(String readme) {
-//    try {
-      espeakcmd[4] = readme;
-//      ps = Runtime.getRuntime().exec(espeakcmd);
-//    } catch (IOException ex) {
-//      Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
-//    }
-
-    rt = Runtime.getRuntime();
+    // Set the text to be read
+    espeakcmd[4] = readme;
 
     // Start three processes
     try {
-      p1 = rt.exec("echo the dog barks");
-      p2 = rt.exec("sed -e s/dog/cat/");
-      p3 = rt.exec("tr 'a-zA-Z' 'A-Za-z'");
+      p1 = rt.exec(espeakcmd);
+      p2 = rt.exec(mbrolacmd);
+      p3 = rt.exec(aplaycmd);
     } catch (IOException ex) {
       Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -64,6 +57,9 @@ public class ClipReader {
     }
   }
 
+  /*
+   * Begin all set methods for espeak options
+   */
   public boolean setAmplitude(int amp) {
     if(amp > 99 || amp < 0) {
       System.err.println("Cannot set speed to " + amp + ";"
@@ -105,6 +101,16 @@ public class ClipReader {
     return true;
   }
 
+  /*
+   * Begin all set methods for mbrola options
+   */
+  //TODO
+
+  /*
+   * Begin all set methods for aplay options
+   */
+  //TODO
+
   @Override
   //TODO Needs testing
   /*
@@ -118,14 +124,16 @@ public class ClipReader {
       str += "\"" + espeakcmd[x] + "\", ";
     }
 
-    str += "\" | \"";
+    str.replaceFirst(", ^", ""); //TODO Needs testing
+    str += "} ";
     
     // Mbrola Command
     for(int x = 0; x < mbrolacmd.length; x++) {
       str += "\"" + mbrolacmd[x] + "\", ";
     }
 
-    str += "\" | \"";
+    str.trim();
+    str += "} ";
 
     // Aplay Command
     for(int x = 0; x < aplaycmd.length; x++) {
