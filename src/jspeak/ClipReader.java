@@ -112,7 +112,6 @@ public class ClipReader {
   //TODO
 
   @Override
-  //TODO Needs testing
   /*
    * Conceptial view of the command being executed as an Array
    */
@@ -124,24 +123,24 @@ public class ClipReader {
       str += "\"" + espeakcmd[x] + "\", ";
     }
 
-    str.replaceFirst(", ^", ""); //TODO Needs testing
-    str += "} ";
+    str = str.replaceFirst(", $", "");
+    str += "}\n{";
     
     // Mbrola Command
     for(int x = 0; x < mbrolacmd.length; x++) {
       str += "\"" + mbrolacmd[x] + "\", ";
     }
 
-    str.trim();
-    str += "} ";
+    str = str.replaceFirst(", $", "");
+    str += "}\n{";
 
     // Aplay Command
     for(int x = 0; x < aplaycmd.length; x++) {
       str += "\"" + aplaycmd[x] + "\", ";
     }
 
-    str.trim();
-    str += "}";
+    str = str.replaceFirst(", $", "");
+    str += "}\n";
 
     return str;
   }
