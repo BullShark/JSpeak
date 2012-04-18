@@ -15,7 +15,6 @@ import java.util.logging.Logger;
 public class ClipboardScanner implements Runnable {
   private Transferable transfer;
   private String contents, tempContents;
-  private boolean changed;
   private long pollTime;
   private static ClipReader clipReader;
   private boolean firstRun;
@@ -24,7 +23,6 @@ public class ClipboardScanner implements Runnable {
     transfer = null;
     contents = "";
     tempContents = "";
-    changed = false;
     pollTime = 500; // In millisecons
     clipReader = new ClipReader();
     firstRun = true;
@@ -37,35 +35,31 @@ public class ClipboardScanner implements Runnable {
 
       tempContents = contents;
 
-      if(transfer != null && transfer.isDataFlavorSupported(DataFlavor.stringFlavor) && !firstRun) {
+      if(transfer != null && transfer.isDataFlavorSupported(DataFlavor.stringFlavor)) {
         try {
           contents = (String)transfer.getTransferData(DataFlavor.stringFlavor);
-          if(tempContents.equals(contents)) {
-            changed = false;
-          } else {
-            changed = true;
+          if(hasChanged() && !firstRun) {
             clipReader.readIt(contents);
+            System.out.println("New Contents:\n\n" + clipReader.toString() + "\n");
+            //TODO Make a TerminalColors.java or a LinuxColors.java for use with printed content
+          } else {
+            tempContents = contents;
+            firstRun = false;
           }
         } catch (UnsupportedFlavorException ex) {
           Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
           Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
         }
+      }
 
-        if(hasChanged()) {
-          System.out.println("New Contents:\n\t" + getClipboardContents() + "\n");
-        }
-
-        /*
-         * Wait before checking the clipboard again
-         */
-        try {
-          Thread.sleep(pollTime);
-        } catch (InterruptedException ex) {
-          Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      } else {
-        firstRun = false;
+      /*
+       * Wait before checking the clipboard again
+       */
+      try {
+        Thread.sleep(pollTime);
+      } catch (InterruptedException ex) {
+        Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
       }
     }
   }
@@ -74,7 +68,7 @@ public class ClipboardScanner implements Runnable {
    * Return whether the clipboard contents have changed
    */
   public boolean hasChanged() {
-    return changed;
+    return !(tempContents.equals(contents));
   }
 
   /*
