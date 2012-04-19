@@ -86,47 +86,51 @@ public class ClipReader {
   }
 
   public boolean setAmplitude(int amp) {
-    if(amp > 99 || amp < 0) {
-      System.err.println("Cannot set speed to " + amp + ";"
-      + "The amplitude must be set between 0 and 20 inclusive.");
+    if(amp > 0 && amp <= 200) {
+      espeakcmd[2] = "-a " + new Integer(amp).toString();
+
+      return true;
+    } else {
+      System.err.println("Cannot set amplitude to " + amp + ";\n"
+      + "The amplitude must be set between 1 and 200 inclusive.");
       return false;
     }
-
-    espeakcmd[2] = "-a " + new Integer(amp).toString();
-
-    return true;
   }
 
-   public boolean setWordGap(int wg) {
-    //TODO Implement me setWordGap()
-    //XXX Where is documentation for Word Gap?
+  public boolean setWordGap(int wg) {
+    if(wg > 0 && wg <= 10) {
+      espeakcmd[3] = "-a " + new Integer(wg).toString();
 
-    //espeakcmd = new String[]{"espeak", "-v mb-us1", "-a 100", "-g 10", "-p 50", "-s 160", ""};
-    return true;
-  }
-
- public boolean setPitch(int pit) {
-    if(pit > 99 || pit < 0) {
-      System.err.println("Cannot set speed to " + pit + ";"
-      + "The pitch must be set between 0 and 99 inclusive.");
+      return true;
+    } else {
+      System.err.println("Cannot set speed to " + wg + ";\n"
+      + "The amplitude must be set between 1 and 10 inclusive.");
       return false;
     }
+  }
 
+  public boolean setPitch(int pit) {
+    if(pit >= 0 && pit <= 100) {
     espeakcmd[4] = "-p " + new Integer(pit).toString();
 
     return true;
+    } else {
+      System.err.println("Cannot set speed to " + pit + ";\n"
+      + "The pitch must be set between 0 and 100 inclusive.");
+      return false;
+    }
   }
 
   public boolean setSpeed(int wpm) {
-    if(wpm > 200 || wpm < 100) {
-      System.err.println("Cannot set speed to " + wpm + ";"
-      + "The words per minute must be set between 100 and 200 inclusive.");
-      return false;
-    }
-
+    if(wpm > 0 && wpm <= 200) {
     espeakcmd[5] = "-s " + new Integer(wpm).toString();
 
     return true;
+    } else {
+      System.err.println("Cannot set speed to " + wpm + ";"
+      + "The words per minute must be set between 1 and 200 inclusive.");
+      return false;
+    }
   }
 
   @Override
