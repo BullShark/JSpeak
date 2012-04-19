@@ -1,6 +1,8 @@
 package jspeak;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,6 +14,9 @@ public class ClipReader {
   private String[] espeakcmd;
   private String str;
   private Process ps;
+  private InputStream in;
+  private char c;
+  private Scanner scan;
 
   public ClipReader() {
     /*
@@ -21,21 +26,55 @@ public class ClipReader {
      */
 
     // Options get default values to start with
-    espeakcmd = new String[]{"espeak", "-v mb-us1", "-a 100", "-p 50", "-s 160", ""};
+    // --path="<path>" /usr/share/espeak-data/
+    espeakcmd = new String[]{"espeak", "-v mb-us1", "-a 100", "-g 1", "-p 50", "-s 160", ""};
     str = ""; // Used for toString()
     ps = null;
+    scan = null;
   }
 
   public void readIt(String readme) {
     // Set the text to be read
-    espeakcmd[5] = readme;
+    espeakcmd[6] = readme;
 
     // Start three processes
     try {
+      /*
+       * Removes the space to prevent java from interpretting it
+       * As part of the voice filename
+       */
+      espeakcmd[1] = espeakcmd[1].replace(" ", "");
+
       ps = Runtime.getRuntime().exec(espeakcmd);
+
+      // Print command output
+      in = ps.getInputStream();
+      scan = new Scanner(in);
+      scan.useDelimiter("\\n");
+
+      //TODO While !interrupted
+      while(scan.hasNext()) {
+        System.out.println(scan.nextLine());
+      }
+
+      System.out.println();
+ 
+      // Print command output
+      in = ps.getErrorStream();
+      scan = new Scanner(in);
+      scan.useDelimiter("\\n");
+
+      //TODO While !interrupted
+      while(scan.hasNext()) {
+        System.out.println(scan.nextLine());
+      }
+      
+      System.out.println();
+     
     } catch (IOException ex) {
       Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
     }
+
   }
 
   /*
@@ -59,14 +98,22 @@ public class ClipReader {
     return true;
   }
 
-  public boolean setPitch(int pit) {
+   public boolean setWordGap(int wg) {
+    //TODO Implement me setWordGap()
+    //XXX Where is documentation for Word Gap?
+
+    //espeakcmd = new String[]{"espeak", "-v mb-us1", "-a 100", "-g 10", "-p 50", "-s 160", ""};
+    return true;
+  }
+
+ public boolean setPitch(int pit) {
     if(pit > 99 || pit < 0) {
       System.err.println("Cannot set speed to " + pit + ";"
       + "The pitch must be set between 0 and 99 inclusive.");
       return false;
     }
 
-    espeakcmd[3] = "-p " + new Integer(pit).toString();
+    espeakcmd[4] = "-p " + new Integer(pit).toString();
 
     return true;
   }
@@ -78,14 +125,8 @@ public class ClipReader {
       return false;
     }
 
-    espeakcmd[4] = "-s " + new Integer(wpm).toString();
+    espeakcmd[5] = "-s " + new Integer(wpm).toString();
 
-    return true;
-  }
-
-  public boolean setWordGap(int wg) {
-    //TODO Implement me setWordGap()
-    //XXX Where is documentation for Word Gap?
     return true;
   }
 
