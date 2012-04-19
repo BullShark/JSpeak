@@ -19,12 +19,6 @@ public class ClipReader {
   private Scanner scan;
 
   public ClipReader() {
-    /*
-     * TODO Adjust all default values according to
-     * https://github.com/BullShark/JSpeak/wiki/EspeakHeader
-     * TODO Set min and max constraints accordingly
-     */
-
     // Options get default values to start with
     espeakcmd = new String[]{"espeak", "-v mb-us1", "-a 100", "-g 1", "-p 50", "-s 160", ""};
     str = ""; // Used for toString()
@@ -36,7 +30,6 @@ public class ClipReader {
     // Set the text to be read
     espeakcmd[6] = readme;
 
-    // Start three processes
     try {
       /*
        * Removes the space to prevent java from interpretting it

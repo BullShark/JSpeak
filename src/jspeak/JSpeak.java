@@ -1,15 +1,13 @@
 package jspeak;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -18,40 +16,48 @@ import net.miginfocom.swing.MigLayout;
  */
 public class JSpeak extends JPanel
                     implements ActionListener {
-  private JButton button;
+  private JButton scanButton, ppButton, stopButton, expandButton;
+  private JProgressBar readProgress;
   private static ClipReader clipReader;
-//  private JRadioButton scanB, noScanB;
-//  private JToggleButton toggleB;
-//  private ButtonGroup group;
 
   public JSpeak() {
     setLayout(new MigLayout());
 
-    // Radio buttons
-//    scanB = new JRadioButton("Clipboard Scan");
-//    noScanB = new JRadioButton("Stop Scanning");
+    /*
+     * Buttons
+     * TODO Replace all buttons with icons and add tooltips
+     * TODO Set LookAndFeel
+     */
+    scanButton = new JButton("Scan");
+    scanButton.addActionListener(this);
+    scanButton.setBackground(Color.RED);
 
-    // Radio button group
-//    group = new ButtonGroup();
-//    group.add(scanB);
-//    group.add(noScanB);
+    // Play/Pause
+    ppButton = new JButton("Play/Pause");
+    ppButton.addActionListener(this);
+    ppButton.setBackground(Color.RED);
 
-    // Toggle button
-//    toggleB = new JToggleButton("Scan Clipboard", true);
-//    toggleB.setBackground(Color.GREEN);
+    // Stop
+    stopButton = new JButton("Stop");
+    stopButton.addActionListener(this);
+    stopButton.setBackground(Color.RED);
+
+    // Expand
+    expandButton = new JButton("Expand");
+    expandButton.addActionListener(this);
+    expandButton.setBackground(Color.RED);
     
-    // Buttons
-    button = new JButton("Push Me!");
-    button.addActionListener(this);
-    button.setBackground(Color.RED);
-
     //TODO Add Progress bar below buttons
+    //If it can't monitor progress, just show progress until completed
+    readProgress = new JProgressBar();
+    readProgress.setIndeterminate(true);
+    readProgress.setPreferredSize(new Dimension(400,25));
 
-    // Add gui components
-//    add(scanB);
-//    add(noScanB, "wrap");
-//    add(toggleB);
-    add(button);
+    add(scanButton);
+    add(ppButton);
+    add(stopButton);
+    add(expandButton, "wrap");
+    add(readProgress, "span");
   }
 
   @Override
