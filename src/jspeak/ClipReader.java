@@ -1,7 +1,6 @@
 package jspeak;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,57 +9,33 @@ import java.util.logging.Logger;
  * @author Christopher Lemire <christopher.lemire@gmail.com>
  */
 public class ClipReader {
-  private String[] espeakcmd, mbrolacmd, aplaycmd;
+  private String[] espeakcmd;
   private String str;
-  private Process p1, p2, p3;
-  private Runtime rt;
-  private InputStream in;
+  private Process ps;
 
   public ClipReader() {
-    // Options get default values to start with
     /*
      * TODO Adjust all default values according to
      * https://github.com/BullShark/JSpeak/wiki/EspeakHeader
      * TODO Set min and max constraints accordingly
      */
 
+    // Options get default values to start with
     espeakcmd = new String[]{"espeak", "-v mb-us1", "-a 100", "-p 50", "-s 160", ""};
-//    mbrolacmd = new String[]{"mbrola", "mbrola /usr/share/mbrola/us1/us1", "--"};
-//    aplaycmd  = new String[]{"aplay"}; //TODO aplay cmdline options
-    str = "";
-    rt = Runtime.getRuntime();
-    //TODO espeak --stdout could be useful with mbrola
+    str = ""; // Used for toString()
+    ps = null;
   }
 
   public void readIt(String readme) {
     // Set the text to be read
     espeakcmd[5] = readme;
 
-//    // Start three processes
+    // Start three processes
     try {
-      p1 = rt.exec(espeakcmd);
-//      p2 = rt.exec(mbrolacmd);
-//      p3 = rt.exec(aplaycmd);
+      ps = Runtime.getRuntime().exec(espeakcmd);
     } catch (IOException ex) {
       Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
     }
-//
-//    // Start piping
-//    try {
-//      in = Piper.pipe(p1, p2, p3);
-//    } catch (InterruptedException ex) {
-//      Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
-//    }
-//      // Show output of last process
-//      java.io.BufferedReader r = new java.io.BufferedReader(new java.io.InputStreamReader(in));
-//      String s = null;
-//    try {
-//      while ((s = r.readLine()) != null) {
-//          System.out.println(s);
-//      }
-//    } catch (IOException ex) {
-//      Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
-//    }
   }
 
   /*
@@ -68,7 +43,7 @@ public class ClipReader {
    */
   public boolean setVoice(String voice) {
     //TODO Implement me setVoice()
-    //For no voice (default), try setting to empty string
+    //TODO For espeak default voice, try setting to empty string
     return true;
   }
 
@@ -114,16 +89,6 @@ public class ClipReader {
     return true;
   }
 
-  /*
-   * Begin all set methods for mbrola options
-   */
-  //TODO mbrola options (set methods)
-
-  /*
-   * Begin all set methods for aplay options
-   */
-  //TODO aplay options (set methods)
-
   @Override
   /*
    * Conceptial view of the command being executed as an Array
@@ -137,23 +102,7 @@ public class ClipReader {
     }
 
     str = str.replaceFirst(", $", "");
-//    str += "}\n{";
-//    
-//    // Mbrola Command
-//    for(int x = 0; x < mbrolacmd.length; x++) {
-//      str += "\"" + mbrolacmd[x] + "\", ";
-//    }
-//
-//    str = str.replaceFirst(", $", "");
-//    str += "}\n{";
-//
-//    // Aplay Command
-//    for(int x = 0; x < aplaycmd.length; x++) {
-//      str += "\"" + aplaycmd[x] + "\", ";
-//    }
-//
-//    str = str.replaceFirst(", $", "");
-    str += "}\n";
+    str += "}";
 
     return str;
   }

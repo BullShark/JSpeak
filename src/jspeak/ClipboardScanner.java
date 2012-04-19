@@ -40,7 +40,7 @@ public class ClipboardScanner implements Runnable {
           contents = (String)transfer.getTransferData(DataFlavor.stringFlavor);
           if(hasChanged() && !firstRun) {
             clipReader.readIt(contents);
-            System.out.println("New Content:\n\n" + clipReader.toString());
+            System.out.println("New Content:\n\n" + clipReader.toString() + "\n");
             //TODO Make a TerminalColors.java or a LinuxColors.java for use with printed content
           } else {
             tempContents = contents;
