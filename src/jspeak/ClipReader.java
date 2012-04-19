@@ -18,7 +18,13 @@ public class ClipReader {
 
   public ClipReader() {
     // Options get default values to start with
-    espeakcmd = new String[]{"espeak", "-a 10", "-p 50", "-s 160", ""};
+    /*
+     * TODO Adjust all default values according to
+     * https://github.com/BullShark/JSpeak/wiki/EspeakHeader
+     * TODO Set min and max constraints accordingly
+     */
+
+    espeakcmd = new String[]{"espeak", "-a 100", "-p 50", "-s 160", ""};
     mbrolacmd = new String[]{"mbrola", "mbrola /usr/share/mbrola/us1/us1", "--"};
     aplaycmd  = new String[]{"aplay"}; //TODO aplay cmdline options
     str = "";
