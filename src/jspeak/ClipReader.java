@@ -24,9 +24,9 @@ public class ClipReader {
      * TODO Set min and max constraints accordingly
      */
 
-    espeakcmd = new String[]{"espeak", "-a 100", "-p 50", "-s 160", ""};
-    mbrolacmd = new String[]{"mbrola", "mbrola /usr/share/mbrola/us1/us1", "--"};
-    aplaycmd  = new String[]{"aplay"}; //TODO aplay cmdline options
+    espeakcmd = new String[]{"espeak", "-v mb-us1", "-a 100", "-p 50", "-s 160", ""};
+//    mbrolacmd = new String[]{"mbrola", "mbrola /usr/share/mbrola/us1/us1", "--"};
+//    aplaycmd  = new String[]{"aplay"}; //TODO aplay cmdline options
     str = "";
     rt = Runtime.getRuntime();
     //TODO espeak --stdout could be useful with mbrola
@@ -34,38 +34,44 @@ public class ClipReader {
 
   public void readIt(String readme) {
     // Set the text to be read
-    espeakcmd[4] = readme;
+    espeakcmd[5] = readme;
 
-    // Start three processes
+//    // Start three processes
     try {
       p1 = rt.exec(espeakcmd);
-      p2 = rt.exec(mbrolacmd);
-      p3 = rt.exec(aplaycmd);
+//      p2 = rt.exec(mbrolacmd);
+//      p3 = rt.exec(aplaycmd);
     } catch (IOException ex) {
       Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
     }
-
-    // Start piping
-    try {
-      in = Piper.pipe(p1, p2, p3);
-    } catch (InterruptedException ex) {
-      Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
-    }
-      // Show output of last process
-      java.io.BufferedReader r = new java.io.BufferedReader(new java.io.InputStreamReader(in));
-      String s = null;
-    try {
-      while ((s = r.readLine()) != null) {
-          System.out.println(s);
-      }
-    } catch (IOException ex) {
-      Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
-    }
+//
+//    // Start piping
+//    try {
+//      in = Piper.pipe(p1, p2, p3);
+//    } catch (InterruptedException ex) {
+//      Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
+//    }
+//      // Show output of last process
+//      java.io.BufferedReader r = new java.io.BufferedReader(new java.io.InputStreamReader(in));
+//      String s = null;
+//    try {
+//      while ((s = r.readLine()) != null) {
+//          System.out.println(s);
+//      }
+//    } catch (IOException ex) {
+//      Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
+//    }
   }
 
   /*
    * Begin all set methods for espeak options
    */
+  public boolean setVoice(String voice) {
+    //TODO Implement me setVoice()
+    //For no voice (default), try setting to empty string
+    return true;
+  }
+
   public boolean setAmplitude(int amp) {
     if(amp > 99 || amp < 0) {
       System.err.println("Cannot set speed to " + amp + ";"
@@ -73,7 +79,7 @@ public class ClipReader {
       return false;
     }
 
-    espeakcmd[1] = "-a " + new Integer(amp).toString();
+    espeakcmd[2] = "-a " + new Integer(amp).toString();
 
     return true;
   }
@@ -85,7 +91,7 @@ public class ClipReader {
       return false;
     }
 
-    espeakcmd[2] = "-p " + new Integer(pit).toString();
+    espeakcmd[3] = "-p " + new Integer(pit).toString();
 
     return true;
   }
@@ -97,25 +103,26 @@ public class ClipReader {
       return false;
     }
 
-    espeakcmd[3] = "-s " + new Integer(wpm).toString();
+    espeakcmd[4] = "-s " + new Integer(wpm).toString();
 
     return true;
   }
 
   public boolean setWordGap(int wg) {
-    //TODO Implement me
+    //TODO Implement me setWordGap()
+    //XXX Where is documentation for Word Gap?
     return true;
   }
 
   /*
    * Begin all set methods for mbrola options
    */
-  //TODO
+  //TODO mbrola options (set methods)
 
   /*
    * Begin all set methods for aplay options
    */
-  //TODO
+  //TODO aplay options (set methods)
 
   @Override
   /*
@@ -130,22 +137,22 @@ public class ClipReader {
     }
 
     str = str.replaceFirst(", $", "");
-    str += "}\n{";
-    
-    // Mbrola Command
-    for(int x = 0; x < mbrolacmd.length; x++) {
-      str += "\"" + mbrolacmd[x] + "\", ";
-    }
-
-    str = str.replaceFirst(", $", "");
-    str += "}\n{";
-
-    // Aplay Command
-    for(int x = 0; x < aplaycmd.length; x++) {
-      str += "\"" + aplaycmd[x] + "\", ";
-    }
-
-    str = str.replaceFirst(", $", "");
+//    str += "}\n{";
+//    
+//    // Mbrola Command
+//    for(int x = 0; x < mbrolacmd.length; x++) {
+//      str += "\"" + mbrolacmd[x] + "\", ";
+//    }
+//
+//    str = str.replaceFirst(", $", "");
+//    str += "}\n{";
+//
+//    // Aplay Command
+//    for(int x = 0; x < aplaycmd.length; x++) {
+//      str += "\"" + aplaycmd[x] + "\", ";
+//    }
+//
+//    str = str.replaceFirst(", $", "");
     str += "}\n";
 
     return str;
