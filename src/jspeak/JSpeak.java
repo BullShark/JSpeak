@@ -98,6 +98,20 @@ public class JSpeak extends JPanel
 
     clipReader = ClipboardScanner.getClipReader();
 
+    try {
+      // Set System L&F
+      UIManager.setLookAndFeel(
+        UIManager.getSystemLookAndFeelClassName());
+    } catch (ClassNotFoundException ex) {
+      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (UnsupportedLookAndFeelException ex) {
+      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
     //Schedule a job for the event dispatch thread:
     //creating and showing this application's GUI.
     SwingUtilities.invokeLater(new Runnable() {
