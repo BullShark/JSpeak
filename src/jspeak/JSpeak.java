@@ -63,7 +63,8 @@ public class JSpeak extends JPanel
      * Buttons
      * TODO Use MissingIcon.java
      */
-    scanButton = new JButton(new ImageIcon(getClass().getResource("/jspeak/resources/scan.png")));
+//    scanButton = new JButton(new ImageIcon(getClass().getResource("/jspeak/resources/scan.png")));
+    scanButton = new JButton(); //TODO Need blue matching button
     scanButton.setToolTipText("Scan/Watch for Clipboard Changes");
     scanButton.addActionListener(this);
 
@@ -78,7 +79,8 @@ public class JSpeak extends JPanel
     stopButton.addActionListener(this);
 
     // Expand
-    expandButton = new JButton(new ImageIcon(getClass().getResource("/jspeak/resources/expand.png")));
+//    expandButton = new JButton(new ImageIcon(getClass().getResource("/jspeak/resources/retract.png"))); //TODO Need blue matching button
+    expandButton = new JButton();
     expandButton.setToolTipText("Expand/Retract");
     expandButton.addActionListener(this);
     
@@ -110,12 +112,12 @@ public class JSpeak extends JPanel
         this.validate();
         System.out.println(this.getSize());
 //java.awt.Dimension[width=412,height=61]
-        expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/expand.png")));
+//        expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/expand.png")));
         expanded = false;
       } else {
         lowerPanel.setVisible(true);
         lowerPanel.setEnabled(true);
-        expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/retract.png")));
+//        expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/retract.png")));
         expanded = true;
       }
     } else if(e.getSource() == ampSlider) {
