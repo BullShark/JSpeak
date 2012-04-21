@@ -25,7 +25,7 @@ public class JSpeak extends JPanel
 //    setLayout(new MigLayout("",    // Layout Constraints
 //                            "",    // Column Constraints
 //                            ""));  // Row Constraints
-    setLayout(new MigLayout("hidemode 2, nogrid"));
+    setLayout(new MigLayout("hidemode 2, nogrid")); //FIXME hidemode 2 not working
 
     expanded = true;
 
@@ -38,10 +38,10 @@ public class JSpeak extends JPanel
     /*
      * Create JSliders
      */
-    ampSlider = new JSlider();
-    wgSlider = new JSlider();
-    pitSlider = new JSlider();
-    spSlider = new JSlider();
+    ampSlider = new JSlider(JSlider.HORIZONTAL, 1, 200, 100);
+    wgSlider = new JSlider(JSlider.HORIZONTAL, 1, 10, 1);
+    pitSlider = new JSlider(JSlider.HORIZONTAL, 1, 100, 50);
+    spSlider = new JSlider(JSlider.HORIZONTAL, 1, 200, 160);
 
     /*
      * TODO Set JSlider options
@@ -63,8 +63,7 @@ public class JSpeak extends JPanel
      * Buttons
      * TODO Use MissingIcon.java
      */
-//    scanButton = new JButton(new ImageIcon(getClass().getResource("/jspeak/resources/scan.png")));
-    scanButton = new JButton(); //TODO Need blue matching button
+    scanButton = new JButton(new ImageIcon(getClass().getResource("/jspeak/resources/scan.png")));
     scanButton.setToolTipText("Scan/Watch for Clipboard Changes");
     scanButton.addActionListener(this);
 
@@ -79,20 +78,19 @@ public class JSpeak extends JPanel
     stopButton.addActionListener(this);
 
     // Expand
-//    expandButton = new JButton(new ImageIcon(getClass().getResource("/jspeak/resources/retract.png"))); //TODO Need blue matching button
-    expandButton = new JButton();
+    expandButton = new JButton(new ImageIcon(getClass().getResource("/jspeak/resources/retract.png"))); //TODO Need blue matching button
     expandButton.setToolTipText("Expand/Retract");
     expandButton.addActionListener(this);
     
     //TODO If it can't monitor progress, just show progress until completed
     readProgress = new JProgressBar();
-    readProgress.setPreferredSize(new Dimension(400,25)); //TODO Correct Demension size
+    readProgress.setPreferredSize(new Dimension(290,25));
 
     add(scanButton);
     add(rpButton);
     add(stopButton);
-    add(expandButton, "wrap"); //TODO Read docs on wrap; Seems to be setting column restraints for all columns
-    add(readProgress , "wrap"); //FIXME Causing alignment issues with JButtons
+    add(expandButton, "wrap");
+    add(readProgress , "wrap, center");
     add(lowerPanel);
   }
 
@@ -112,15 +110,15 @@ public class JSpeak extends JPanel
         this.validate();
         System.out.println(this.getSize());
 //java.awt.Dimension[width=412,height=61]
-//        expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/expand.png")));
+        expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/expand.png")));
         expanded = false;
       } else {
         lowerPanel.setVisible(true);
         lowerPanel.setEnabled(true);
-//        expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/retract.png")));
+        expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/retract.png")));
         expanded = true;
       }
-    } else if(e.getSource() == ampSlider) {
+    } else if(e.getSource() == ampSlider) { //TODO Use these for reset to default button
 
     } else if(e.getSource() == wgSlider) {
 

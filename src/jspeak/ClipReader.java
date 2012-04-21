@@ -103,13 +103,13 @@ public class ClipReader {
   }
 
   public boolean setPitch(int pit) {
-    if(pit >= 0 && pit <= 100) {
+    if(pit > 0 && pit <= 100) {
     espeakcmd[4] = "-p " + new Integer(pit).toString();
 
     return true;
     } else {
       System.err.println("Cannot set speed to " + pit + ";\n"
-      + "The pitch must be set between 0 and 100 inclusive.");
+      + "The pitch must be set between 1 and 100 inclusive.");
       return false;
     }
   }
