@@ -14,7 +14,7 @@ import net.miginfocom.swing.MigLayout;
  */
 public class JSpeak extends JPanel
                     implements ActionListener {
-  private JButton scanButton, ppButton, stopButton, expandButton;
+  private JButton scanButton, rpButton, stopButton, expandButton;
   private JProgressBar readProgress;
   private static ClipReader clipReader;
   private JPanel lowerPanel;
@@ -33,7 +33,7 @@ public class JSpeak extends JPanel
      * JPanel for the expand/collapse button
      */
     lowerPanel = new JPanel();
-    lowerPanel.setLayout(new MigLayout("hidemode 2"));
+    lowerPanel.setLayout(new MigLayout("hidemode 2")); //FIXME; Not working
 
     /*
      * Create JSliders
@@ -50,29 +50,36 @@ public class JSpeak extends JPanel
     /*
      * Add JSliders
      */
+    lowerPanel.add(new JLabel("Amplitude"));
     lowerPanel.add(ampSlider, "wrap");
+    lowerPanel.add(new JLabel("Word Gap"));
     lowerPanel.add(wgSlider, "wrap");
+    lowerPanel.add(new JLabel("Pitch"));
     lowerPanel.add(pitSlider, "wrap");
+    lowerPanel.add(new JLabel("Speed"));
     lowerPanel.add(spSlider, "wrap");
 
     /*
      * Buttons
-     * TODO Replace all buttons with icons and add tooltips
-     * TODO Set LookAndFeel
+     * TODO Use MissingIcon.java
      */
-    scanButton = new JButton("Scan");
+    scanButton = new JButton(new ImageIcon(getClass().getResource("/jspeak/resources/scan.png")));
+    scanButton.setToolTipText("Scan/Watch for Clipboard Changes");
     scanButton.addActionListener(this);
 
-    // Play/Pause
-    ppButton = new JButton("Play/Pause");
-    ppButton.addActionListener(this);
+    // Replay
+    rpButton = new JButton(new ImageIcon(getClass().getResource("/jspeak/resources/replay.png")));
+    rpButton.setToolTipText("Replay");
+    rpButton.addActionListener(this);
 
     // Stop
-    stopButton = new JButton("Stop");
+    stopButton = new JButton(new ImageIcon(getClass().getResource("/jspeak/resources/stop.png")));
+    stopButton.setToolTipText("Stop Playback");
     stopButton.addActionListener(this);
 
     // Expand
-    expandButton = new JButton("Expand");
+    expandButton = new JButton(new ImageIcon(getClass().getResource("/jspeak/resources/expand.png")));
+    expandButton.setToolTipText("Expand/Retract");
     expandButton.addActionListener(this);
     
     //TODO If it can't monitor progress, just show progress until completed
@@ -80,7 +87,7 @@ public class JSpeak extends JPanel
     readProgress.setPreferredSize(new Dimension(400,25)); //TODO Correct Demension size
 
     add(scanButton);
-    add(ppButton);
+    add(rpButton);
     add(stopButton);
     add(expandButton, "wrap"); //TODO Read docs on wrap; Seems to be setting column restraints for all columns
     add(readProgress , "wrap"); //FIXME Causing alignment issues with JButtons
@@ -91,7 +98,7 @@ public class JSpeak extends JPanel
   public void actionPerformed(ActionEvent e) {
     if(e.getSource() == scanButton) {
       readProgress.setIndeterminate(true);
-    } else if(e.getSource() == ppButton) {
+    } else if(e.getSource() == rpButton) {
       readProgress.setIndeterminate(false);
     } else if(e.getSource() == stopButton) {
 
@@ -99,11 +106,16 @@ public class JSpeak extends JPanel
       if(expanded) {
         lowerPanel.setVisible(false);
         lowerPanel.setEnabled(false);
-        lowerPanel.setSize(0, 0);
+        this.setSize(412, 61); //FIXME Fails
+        this.validate();
+        System.out.println(this.getSize());
+//java.awt.Dimension[width=412,height=61]
+        expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/expand.png")));
         expanded = false;
       } else {
         lowerPanel.setVisible(true);
-//        lowerPanel.setEnabled(true);
+        lowerPanel.setEnabled(true);
+        expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/retract.png")));
         expanded = true;
       }
     } else if(e.getSource() == ampSlider) {
