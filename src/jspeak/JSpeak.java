@@ -3,7 +3,6 @@ package jspeak;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -20,9 +19,15 @@ public class JSpeak extends JPanel
   private static ClipReader clipReader;
   private JPanel lowerPanel;
   private JSlider ampSlider, wgSlider, pitSlider, spSlider;
+  private boolean expanded;
 
   public JSpeak() {
-    setLayout(new MigLayout());
+//    setLayout(new MigLayout("",    // Layout Constraints
+//                            "",    // Column Constraints
+//                            ""));  // Row Constraints
+    setLayout(new MigLayout("nogrid"));
+
+    expanded = true;
 
     /*
      * JPanel for the expand/collapse button
@@ -70,30 +75,42 @@ public class JSpeak extends JPanel
     expandButton = new JButton("Expand");
     expandButton.addActionListener(this);
     
-    //TODO Add Progress bar below buttons
-    //If it can't monitor progress, just show progress until completed
+    //TODO If it can't monitor progress, just show progress until completed
     readProgress = new JProgressBar();
-    readProgress.setIndeterminate(true);
-    readProgress.setPreferredSize(new Dimension(400,25));
+    readProgress.setPreferredSize(new Dimension(400,25)); //TODO Correct Demension size
 
     add(scanButton);
     add(ppButton);
     add(stopButton);
-    add(expandButton, "wrap");
-    add(readProgress, "span, wrap");
+    add(expandButton, "wrap"); //TODO Read docs on wrap; Seems to be setting column restraints for all columns
+    add(readProgress , "wrap"); //FIXME Causing alignment issues with JButtons
     add(lowerPanel);
   }
 
   @Override
-  //React to the user pushing the Change button.
   public void actionPerformed(ActionEvent e) {
-    //TODO HashMap getActionEvent()
-    System.out.println("Button Pressed!");
-    clipReader.setSpeed(200);
-    try {
-      Runtime.getRuntime().exec( new String[]{"espeak", "You pushed the red DO NOT PUSH ME BUTTON IDIOT!"});
-    } catch (IOException ex) {
-      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+    if(e.getSource() == scanButton) {
+      readProgress.setIndeterminate(true);
+    } else if(e.getSource() == ppButton) {
+      readProgress.setIndeterminate(false);
+    } else if(e.getSource() == stopButton) {
+
+    } else if(e.getSource() == expandButton) {
+      if(expanded) {
+        lowerPanel.setVisible(false);
+        expanded = false;
+      } else {
+        lowerPanel.setVisible(true);
+        expanded = true;
+      }
+    } else if(e.getSource() == ampSlider) {
+
+    } else if(e.getSource() == wgSlider) {
+
+    } else if(e.getSource() == pitSlider) {
+
+    } else if(e.getSource() == spSlider) {
+
     }
   }
 
