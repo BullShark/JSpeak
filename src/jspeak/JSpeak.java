@@ -25,7 +25,7 @@ public class JSpeak extends JPanel
 //    setLayout(new MigLayout("",    // Layout Constraints
 //                            "",    // Column Constraints
 //                            ""));  // Row Constraints
-    setLayout(new MigLayout("nogrid"));
+    setLayout(new MigLayout("hidemode 2, nogrid"));
 
     expanded = true;
 
@@ -33,7 +33,7 @@ public class JSpeak extends JPanel
      * JPanel for the expand/collapse button
      */
     lowerPanel = new JPanel();
-    lowerPanel.setLayout(new MigLayout());
+    lowerPanel.setLayout(new MigLayout("hidemode 2"));
 
     /*
      * Create JSliders
@@ -98,9 +98,12 @@ public class JSpeak extends JPanel
     } else if(e.getSource() == expandButton) {
       if(expanded) {
         lowerPanel.setVisible(false);
+        lowerPanel.setEnabled(false);
+        lowerPanel.setSize(0, 0);
         expanded = false;
       } else {
         lowerPanel.setVisible(true);
+//        lowerPanel.setEnabled(true);
         expanded = true;
       }
     } else if(e.getSource() == ampSlider) {
