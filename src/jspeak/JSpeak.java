@@ -1,6 +1,5 @@
 package jspeak;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,9 +18,37 @@ public class JSpeak extends JPanel
   private JButton scanButton, ppButton, stopButton, expandButton;
   private JProgressBar readProgress;
   private static ClipReader clipReader;
+  private JPanel lowerPanel;
+  private JSlider ampSlider, wgSlider, pitSlider, spSlider;
 
   public JSpeak() {
     setLayout(new MigLayout());
+
+    /*
+     * JPanel for the expand/collapse button
+     */
+    lowerPanel = new JPanel();
+    lowerPanel.setLayout(new MigLayout());
+
+    /*
+     * Create JSliders
+     */
+    ampSlider = new JSlider();
+    wgSlider = new JSlider();
+    pitSlider = new JSlider();
+    spSlider = new JSlider();
+
+    /*
+     * TODO Set JSlider options
+     */
+
+    /*
+     * Add JSliders
+     */
+    lowerPanel.add(ampSlider, "wrap");
+    lowerPanel.add(wgSlider, "wrap");
+    lowerPanel.add(pitSlider, "wrap");
+    lowerPanel.add(spSlider, "wrap");
 
     /*
      * Buttons
@@ -30,22 +57,18 @@ public class JSpeak extends JPanel
      */
     scanButton = new JButton("Scan");
     scanButton.addActionListener(this);
-    scanButton.setBackground(Color.RED);
 
     // Play/Pause
     ppButton = new JButton("Play/Pause");
     ppButton.addActionListener(this);
-    ppButton.setBackground(Color.RED);
 
     // Stop
     stopButton = new JButton("Stop");
     stopButton.addActionListener(this);
-    stopButton.setBackground(Color.RED);
 
     // Expand
     expandButton = new JButton("Expand");
     expandButton.addActionListener(this);
-    expandButton.setBackground(Color.RED);
     
     //TODO Add Progress bar below buttons
     //If it can't monitor progress, just show progress until completed
@@ -57,12 +80,14 @@ public class JSpeak extends JPanel
     add(ppButton);
     add(stopButton);
     add(expandButton, "wrap");
-    add(readProgress, "span");
+    add(readProgress, "span, wrap");
+    add(lowerPanel);
   }
 
   @Override
   //React to the user pushing the Change button.
   public void actionPerformed(ActionEvent e) {
+    //TODO HashMap getActionEvent()
     System.out.println("Button Pressed!");
     clipReader.setSpeed(200);
     try {
