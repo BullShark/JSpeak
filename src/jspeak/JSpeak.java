@@ -20,12 +20,11 @@ public class JSpeak extends JPanel
   private JPanel lowerPanel;
   private JSlider ampSlider, wgSlider, pitSlider, spSlider;
   private boolean expanded;
+  private static JFrame frame;
 
   public JSpeak() {
-//    setLayout(new MigLayout("",    // Layout Constraints
-//                            "",    // Column Constraints
-//                            ""));  // Row Constraints
-    setLayout(new MigLayout("hidemode 2, nogrid")); //FIXME hidemode 2 not working
+    // Setting hidemode 2 helps prevent the JProgressBar from being resized
+    setLayout(new MigLayout("hidemode 2, nogrid"));
 
     expanded = true;
 
@@ -42,10 +41,6 @@ public class JSpeak extends JPanel
     wgSlider = new JSlider(JSlider.HORIZONTAL, 1, 10, 1);
     pitSlider = new JSlider(JSlider.HORIZONTAL, 1, 100, 50);
     spSlider = new JSlider(JSlider.HORIZONTAL, 1, 200, 160);
-
-    /*
-     * TODO Set JSlider options
-     */
 
     /*
      * Add JSliders
@@ -101,20 +96,16 @@ public class JSpeak extends JPanel
     } else if(e.getSource() == rpButton) {
       readProgress.setIndeterminate(false);
     } else if(e.getSource() == stopButton) {
-
+      System.out.println(frame.getSize());
     } else if(e.getSource() == expandButton) {
       if(expanded) {
         lowerPanel.setVisible(false);
-        lowerPanel.setEnabled(false);
-        this.setSize(412, 61); //FIXME Fails
-        this.validate();
-        System.out.println(this.getSize());
-//java.awt.Dimension[width=412,height=61]
+        frame.setSize(new Dimension(323, 143));
         expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/expand.png")));
         expanded = false;
       } else {
         lowerPanel.setVisible(true);
-        lowerPanel.setEnabled(true);
+        frame.setSize(new Dimension(323, 347));
         expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/retract.png")));
         expanded = true;
       }
@@ -136,9 +127,9 @@ public class JSpeak extends JPanel
    */
   private static void createAndShowGUI() {
     //Create and set up the window.
-    JFrame frame = new JFrame("JSpeak");
+    frame = new JFrame("JSpeak");
+    frame.setAlwaysOnTop(true); //TODO Make checkbox for this
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    //  frame.setPreferredSize(new Dimension(200,200));
 
     //Add content to the window.
     frame.add(new JSpeak());
