@@ -19,9 +19,9 @@ import net.miginfocom.swing.MigLayout;
 public class JSpeak extends JPanel
                     implements ActionListener,
                     ItemListener, ChangeListener {
-  private JButton scanButton, rpButton, stopButton, expandButton;
+  private JButton scanButton, rpButton, stopButton, expandButton, resetButton;
   private JToggleButton scanTButton, expandTButton;
-  private JCheckBox topChkBox;
+//  private JCheckBox topChkBox;
   private JComboBox voiceComBox;
   private JProgressBar readProgress;
   private static ClipReader clipReader;
@@ -31,10 +31,12 @@ public class JSpeak extends JPanel
   private ImageIcon scanIcon, rpIcon, stopIcon, expandIcon, retractIcon;
 
   public JSpeak() {
+    voiceComBox = new JComboBox( new String[] {"Default", });
+
+//    topChkBox = new JCheckBox();
+
     /*
      * Create icons
-     * 
-     * protected static ImageIcon createImageIcon(String path) {
      */
     String loc = "/jspeak/resources/";
     scanIcon = createImageIcon(loc + "scan.png");
@@ -88,25 +90,8 @@ public class JSpeak extends JPanel
 //    frame.setAlwaysOnTop(true); //TODO Make checkbox for this
 
     /*
-     * Add JSliders
-     */
-    lowerPanel.add(new JLabel("Amplitude"));
-    lowerPanel.add(ampSlider, "wrap");
-    lowerPanel.add(new JLabel("Word Gap"));
-    lowerPanel.add(wgSlider, "wrap");
-    lowerPanel.add(new JLabel("Pitch"));
-    lowerPanel.add(pitSlider, "wrap");
-    lowerPanel.add(new JLabel("Speed"));
-    lowerPanel.add(spSlider, "wrap");
-
-    /*
      * Buttons
      */
-    // Scan for Changes
-//    scanButton = new JButton(new ImageIcon(getClass().getResource("/jspeak/resources/scan.png")));
-//    scanButton.setToolTipText("Scan/Watch for Clipboard Changes");
-//    scanButton.addActionListener(this);
-
     // Scan for Changes
     scanTButton = new JToggleButton(scanIcon, false);
     scanTButton.setToolTipText("Scan/Watch for Clipboard Changes");
@@ -123,26 +108,38 @@ public class JSpeak extends JPanel
     stopButton.addActionListener(this);
 
     // Expand
-//    expandButton = new JButton(expandIcon);
-//    expandButton.setToolTipText("Expand/Retract");
-//    expandButton.addActionListener(this);
-    
-    // Expand
     expandTButton = new JToggleButton(retractIcon, false);
     expandTButton.setToolTipText("Expand/Retract");
     expandTButton.addItemListener(this);
+
+    // Reset Default Options
+    resetButton = new JButton("Reset");
+    resetButton.setToolTipText("Reset to Defaults");
+    resetButton.addActionListener(this);
 
     //TODO If it can't monitor progress, just show progress until completed
     // Show Activity
     readProgress = new JProgressBar();
     readProgress.setPreferredSize(new Dimension(290, 25));
 
+    /*
+     * Add bottom panel components
+     */
+    lowerPanel.add(new JLabel("Amplitude"));
+    lowerPanel.add(ampSlider, "wrap");
+    lowerPanel.add(new JLabel("Word Gap"));
+    lowerPanel.add(wgSlider, "wrap");
+    lowerPanel.add(new JLabel("Pitch"));
+    lowerPanel.add(pitSlider, "wrap");
+    lowerPanel.add(new JLabel("Speed"));
+    lowerPanel.add(spSlider, "wrap");
+    lowerPanel.add(new JLabel("Voice"));
+    lowerPanel.add(voiceComBox, "split 2");
+    lowerPanel.add(resetButton, "wrap");
 
-//    add(scanButton);
     add(scanTButton);
     add(rpButton);
     add(stopButton);
-//    add(expandButton, "wrap");
     add(expandTButton, "wrap");
     add(readProgress , "wrap, center");
     add(lowerPanel);
@@ -154,6 +151,16 @@ public class JSpeak extends JPanel
       readProgress.setIndeterminate(false); //TODO DeleteMe
     } else if(e.getSource() == stopButton) {
       System.out.println(frame.getSize());
+    } else if(e.getSource() == resetButton) {
+      this.ampSlider.setValue(100);
+      clipReader.setAmplitude(100);
+      this.wgSlider.setValue(1);
+      clipReader.setWordGap(1);
+      this.pitSlider.setValue(50);
+      clipReader.setPitch(50);
+      this.spSlider.setValue(160);
+      clipReader.setSpeed(160);
+      //TODO Reset Voice in Combo Box
     }
   }
 
