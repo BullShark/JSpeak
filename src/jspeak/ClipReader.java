@@ -94,7 +94,7 @@ public class ClipReader {
 
   public boolean setWordGap(int wg) {
     if(wg > 0 && wg <= 10) {
-      espeakcmd[3] = "-a " + new Integer(wg).toString();
+      espeakcmd[3] = "-g " + new Integer(wg).toString();
 
       return true;
     } else {
