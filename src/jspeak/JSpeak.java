@@ -25,9 +25,7 @@ public class JSpeak extends JPanel
   private static ClipReader clipReader;
   private JPanel lowerPanel;
   private JSlider ampSlider, wgSlider, pitSlider, spSlider;
-  private boolean expanded;
   private static JFrame frame;
-  private JLabel logoLabel;
   private ImageIcon scanIcon, rpIcon, stopIcon, expandIcon, retractIcon;
 
   public JSpeak() {
@@ -66,6 +64,8 @@ public class JSpeak extends JPanel
     wgSlider = new JSlider(JSlider.HORIZONTAL, 1, 10, 1);
     pitSlider = new JSlider(JSlider.HORIZONTAL, 1, 100, 50);
     spSlider = new JSlider(JSlider.HORIZONTAL, 1, 200, 160);
+
+//    frame.setAlwaysOnTop(true); //TODO Make checkbox for this
 
     /*
      * Add JSliders
@@ -108,7 +108,7 @@ public class JSpeak extends JPanel
 //    expandButton.addActionListener(this);
     
     // Expand
-    expandTButton = new JToggleButton(expandIcon, false);
+    expandTButton = new JToggleButton(retractIcon, false);
     expandTButton.setToolTipText("Expand/Retract");
     expandTButton.addItemListener(this);
 
@@ -130,34 +130,10 @@ public class JSpeak extends JPanel
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    if(e.getSource() == scanButton) {
-      frame.setAlwaysOnTop(true); //TODO Make checkbox for this
-      readProgress.setIndeterminate(true);
-    } else if(e.getSource() == rpButton) {
-      frame.setAlwaysOnTop(false); //TODO Make checkbox for this
-      readProgress.setIndeterminate(false);
+    if(e.getSource() == rpButton) {
+      readProgress.setIndeterminate(false); //TODO DeleteMe
     } else if(e.getSource() == stopButton) {
       System.out.println(frame.getSize());
-    } else if(e.getSource() == expandButton) {
-      if(expanded) {
-        lowerPanel.setVisible(false);
-        frame.setSize(new Dimension(323, 143));
-        expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/expand.png")));
-        expanded = false;
-      } else {
-        lowerPanel.setVisible(true);
-        frame.setSize(new Dimension(323, 347));
-        expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/retract.png")));
-        expanded = true;
-      }
-    } else if(e.getSource() == ampSlider) { //TODO Use these for reset to default button
-
-    } else if(e.getSource() == wgSlider) {
-
-    } else if(e.getSource() == pitSlider) {
-
-    } else if(e.getSource() == spSlider) {
-
     }
   }
 
@@ -178,24 +154,16 @@ public class JSpeak extends JPanel
       if(e.getStateChange() == ItemEvent.SELECTED) {
         lowerPanel.setVisible(false);
         frame.setSize(new Dimension(323, 143));
-        System.out.println(JSpeak.class.getResource("/jspeak/resources/")); //Testing: Pointing to correct directory
-        System.out.println(JSpeak.class.getResource(".")); //Testing: Pointing to correct directory
-//        expandButton.setIcon(expandIcon); // Causing NullPointerException
-        expandButton.setIcon(new ImageIcon(getClass().getResource("/jspeak/resources/expand.png"))); // Also causing NullPointerException
+        expandTButton.setIcon(expandIcon);
       } else {
         lowerPanel.setVisible(true);
         frame.setSize(new Dimension(323, 347));
-//        expandButton.setIcon(retractIcon);
+        expandTButton.setIcon(retractIcon);
       }
     }
   }
 
-  /*
-   * TODO Test and Use createImageIcon
-   * TODO Use one obj instead of new ImageIcon() for images
-   * TODO Implement to use MissingIcon.java
-   */
-    protected static ImageIcon createImageIcon(String path) {
+    private static ImageIcon createImageIcon(String path) {
         java.net.URL imgURL = JSpeak.class.getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL);
