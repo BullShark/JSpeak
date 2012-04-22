@@ -8,6 +8,8 @@ import java.awt.event.ItemListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -16,11 +18,11 @@ import net.miginfocom.swing.MigLayout;
  */
 public class JSpeak extends JPanel
                     implements ActionListener,
-                    ItemListener {
+                    ItemListener, ChangeListener {
   private JButton scanButton, rpButton, stopButton, expandButton;
   private JToggleButton scanTButton, expandTButton;
-  //TODO JCheckBox
-  //TODO JComboBox
+  private JCheckBox topChkBox;
+  private JComboBox voiceComBox;
   private JProgressBar readProgress;
   private static ClipReader clipReader;
   private JPanel lowerPanel;
@@ -64,6 +66,24 @@ public class JSpeak extends JPanel
     wgSlider = new JSlider(JSlider.HORIZONTAL, 1, 10, 1);
     pitSlider = new JSlider(JSlider.HORIZONTAL, 1, 100, 50);
     spSlider = new JSlider(JSlider.HORIZONTAL, 1, 200, 160);
+
+    /*
+     * Set JSlider options
+     */
+
+//Turn on labels at major tick marks.
+//framesPerSecond.setMajorTickSpacing(10);
+//framesPerSecond.setMinorTickSpacing(1);
+//framesPerSecond.setPaintTicks(true);
+//framesPerSecond.setPaintLabels(true);
+
+    /*
+     * JSlider Event Handelers
+     */
+    ampSlider.addChangeListener(this);
+    wgSlider.addChangeListener(this);
+    pitSlider.addChangeListener(this);
+    spSlider.addChangeListener(this);
 
 //    frame.setAlwaysOnTop(true); //TODO Make checkbox for this
 
@@ -159,6 +179,27 @@ public class JSpeak extends JPanel
         lowerPanel.setVisible(true);
         frame.setSize(new Dimension(323, 347));
         expandTButton.setIcon(retractIcon);
+      }
+    }
+  }
+
+  /*
+   * For JSlider(s)
+   */
+  @Override
+  public void stateChanged(ChangeEvent e) {
+    JSlider source = (JSlider)e.getSource();
+    if(!source.getValueIsAdjusting()) {
+      int value = source.getValue();
+
+      if(source == ampSlider) {
+        clipReader.setAmplitude(value);
+      } else if(source == wgSlider) {
+        clipReader.setWordGap(value);
+      } else if(source == pitSlider) {
+        clipReader.setPitch(value);
+      } else if(source == spSlider) {
+        clipReader.setSpeed(value);
       }
     }
   }
