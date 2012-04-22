@@ -191,9 +191,9 @@ public class JSpeak extends JPanel
       }
     } else if(e.getSource() == topTButton) {
       if(e.getStateChange() == ItemEvent.SELECTED) {
-        frame.setAlwaysOnTop(false);
-      } else {
         frame.setAlwaysOnTop(true);
+      } else {
+        frame.setAlwaysOnTop(false);
       }
     }
   }
