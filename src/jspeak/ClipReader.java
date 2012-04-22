@@ -37,6 +37,8 @@ public class ClipReader {
        */
       espeakcmd[1] = espeakcmd[1].replace(" ", "");
 
+      //TODO How to determine when this process finishes and/or compute the time for completion
+      //TODO To prevent spawning two espeak processes and for JProgressBar
       ps = Runtime.getRuntime().exec(espeakcmd);
 
       // Print command output

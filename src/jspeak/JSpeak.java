@@ -19,9 +19,8 @@ import net.miginfocom.swing.MigLayout;
 public class JSpeak extends JPanel
                     implements ActionListener,
                     ItemListener, ChangeListener {
-  private JButton scanButton, rpButton, stopButton, expandButton, resetButton;
-  private JToggleButton scanTButton, expandTButton;
-//  private JCheckBox topChkBox;
+  private JButton rpButton, stopButton, resetButton;
+  private JToggleButton scanTButton, expandTButton, topTButton;
   private JComboBox voiceComBox;
   private JProgressBar readProgress;
   private static ClipReader clipReader;
@@ -29,11 +28,10 @@ public class JSpeak extends JPanel
   private JSlider ampSlider, wgSlider, pitSlider, spSlider;
   private static JFrame frame;
   private ImageIcon scanIcon, rpIcon, stopIcon, expandIcon, retractIcon;
+  private ImageIcon topIcon;
 
   public JSpeak() {
     voiceComBox = new JComboBox( new String[] {"Default", });
-
-//    topChkBox = new JCheckBox();
 
     /*
      * Create icons
@@ -44,14 +42,13 @@ public class JSpeak extends JPanel
     stopIcon = createImageIcon(loc + "stop.png");
     expandIcon = createImageIcon(loc + "expand.png");
     retractIcon = createImageIcon(loc + "retract.png");
+    topIcon = createImageIcon(loc + "ontop.png");
 
     /*
      * Setting hidemode 2 helps prevent the
      * JProgressBar from being resized
      */
     setLayout(new MigLayout("hidemode 2, nogrid"));
-
-//    expanded = true;
 
     /*
      * JPanel for the expand/collapse button
@@ -61,8 +58,6 @@ public class JSpeak extends JPanel
 
     /*
      * Create JSliders
-     * TODO More JSlider options, check wiki implements link
-     * TODO ChangeListener
      */
     ampSlider = new JSlider(JSlider.HORIZONTAL, 1, 200, 100);
     wgSlider = new JSlider(JSlider.HORIZONTAL, 1, 10, 1);
@@ -71,6 +66,7 @@ public class JSpeak extends JPanel
 
     /*
      * Set JSlider options
+     * TODO More JSlider options, check wiki implements link
      */
 
 //Turn on labels at major tick marks.
@@ -86,8 +82,6 @@ public class JSpeak extends JPanel
     wgSlider.addChangeListener(this);
     pitSlider.addChangeListener(this);
     spSlider.addChangeListener(this);
-
-//    frame.setAlwaysOnTop(true); //TODO Make checkbox for this
 
     /*
      * Buttons
@@ -112,6 +106,13 @@ public class JSpeak extends JPanel
     expandTButton.setToolTipText("Expand/Retract");
     expandTButton.addItemListener(this);
 
+    // Always On Top
+    topTButton = new JToggleButton(topIcon, false);
+    topTButton.setToolTipText("Always On Top");
+    topTButton.addItemListener(this);
+/*
+ * starts not toggled (false), 
+ */
     // Reset Default Options
     resetButton = new JButton("Reset");
     resetButton.setToolTipText("Reset to Defaults");
@@ -123,7 +124,7 @@ public class JSpeak extends JPanel
     readProgress.setPreferredSize(new Dimension(290, 25));
 
     /*
-     * Add bottom panel components
+     * Add Bottom Panel Components
      */
     lowerPanel.add(new JLabel("Amplitude"));
     lowerPanel.add(ampSlider, "wrap");
@@ -135,12 +136,13 @@ public class JSpeak extends JPanel
     lowerPanel.add(spSlider, "wrap");
     lowerPanel.add(new JLabel("Voice"));
     lowerPanel.add(voiceComBox, "split 2");
-    lowerPanel.add(resetButton, "wrap");
+    lowerPanel.add(resetButton);
 
     add(scanTButton);
     add(rpButton);
     add(stopButton);
-    add(expandTButton, "wrap");
+    add(expandTButton);
+    add(topTButton, "wrap");
     add(readProgress , "wrap, center");
     add(lowerPanel);
   }
@@ -148,9 +150,10 @@ public class JSpeak extends JPanel
   @Override
   public void actionPerformed(ActionEvent e) {
     if(e.getSource() == rpButton) {
-      readProgress.setIndeterminate(false); //TODO DeleteMe
+      System.err.println("Implement me!"); //TODO Thread code here
     } else if(e.getSource() == stopButton) {
       System.out.println(frame.getSize());
+      System.err.println("Implement me!"); //TODO Thread code here
     } else if(e.getSource() == resetButton) {
       this.ampSlider.setValue(100);
       clipReader.setAmplitude(100);
@@ -171,12 +174,11 @@ public class JSpeak extends JPanel
   public void itemStateChanged(ItemEvent e) {
     if(e.getSource() == scanTButton) {
       if(e.getStateChange() == ItemEvent.SELECTED) {
-        //TODO Thread code here
         readProgress.setIndeterminate(true); //TODO DeleteMe
       } else {
         readProgress.setIndeterminate(false); //TODO DeleteMe
       }
-
+      System.err.println("Implement me!"); //TODO Thread code here
     } else if(e.getSource() == expandTButton) {
       if(e.getStateChange() == ItemEvent.SELECTED) {
         lowerPanel.setVisible(false);
@@ -184,8 +186,14 @@ public class JSpeak extends JPanel
         expandTButton.setIcon(expandIcon);
       } else {
         lowerPanel.setVisible(true);
-        frame.setSize(new Dimension(323, 347));
+        frame.setSize(new Dimension(323, 378)); //FIXME Height
         expandTButton.setIcon(retractIcon);
+      }
+    } else if(e.getSource() == topTButton) {
+      if(e.getStateChange() == ItemEvent.SELECTED) {
+        frame.setAlwaysOnTop(false);
+      } else {
+        frame.setAlwaysOnTop(true);
       }
     }
   }
