@@ -15,7 +15,6 @@ public class ClipReader {
   private String str;
   private Process ps;
   private InputStream in;
-  private char c;
   private Scanner scan;
 
   public ClipReader() {
@@ -25,6 +24,7 @@ public class ClipReader {
     ps = null;
     scan = null;
   }
+  //TODO Read http://www.javaworld.com/javaworld/jw-12-2000/jw-1229-traps.html?page=2
 
   public void readIt(String readme) {
     // Set the text to be read
@@ -37,7 +37,7 @@ public class ClipReader {
        */
       espeakcmd[1] = espeakcmd[1].replace(" ", "");
 
-      //TODO How to determine when this process finishes and/or compute the time for completion
+      //TODO How to determine when this process finishes and/or compute the time for completion using Process.waitFor() or checking if Process == null
       //TODO To prevent spawning two espeak processes and for JProgressBar
       ps = Runtime.getRuntime().exec(espeakcmd);
 
@@ -46,7 +46,6 @@ public class ClipReader {
       scan = new Scanner(in);
       scan.useDelimiter("\\n");
 
-      //TODO While !interrupted
       while(scan.hasNext()) {
         System.out.println(scan.nextLine());
       }
@@ -58,7 +57,6 @@ public class ClipReader {
       scan = new Scanner(in);
       scan.useDelimiter("\\n");
 
-      //TODO While !interrupted
       while(scan.hasNext()) {
         System.out.println(scan.nextLine());
       }
@@ -68,7 +66,6 @@ public class ClipReader {
     } catch (IOException ex) {
       Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
     }
-
   }
 
   /*

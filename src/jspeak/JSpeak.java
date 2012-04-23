@@ -110,9 +110,7 @@ public class JSpeak extends JPanel
     topTButton = new JToggleButton(topIcon, false);
     topTButton.setToolTipText("Always On Top");
     topTButton.addItemListener(this);
-/*
- * starts not toggled (false), 
- */
+
     // Reset Default Options
     resetButton = new JButton("Reset");
     resetButton.setToolTipText("Reset to Defaults");
@@ -186,7 +184,7 @@ public class JSpeak extends JPanel
         expandTButton.setIcon(expandIcon);
       } else {
         lowerPanel.setVisible(true);
-        frame.setSize(new Dimension(323, 378)); //FIXME Height
+        frame.setSize(new Dimension(323, 378));
         expandTButton.setIcon(retractIcon);
       }
     } else if(e.getSource() == topTButton) {

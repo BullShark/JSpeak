@@ -27,6 +27,8 @@ public class ClipboardScanner implements Runnable {
     clipReader = new ClipReader();
     firstRun = true;
   }
+
+  //TODO Read http://docs.oracle.com/javase/tutorial/essential/concurrency/interrupt.html
   
   @Override
   public void run() {
@@ -59,6 +61,7 @@ public class ClipboardScanner implements Runnable {
         Thread.sleep(pollTime);
       } catch (InterruptedException ex) {
         Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
+        return;
       }
     }
   }
