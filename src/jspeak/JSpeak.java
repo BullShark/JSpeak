@@ -150,10 +150,9 @@ public class JSpeak extends JPanel
   @Override
   public void actionPerformed(ActionEvent e) {
     if(e.getSource() == rpButton) {
-      System.err.println("Implement me!"); //TODO Thread code here
+      clipReader.replay(); //TODO GET OFF EDT EVENT DISPATCHER THREAD; FREEZING GUI
     } else if(e.getSource() == stopButton) {
-      System.out.println(frame.getSize());
-      System.err.println("Implement me!"); //TODO Thread code here
+      clipReader.stopPlayBack();
     } else if(e.getSource() == resetButton) {
       this.ampSlider.setValue(100);
       clipReader.setAmplitude(100);
@@ -183,7 +182,6 @@ public class JSpeak extends JPanel
         readProgress.setIndeterminate(false); //TODO DeleteMe
         thread.interrupt();
       }
-      System.err.println("Implement me!"); //TODO Thread code here
     } else if(e.getSource() == expandTButton) {
       if(e.getStateChange() == ItemEvent.SELECTED) {
         lowerPanel.setVisible(false);
