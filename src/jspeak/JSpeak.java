@@ -255,8 +255,6 @@ j    */
   }
 
   public static void main(String[] args) {
-    //TODO Move next 3 to Constructor?
-
     try {
       // Set System Look And Feel
       UIManager.setLookAndFeel(
