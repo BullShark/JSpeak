@@ -1,6 +1,2 @@
-/build/
-<<<<<<< HEAD
-/dist/
-=======
-/dist/
->>>>>>> 37a22a414db77f5f1a41d21dabca85f790ff4de2
+*.class
+build/
