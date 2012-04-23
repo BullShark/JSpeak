@@ -40,32 +40,48 @@ public class ClipReader {
       //TODO How to determine when this process finishes and/or compute the time for completion using Process.waitFor() or checking if Process == null
       //TODO To prevent spawning two espeak processes and for JProgressBar
       ps = Runtime.getRuntime().exec(espeakcmd);
-
-      // Print command output
-      in = ps.getInputStream();
-      scan = new Scanner(in);
-      scan.useDelimiter("\\n");
-
-      while(scan.hasNext()) {
-        System.out.println(scan.nextLine());
-      }
-
-      System.out.println();
- 
-      // Print command output
-      in = ps.getErrorStream();
-      scan = new Scanner(in);
-      scan.useDelimiter("\\n");
-
-      while(scan.hasNext()) {
-        System.out.println(scan.nextLine());
-      }
-      
-      System.out.println();
-     
     } catch (IOException ex) {
       Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
     }
+    printPsOutErr(ps); //TODO Test me
+  }
+
+  public void replay() {
+    stopPlayBack();
+    readIt(espeakcmd[6]);
+  }
+
+  public void stopPlayBack() {
+    try {
+      ps = Runtime.getRuntime().exec("killall espeak"); //TODO *nix only
+    } catch (IOException ex) {
+      Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    printPsOutErr(ps);
+  }
+
+  public void printPsOutErr(Process ps) {
+    // Print command output
+    in = ps.getInputStream();
+    scan = new Scanner(in);
+    scan.useDelimiter("\\n");
+
+    while(scan.hasNext()) {
+      System.out.println(scan.nextLine());
+    }
+
+    System.out.println();
+
+    // Print command output
+    in = ps.getErrorStream();
+    scan = new Scanner(in);
+    scan.useDelimiter("\\n");
+
+    while(scan.hasNext()) {
+      System.out.println(scan.nextLine());
+    }
+
+    System.out.println();
   }
 
   /*

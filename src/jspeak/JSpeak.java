@@ -19,6 +19,8 @@ import net.miginfocom.swing.MigLayout;
 public class JSpeak extends JPanel
                     implements ActionListener,
                     ItemListener, ChangeListener {
+  private static Runnable runnable;
+  private static Thread thread;
   private JButton rpButton, stopButton, resetButton;
   private JToggleButton scanTButton, expandTButton, topTButton;
   private JComboBox voiceComBox;
@@ -172,9 +174,14 @@ public class JSpeak extends JPanel
   public void itemStateChanged(ItemEvent e) {
     if(e.getSource() == scanTButton) {
       if(e.getStateChange() == ItemEvent.SELECTED) {
+        runnable = new ClipboardScanner();
+        thread = new Thread(runnable);
+        clipReader = ClipboardScanner.getClipReader();
+        thread.start();
         readProgress.setIndeterminate(true); //TODO DeleteMe
       } else {
         readProgress.setIndeterminate(false); //TODO DeleteMe
+        thread.interrupt();
       }
       System.err.println("Implement me!"); //TODO Thread code here
     } else if(e.getSource() == expandTButton) {
@@ -217,15 +224,15 @@ public class JSpeak extends JPanel
     }
   }
 
-    private static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = JSpeak.class.getResource(path);
-        if (imgURL != null) {
-            return new ImageIcon(imgURL);
-        } else {
-            System.err.println("Couldn't find file: " + path);
-            return null;
-        }
-    }
+  private static ImageIcon createImageIcon(String path) {
+    java.net.URL imgURL = JSpeak.class.getResource(path);
+      if (imgURL != null) {
+        return new ImageIcon(imgURL);
+      } else {
+        System.err.println("Couldn't find file: " + path);
+        return null;
+      }
+  }
 
   /**
    * Create the GUI and show it.  For thread safety,
@@ -246,14 +253,10 @@ public class JSpeak extends JPanel
   }
 
   public static void main(String[] args) {
-    Runnable runnable = new ClipboardScanner();
-    Thread thread = new Thread(runnable);
-    thread.start();
-
-    clipReader = ClipboardScanner.getClipReader();
+    //TODO Move next 3 to Constructor?
 
     try {
-      // Set System L&F
+      // Set System Look And Feel
       UIManager.setLookAndFeel(
         UIManager.getSystemLookAndFeelClassName());
     } catch (ClassNotFoundException ex) {
