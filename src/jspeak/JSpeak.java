@@ -19,13 +19,14 @@ import net.miginfocom.swing.MigLayout;
 public class JSpeak extends JPanel
                     implements ActionListener,
                     ItemListener, ChangeListener {
-  private static Runnable runnable;
-  private static Thread thread;
+  private static Thread clipThread, rpThread;
   private JButton rpButton, stopButton, resetButton;
   private JToggleButton scanTButton, expandTButton, topTButton;
   private JComboBox voiceComBox;
   private JProgressBar readProgress;
   private static ClipReader clipReader;
+  private static Replay replayer;
+  private static ClipboardScanner clipScan;
   private JPanel lowerPanel;
   private JSlider ampSlider, wgSlider, pitSlider, spSlider;
   private static JFrame frame;
@@ -37,7 +38,7 @@ public class JSpeak extends JPanel
 
     /*
      * Create icons
-     */
+j    */
     String loc = "/jspeak/resources/";
     scanIcon = createImageIcon(loc + "scan.png");
     rpIcon = createImageIcon(loc + "replay.png");
@@ -150,7 +151,10 @@ public class JSpeak extends JPanel
   @Override
   public void actionPerformed(ActionEvent e) {
     if(e.getSource() == rpButton) {
-      clipReader.replay(); //TODO GET OFF EDT EVENT DISPATCHER THREAD; FREEZING GUI
+      //clipReader.replay(); //TODO GET OFF EDT EVENT DISPATCHER THREAD; FREEZING GUI
+        replayer = new Replay(clipReader);
+        rpThread = new Thread(replayer);
+        rpThread.start();
     } else if(e.getSource() == stopButton) {
       clipReader.stopPlayBack();
     } else if(e.getSource() == resetButton) {
@@ -173,14 +177,14 @@ public class JSpeak extends JPanel
   public void itemStateChanged(ItemEvent e) {
     if(e.getSource() == scanTButton) {
       if(e.getStateChange() == ItemEvent.SELECTED) {
-        runnable = new ClipboardScanner();
-        thread = new Thread(runnable);
+        clipScan = new ClipboardScanner();
+        clipThread = new Thread(clipScan);
         clipReader = ClipboardScanner.getClipReader();
-        thread.start();
+        clipThread.start();
         readProgress.setIndeterminate(true); //TODO DeleteMe
       } else {
         readProgress.setIndeterminate(false); //TODO DeleteMe
-        thread.interrupt();
+        clipThread.interrupt();
       }
     } else if(e.getSource() == expandTButton) {
       if(e.getStateChange() == ItemEvent.SELECTED) {
