@@ -255,19 +255,19 @@ j    */
   }
 
   public static void main(String[] args) {
-    try {
-      // Set System Look And Feel
-      UIManager.setLookAndFeel(
-        UIManager.getSystemLookAndFeelClassName());
-    } catch (ClassNotFoundException ex) {
-      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (UnsupportedLookAndFeelException ex) {
-      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
-    }
+//    try {
+//      // Set System Look And Feel
+//      UIManager.setLookAndFeel(
+//        UIManager.getSystemLookAndFeelClassName());
+//    } catch (ClassNotFoundException ex) {
+//      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+//    } catch (InstantiationException ex) {
+//      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+//    } catch (IllegalAccessException ex) {
+//      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+//    } catch (UnsupportedLookAndFeelException ex) {
+//      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+//    }
 
     //Schedule a job for the event dispatch thread:
     //creating and showing this application's GUI.
