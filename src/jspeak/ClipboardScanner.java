@@ -100,7 +100,7 @@ public class ClipboardScanner implements Runnable {
       try {
         Thread.sleep(pollTime);
       } catch (InterruptedException ex) {
-        Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
+//        Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
         return;
       }
     }

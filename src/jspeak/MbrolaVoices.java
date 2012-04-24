@@ -55,10 +55,6 @@ public class MbrolaVoices {
   private String[] fstrArr;
 
   public MbrolaVoices() {
-    //TODO Read http://docs.oracle.com/javase/tutorial/essential/io/dirs.html
-    //TODO Read http://docs.oracle.com/javase/tutorial/essential/io/find.html
-    //TODO Get voices and store as an array
-    
     ff = new FilenameFilter() {
       @Override public boolean accept(File dir, String name) {
         return name.matches("[a-z]{2}[1-9]");

@@ -59,8 +59,7 @@ public class ClipReader {
 
   public ClipReader() {
     // Options get default values to start with
-    //TODO Windows version (xp32): 
-    espeakcmd = new String[]{"espeak", "-v mb-us1", "-a 100", "-g 1", "-p 50", "-s 160", ""};
+    espeakcmd = new String[]{"espeak", "-v en", "-a 100", "-g 1", "-p 50", "-s 160", ""};
     str = ""; // Used for toString()
     ps = null;
     scan = null;
@@ -78,19 +77,12 @@ public class ClipReader {
        */
       espeakcmd[1] = espeakcmd[1].replace(" ", "");
 
-      //TODO How to determine when this process finishes and/or compute the time for completion using Process.waitFor() or checking if Process == null
-      //TODO To prevent spawning two espeak processes and for JProgressBar
       ps = Runtime.getRuntime().exec(espeakcmd);
     } catch (IOException ex) {
       Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
     }
-    /*
-     * Tries to kill espeak
-     * If no espeak is running, user doesn't need to see an error
-     * 
-     * Only uncomment if you need to see output/error
-     */
-//    printPsOutErr(ps);
+
+    printPsOutErr(ps);
   }
 
   public void replay() {
@@ -104,7 +96,13 @@ public class ClipReader {
     } catch (IOException ex) {
       Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
     }
-    printPsOutErr(ps);
+    /*
+     * Tries to kill espeak
+     * If no espeak is running, user doesn't need to see an error
+     * 
+     * Only uncomment if you need to see output/error
+     */
+//    printPsOutErr(ps);
   }
 
   public void printPsOutErr(Process ps) {
@@ -135,8 +133,11 @@ public class ClipReader {
    * Begin all set methods for espeak options
    */
   public boolean setVoice(String voice) {
-    //TODO Implement me setVoice()
-    //TODO For espeak default voice, try setting to empty string
+    if(voice.equals("Default")) {
+      espeakcmd[1] = "-v en";
+    } else {
+      espeakcmd[1] = "-v mb-" + voice;
+    }
     return true;
   }
 

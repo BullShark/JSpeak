@@ -71,16 +71,22 @@ public class JSpeak extends JPanel
   private JSlider ampSlider, wgSlider, pitSlider, spSlider;
   private static JFrame frame;
   private ImageIcon scanIcon, rpIcon, stopIcon, expandIcon, retractIcon, topIcon;
-  private MbrolaVoices voice;
+  private MbrolaVoices voices;
+  private final String defaultvc;
 
   public JSpeak() {
-    voice = new MbrolaVoices();
-
-    voiceComBox = new JComboBox( new String[] {"Default", });
+    defaultvc = "Default"; // Used for default espeak voice
+    voices = new MbrolaVoices();
+    if(voices != null) {
+      voiceComBox = new JComboBox(voices.getVoices());
+    }
+    voiceComBox.addItem(defaultvc);
+    voiceComBox.setSelectedItem(defaultvc);
+    voiceComBox.addActionListener(this);
 
     /*
      * Create icons
-j    */
+     */
     String loc = "/jspeak/resources/";
     scanIcon = createImageIcon(loc + "scan.png");
     rpIcon = createImageIcon(loc + "replay.png");
@@ -108,17 +114,6 @@ j    */
     wgSlider = new JSlider(JSlider.HORIZONTAL, 1, 10, 1);
     pitSlider = new JSlider(JSlider.HORIZONTAL, 1, 100, 50);
     spSlider = new JSlider(JSlider.HORIZONTAL, 1, 200, 160);
-
-    /*
-     * Set JSlider options
-     * TODO More JSlider options, check wiki implements link
-     */
-
-//Turn on labels at major tick marks.
-//framesPerSecond.setMajorTickSpacing(10);
-//framesPerSecond.setMinorTickSpacing(1);
-//framesPerSecond.setPaintTicks(true);
-//framesPerSecond.setPaintLabels(true);
 
     /*
      * JSlider Event Handelers
@@ -221,7 +216,10 @@ j    */
       clipReader.setPitch(50);
       spSlider.setValue(160);
       clipReader.setSpeed(160);
-      //TODO Reset MbrolaVoices in Combo Box
+      voiceComBox.setSelectedItem(defaultvc);
+      clipReader.setVoice(defaultvc);
+    } else if((JComboBox)e.getSource() == voiceComBox) {
+      clipReader.setVoice((String)voiceComBox.getSelectedItem());
     }
   }
 
