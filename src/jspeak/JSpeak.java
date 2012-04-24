@@ -156,7 +156,6 @@ public class JSpeak extends JPanel
     resetButton.setToolTipText("Reset to Defaults");
     resetButton.addActionListener(this);
 
-    //TODO If it can't monitor progress, just show progress until completed
     // Show Activity
     readProgress = new JProgressBar();
     readProgress.setPreferredSize(new Dimension(290, 25));
@@ -196,7 +195,6 @@ public class JSpeak extends JPanel
     add(topTButton, "wrap");
     add(readProgress , "wrap, center");
     add(lowerPanel);
-    //FIXME espeak continues to read once the application is closed. kill it!
   }
 
   @Override
@@ -206,7 +204,7 @@ public class JSpeak extends JPanel
         rpThread = new Thread(replayer);
         rpThread.start();
     } else if(e.getSource() == stopButton) {
-      clipReader.stopPlayBack(); //FIXME Disable when not scanning
+      clipReader.stopPlayBack();
     } else if(e.getSource() == resetButton) {
       ampSlider.setValue(100);
       clipReader.setAmplitude(100);
@@ -234,7 +232,7 @@ public class JSpeak extends JPanel
         clipThread = new Thread(clipScan);
         clipReader = ClipboardScanner.getClipReader();
         clipThread.start();
-        readProgress.setIndeterminate(true); //TODO DeleteMe
+        readProgress.setIndeterminate(true);
 
         rpButton.setEnabled(true);
         stopButton.setEnabled(true);
@@ -249,9 +247,8 @@ public class JSpeak extends JPanel
         clipReader.setWordGap(wgSlider.getValue());
         clipReader.setPitch(pitSlider.getValue());
         clipReader.setSpeed(spSlider.getValue());
-        //TODO Set MbrolaVoices in Combo Box
       } else {
-        readProgress.setIndeterminate(false); //TODO DeleteMe
+        readProgress.setIndeterminate(false);
         clipThread.interrupt();
 
         rpButton.setEnabled(false);
