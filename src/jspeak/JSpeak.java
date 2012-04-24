@@ -331,13 +331,14 @@ j    */
   }
 
   public static void main(String[] args) {
-    try {
-      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-    } catch (Exception ex) {
-      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
-      System.err.println("GTK+ version 2.2 or later was not found on your system.\n"
-              + "Install it to use this application.");
-    } //TODO try JFrame.pack() to fit other LFs
+//    try {
+//      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+//    } catch (Exception ex) {
+//      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+//      System.err.println("GTK+ version 2.2 or later was not found on your system.\n"
+//              + "Install it to use this application.");
+//      System.exit(-1);
+//    } //TODO try JFrame.pack() to fit other LFs
     
     Runtime.getRuntime().addShutdownHook(new Thread() {
       public void run() { clipReader.stopPlayBack(); }
