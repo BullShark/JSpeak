@@ -72,7 +72,6 @@ public class JSpeak extends JPanel
   private static JFrame frame;
   private ImageIcon scanIcon, rpIcon, stopIcon, expandIcon, retractIcon;
   private ImageIcon topIcon;
-  private final JLabel label; //TODO Delete me
 
   public JSpeak() {
     voiceComBox = new JComboBox( new String[] {"Default", });
@@ -168,9 +167,7 @@ j    */
     /*
      * Add Bottom Panel Components
      */
-//    lowerPanel.add(new JLabel("Amplitude").setToolTipText("Volume"));
-    label = new JLabel("Amplitude"); //TODO Delete me
-    lowerPanel.add(label); //TODO Delete me
+    lowerPanel.add(new JLabel("Amplitude"));
     lowerPanel.add(ampSlider, "wrap");
     lowerPanel.add(new JLabel("Word Gap"));
     lowerPanel.add(wgSlider, "wrap");
@@ -195,18 +192,11 @@ j    */
   @Override
   public void actionPerformed(ActionEvent e) {
     if(e.getSource() == rpButton) {
-      //clipReader.replay(); //TODO GET OFF EDT EVENT DISPATCHER THREAD; FREEZING GUI
         replayer = new Replay(clipReader);
         rpThread = new Thread(replayer);
         rpThread.start();
     } else if(e.getSource() == stopButton) {
       clipReader.stopPlayBack(); //FIXME Disable when not scanning
-      System.out.println("scanTButton: " + scanTButton.getSize() //TODO Delete me
-              + "\nstopButton: " + stopButton.getSize()
-              + "\nampSlider JLabel" + label.getSize()
-              + "\nampSlider" + ampSlider.getSize()
-              + "\nvoiceComBox" + voiceComBox.getSize()
-              + "\nresetButton" + resetButton.getSize());
     } else if(e.getSource() == resetButton) {
       this.ampSlider.setValue(100);
       clipReader.setAmplitude(100);
@@ -278,12 +268,12 @@ j    */
 
   private static ImageIcon createImageIcon(String path) {
     java.net.URL imgURL = JSpeak.class.getResource(path);
-      if (imgURL != null) {
-        return new ImageIcon(imgURL);
-      } else {
-        System.err.println("Couldn't find file: " + path);
-        return null;
-      }
+    if (imgURL != null) {
+      return new ImageIcon(imgURL);
+    } else {
+      System.err.println("Couldn't find file: " + path);
+      return null;
+    }
   }
 
   /**
@@ -305,19 +295,14 @@ j    */
   }
 
   public static void main(String[] args) {
-//    try {
-//      // Set System Look And Feel
-//      UIManager.setLookAndFeel(
-//        UIManager.getSystemLookAndFeelClassName());
-//    } catch (ClassNotFoundException ex) {
-//      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
-//    } catch (InstantiationException ex) {
-//      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
-//    } catch (IllegalAccessException ex) {
-//      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
-//    } catch (UnsupportedLookAndFeelException ex) {
-//      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
-//    }
+    try {
+      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+    } catch (Exception ex) {
+      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+      System.err.println("GTK+ version 2.2 or later was not found on your system.\n"
+              + "Install it to use this application.");
+    }
+
     System.out.println("This software was created by Christopher Lemire "
             + "<christopher.lemire@gmail.com>\n"
             + "Feedback is appreciated!");
