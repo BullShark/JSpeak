@@ -70,8 +70,7 @@ public class JSpeak extends JPanel
   private JPanel lowerPanel;
   private JSlider ampSlider, wgSlider, pitSlider, spSlider;
   private static JFrame frame;
-  private ImageIcon scanIcon, rpIcon, stopIcon, expandIcon, retractIcon;
-  private ImageIcon topIcon;
+  private ImageIcon scanIcon, rpIcon, stopIcon, expandIcon, retractIcon, topIcon;
 
   public JSpeak() {
     voiceComBox = new JComboBox( new String[] {"Default", });
@@ -165,6 +164,19 @@ j    */
     readProgress.setPreferredSize(new Dimension(290, 25));
 
     /*
+     * Some components need to be disabled until and only when
+     * Scanning of the clipboard is active
+     */
+    rpButton.setEnabled(false);
+    stopButton.setEnabled(false);
+    ampSlider.setEnabled(false);
+    wgSlider.setEnabled(false);
+    pitSlider.setEnabled(false);
+    spSlider.setEnabled(false);
+    voiceComBox.setEnabled(false);
+    resetButton.setEnabled(false);
+
+    /*
      * Add Bottom Panel Components
      */
     lowerPanel.add(new JLabel("Amplitude"));
@@ -198,13 +210,13 @@ j    */
     } else if(e.getSource() == stopButton) {
       clipReader.stopPlayBack(); //FIXME Disable when not scanning
     } else if(e.getSource() == resetButton) {
-      this.ampSlider.setValue(100);
+      ampSlider.setValue(100);
       clipReader.setAmplitude(100);
-      this.wgSlider.setValue(1);
+      wgSlider.setValue(1);
       clipReader.setWordGap(1);
-      this.pitSlider.setValue(50);
+      pitSlider.setValue(50);
       clipReader.setPitch(50);
-      this.spSlider.setValue(160);
+      spSlider.setValue(160);
       clipReader.setSpeed(160);
       //TODO Reset Voice in Combo Box
     }
@@ -222,9 +234,33 @@ j    */
         clipReader = ClipboardScanner.getClipReader();
         clipThread.start();
         readProgress.setIndeterminate(true); //TODO DeleteMe
+
+        rpButton.setEnabled(true);
+        stopButton.setEnabled(true);
+        ampSlider.setEnabled(true);
+        wgSlider.setEnabled(true);
+        pitSlider.setEnabled(true);
+        spSlider.setEnabled(true);
+        voiceComBox.setEnabled(true);
+        resetButton.setEnabled(true);
+
+        clipReader.setAmplitude(ampSlider.getValue());
+        clipReader.setWordGap(wgSlider.getValue());
+        clipReader.setPitch(pitSlider.getValue());
+        clipReader.setSpeed(spSlider.getValue());
+        //TODO Set Voice in Combo Box
       } else {
         readProgress.setIndeterminate(false); //TODO DeleteMe
         clipThread.interrupt();
+
+        rpButton.setEnabled(false);
+        stopButton.setEnabled(false);
+        ampSlider.setEnabled(false);
+        wgSlider.setEnabled(false);
+        pitSlider.setEnabled(false);
+        spSlider.setEnabled(false);
+        voiceComBox.setEnabled(false);
+        resetButton.setEnabled(false);
       }
     } else if(e.getSource() == expandTButton) {
       if(e.getStateChange() == ItemEvent.SELECTED) {
