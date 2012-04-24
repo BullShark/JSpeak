@@ -59,7 +59,7 @@ public class ClipReader {
 
   public ClipReader() {
     // Options get default values to start with
-    espeakcmd = new String[]{"espeak", "-v mb-us1", "-a 100", "-g 1", "-p 50", "-s 160", ""};
+    espeakcmd = new String[]{"espeak.exe", "-v mb-us1", "-a 100", "-g 1", "-p 50", "-s 160", ""};
     str = ""; // Used for toString()
     ps = null;
     scan = null;
