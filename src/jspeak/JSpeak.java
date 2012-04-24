@@ -301,7 +301,11 @@ j    */
       Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
       System.err.println("GTK+ version 2.2 or later was not found on your system.\n"
               + "Install it to use this application.");
-    }
+    } //TODO try JFrame.pack() to fit other LFs
+    
+    Runtime.getRuntime().addShutdownHook(new Thread() {
+      public void run() { clipReader.stopPlayBack(); }
+    });
 
     System.out.println("This software was created by Christopher Lemire "
             + "<christopher.lemire@gmail.com>\n"
