@@ -59,7 +59,8 @@ public class ClipReader {
 
   public ClipReader() {
     // Options get default values to start with
-    espeakcmd = new String[]{"espeak.exe", "-v mb-us1", "-a 100", "-g 1", "-p 50", "-s 160", ""};
+    //TODO Windows version (xp32): 
+    espeakcmd = new String[]{"espeak", "-v mb-us1", "-a 100", "-g 1", "-p 50", "-s 160", ""};
     str = ""; // Used for toString()
     ps = null;
     scan = null;
@@ -83,7 +84,13 @@ public class ClipReader {
     } catch (IOException ex) {
       Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
     }
-    printPsOutErr(ps); //TODO Test me
+    /*
+     * Tries to kill espeak
+     * If no espeak is running, user doesn't need to see an error
+     * 
+     * Only uncomment if you need to see output/error
+     */
+//    printPsOutErr(ps);
   }
 
   public void replay() {

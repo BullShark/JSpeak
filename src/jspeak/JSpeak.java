@@ -71,8 +71,11 @@ public class JSpeak extends JPanel
   private JSlider ampSlider, wgSlider, pitSlider, spSlider;
   private static JFrame frame;
   private ImageIcon scanIcon, rpIcon, stopIcon, expandIcon, retractIcon, topIcon;
+  private MbrolaVoices voice;
 
   public JSpeak() {
+    voice = new MbrolaVoices();
+
     voiceComBox = new JComboBox( new String[] {"Default", });
 
     /*
@@ -218,7 +221,7 @@ j    */
       clipReader.setPitch(50);
       spSlider.setValue(160);
       clipReader.setSpeed(160);
-      //TODO Reset Voice in Combo Box
+      //TODO Reset MbrolaVoices in Combo Box
     }
   }
 
@@ -248,7 +251,7 @@ j    */
         clipReader.setWordGap(wgSlider.getValue());
         clipReader.setPitch(pitSlider.getValue());
         clipReader.setSpeed(spSlider.getValue());
-        //TODO Set Voice in Combo Box
+        //TODO Set MbrolaVoices in Combo Box
       } else {
         readProgress.setIndeterminate(false); //TODO DeleteMe
         clipThread.interrupt();
@@ -331,17 +334,17 @@ j    */
   }
 
   public static void main(String[] args) {
-//    try {
-//      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-//    } catch (Exception ex) {
-//      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
-//      System.err.println("GTK+ version 2.2 or later was not found on your system.\n"
-//              + "Install it to use this application.");
-//      System.exit(-1);
-//    } //TODO try JFrame.pack() to fit other LFs
+    try {
+      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+    } catch (Exception ex) {
+      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+      System.err.println("GTK+ version 2.2 or later was not found on your system.\n"
+              + "Install it to use this application.");
+      System.exit(-1);
+    } //TODO try JFrame.pack() to fit other LFs
     
     Runtime.getRuntime().addShutdownHook(new Thread() {
-      public void run() { clipReader.stopPlayBack(); }
+      public void run() { if(clipReader != null) clipReader.stopPlayBack(); }
     });
 
     System.out.println("This software was created by Christopher Lemire "
