@@ -18,7 +18,7 @@ h3. Fedora/Suse:
 
 Fedora and other rpm based systems do not have mbrola and mbrola packages afaik. However this is not a problem. Continue to follow the manual installation for them.
 
-Manual installation of mbrola and mbrola voices (From the espeak/mbrola docs)
+h3. Manual installation of mbrola and mbrola voices (From the espeak/mbrola docs)
 
 Linux Installation
 From eSpeak version 1.44 onwards, eSpeak calls the mbrola program directly, rather than passing phoneme data to it using a pipe.
@@ -32,7 +32,7 @@ From eSpeak version 1.44 onwards, eSpeak calls the mbrola program directly, rath
     If you use the eSpeak voice such as "mb-en1" then eSpeak will use the mbrola "en1" voice, eg:
     espeak -v mb-en1 "Hello world" 
 
-Obtaining and running the app.
+h3. Obtaining and running the app.
 
 @$ git clone git://github.com/BullShark/JSpeak.git@
 
@@ -40,9 +40,11 @@ Obtaining and running the app.
 
 @$ Java -jar JSpeak.jar@
 
-Windows Users:
+h3. Windows Users:
+
 Install Linux
 
-Support for Mbrola voices soon!
-For help, visit ##blackhats on Freenode
+h3. Help/Support
+
+For help and support, visit ##blackhats on Freenode
 
