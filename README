@@ -17,8 +17,19 @@ Fedora/Suse:
 
 Fedora and other rpm based systems do not have mbrola and mbrola packages afaik. However this is not a problem. Continue to follow the manual installation for them.
 
-Manual installation of mbrola and mbrola voices
-Will be written soon also with wiki markup.
+Manual installation of mbrola and mbrola voices (From the espeak/mbrola docs)
+
+Linux Installation
+From eSpeak version 1.44 onwards, eSpeak calls the mbrola program directly, rather than passing phoneme data to it using a pipe.
+
+    To install the Linux Mbrola binary, download: http://www.tcts.fpms.ac.be/synthesis/mbrola/bin/pclinux/mbr301h.zip. Unpack the archive, and copy and rename the file from: mbrola-linux-i386 to mbrola somewhere in your executable path (eg. /usr/bin/mbrola ).
+
+    Get the en1 voice from: http://www.tcts.fpms.ac.be/synthesis/mbrola/mbrcopybin.html. Unpack the archive, and copy the "en1" data file (not the whole "en1" directory) to /usr/share/mbrola/en1.
+
+    eSpeak will look for mbrola voices firstly in espeak-data/mbrola and then in /usr/share/mbrola
+
+    If you use the eSpeak voice such as "mb-en1" then eSpeak will use the mbrola "en1" voice, eg:
+    espeak -v mb-en1 "Hello world" 
 
 Obtaining and running the app.
 
