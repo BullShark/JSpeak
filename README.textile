@@ -4,16 +4,16 @@ h3. Ubuntu/Debian/Mint:
 
 *Note:* There is a bug in Mint with it's espeak and pulseaudio, not the app itself. However these bugs do not affect the program, and it still opperates just fine and good.
 
-$ sudo apt-get install espeak mbrola git-core
+@$ sudo apt-get install espeak mbrola git-core@
 
 Choose your voices. There are many, but for all english ones, do
 
-$ sudo apt-get install mbrola-us1 mbrola-us2 mbrola-us3 mbrola-en1
+@$ sudo apt-get install mbrola-us1 mbrola-us2 mbrola-us3 mbrola-en1@
 
 Many mbrola voices can be installed through apt-get in Ubuntu/Mint. Some such as mbrola-mx1 are not available through apt. If you wish to install those. Follow the manual installation for them.
 
 Fedora/Suse:
-# yum install espeak git
+@# yum install espeak git@
 
 Fedora and other rpm based systems do not have mbrola and mbrola packages afaik. However this is not a problem. Continue to follow the manual installation for them.
 
@@ -33,11 +33,11 @@ From eSpeak version 1.44 onwards, eSpeak calls the mbrola program directly, rath
 
 Obtaining and running the app.
 
-$ git clone git://github.com/BullShark/JSpeak.git
+@$ git clone git://github.com/BullShark/JSpeak.git@
 
-$ cd JSpeak/dist
+@$ cd JSpeak/dist@
 
-$ Java -jar JSpeak.jar
+@$ Java -jar JSpeak.jar@
 
 Windows Users:
 Install Linux
