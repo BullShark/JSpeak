@@ -30,12 +30,16 @@ From eSpeak version 1.44 onwards, eSpeak calls the mbrola program directly, rath
 <a href="http://www.tcts.fpms.ac.be/synthesis/mbrola/bin/pclinux/mbr301h.zip"> http://www.tcts.fpms.ac.be/synthesis/mbrola/bin/pclinux/mbr301h.zip</a>.
 Unpack the archive, and copy and rename the file from: <code>mbrola-linux-i386</code> to
 <code>mbrola</code> somewhere in your executable path (eg. <code>/usr/bin/mbrola</code> ).
-<p>
+
+
+
 <li>Get the en1 voice from:
 <a href="http://www.tcts.fpms.ac.be/synthesis/mbrola/mbrcopybin.html"> http://www.tcts.fpms.ac.be/synthesis/mbrola/mbrcopybin.html</a>.
 Unpack the archive, and copy the "<b>en1</b>" data file (not the whole "en1"
 directory) to <code>/usr/share/mbrola/en1</code>.<p>eSpeak will look for mbrola voices firstly in <code>espeak-data/mbrola</code> and then in <code>/usr/share/mbrola</code>
-<p>
+
+
+
 <li>If you use the eSpeak voice such as "<b>mb-en1</b>" then eSpeak will use the mbrola "en1" voice, eg:<br>
 <code>espeak -v mb-en1 "Hello world"
 </code>
