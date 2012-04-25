@@ -10,14 +10,23 @@ Choose your voices. There are many, but for all english ones, do
 
 $ sudo apt-get install mbrola-us1 mbrola-us2 mbrola-us3 mbrola-en1
 
+Many mbrola voices can be installed through apt-get in Ubuntu/Mint. Some such as mbrola-mx1 are not available through apt. If you wish to install those. Follow the manual installation for them.
+
+Fedora/Suse:
+# yum install espeak git
+
+Fedora and other rpm based systems do not have mbrola and mbrola packages afaik. However this is not a problem. Continue to follow the manual installation for them.
+
+Manual installation of mbrola and mbrola voices
+Will be written soon also with wiki markup.
+
+Obtaining and running the app.
+
 $ git clone git://github.com/BullShark/JSpeak.git
 
 $ cd JSpeak/dist
 
 $ Java -jar JSpeak.jar
-
-Fedora/Suse:
-# yum install espeak
 
 Windows Users:
 Install Linux
