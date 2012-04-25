@@ -2,7 +2,7 @@ h2. Installation and Usage
 
 h3. Ubuntu/Debian/Mint:
 
-h4. Note: There is a bug in Mint with it's espeak and pulseaudio, not the app itself. However these bugs do not affect the program, and it still opperates just fine and good.
+*Note:* There is a bug in Mint with it's espeak and pulseaudio, not the app itself. However these bugs do not affect the program, and it still opperates just fine and good.
 
 $ sudo apt-get install espeak mbrola git-core
 
