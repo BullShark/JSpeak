@@ -50,7 +50,12 @@ h3. Obtaining and running the app.
 @$ java -jar JSpeak.jar@
 
 h3. Usage
-Toggle on the scan button (has a diamond icon). Hove your mouse over other buttons for descriptions. Start copying text from your favorite ebook, the web, email, etc. to begin having the text read to you.
+
+1. Toggle on the scan button (has a diamond icon). Hove your mouse over other buttons for descriptions.
+
+2. (Optional) Change the voice from the drop down menu of the combo box to set a better sounding mbrola voice.
+
+3. Start copying text from your favorite ebook, the web, email, etc. to begin having the text read to you.
 
 h3. Windows Users:
 Install Linux
