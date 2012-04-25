@@ -1,4 +1,4 @@
-h2 Installation and Usage
+h2. Installation and Usage
 
 Ubuntu/Debian/Mint:
 
