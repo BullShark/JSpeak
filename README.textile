@@ -22,28 +22,31 @@ Fedora and other rpm based systems do not have mbrola and mbrola packages afaik.
 
 h3. Manual installation of mbrola and mbrola voices (From the espeak/mbrola docs)
 
-<h3>Linux Installation</h3>
+*Linux Installation*
 
 From eSpeak version 1.44 onwards, eSpeak calls the mbrola program directly, rather than passing phoneme data to it using a pipe.
 
 
 
-<li>To install the Linux Mbrola binary, download:
-<a href="http://www.tcts.fpms.ac.be/synthesis/mbrola/bin/pclinux/mbr301h.zip"> http://www.tcts.fpms.ac.be/synthesis/mbrola/bin/pclinux/mbr301h.zip</a>.
-Unpack the archive, and copy and rename the file from: <code>mbrola-linux-i386</code> to
-<code>mbrola</code> somewhere in your executable path (eg. <code>/usr/bin/mbrola</code> ).
+1. To install the Linux Mbrola binary, download:
+   http://www.tcts.fpms.ac.be/synthesis/mbrola/bin/pclinux/mbr301h.zip
+   Unpack the archive, and copy and rename the file from: @mbrola-linux-i386@ to
+   @mbrola@ somewhere in your executable path (eg. @/usr/bin/mbrola@ ).
 
 
 
-<li>Get the en1 voice from:
-<a href="http://www.tcts.fpms.ac.be/synthesis/mbrola/mbrcopybin.html"> http://www.tcts.fpms.ac.be/synthesis/mbrola/mbrcopybin.html</a>.
-Unpack the archive, and copy the "<b>en1</b>" data file (not the whole "en1"
-directory) to <code>/usr/share/mbrola/en1</code>.<p>eSpeak will look for mbrola voices firstly in <code>espeak-data/mbrola</code> and then in <code>/usr/share/mbrola</code>
+2. Get the en1 voice from:
+   http://www.tcts.fpms.ac.be/synthesis/mbrola/mbrcopybin.html
+   Unpack the archive, and copy the *en1* data file (not the whole "en1"
+   directory) to @/usr/share/mbrola/en1@.
+
+eSpeak will look for mbrola voices firstly in @espeak-data/mbrola@ and then in @/usr/share/mbrola@
 
 
 
-<li>If you use the eSpeak voice such as "<b>mb-en1</b>" then eSpeak will use the mbrola "en1" voice, eg:<br>
-<code>espeak -v mb-en1 "Hello world"</code>
+3. If you use the eSpeak voice such as "*mb-en1*" then eSpeak will use the mbrola "en1" voice, eg:
+
+@espeak -v mb-en1 "Hello world"@
 
 
 
