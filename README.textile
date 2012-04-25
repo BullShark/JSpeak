@@ -4,6 +4,8 @@ h3. Ubuntu/Debian/Mint:
 
 *Note:* There is a bug in Mint with it's espeak and pulseaudio, not the app itself. However these bugs do not affect the program, and it still opperates just fine and good.
 
+*Note:* Do not copy and paste the $ at the beginning of the commands or the #. The $ means run as your user. The # means run as the root user or use sudo if on an Ubuntu/Mint box.
+
 @$ sudo apt-get install espeak mbrola git-core@
 
 Choose your voices. There are many, but for all english ones, do
@@ -45,12 +47,12 @@ h3. Obtaining and running the app.
 
 @$ cd JSpeak/dist@
 
-@$ Java -jar JSpeak.jar@
+@$ java -jar JSpeak.jar@
 
 h3. Windows Users:
 Install Linux
 
 h3. Help/Support
 
-For help and support, visit ##blackhats on Freenode
+For help and support, visit ##blackhats on Freenode.
 
