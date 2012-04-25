@@ -48,8 +48,7 @@ h3. Obtaining and running the app.
 @$ Java -jar JSpeak.jar@
 
 h3. Windows Users:
-
-*Install Linux*
+Install Linux
 
 h3. Help/Support
 
