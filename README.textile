@@ -25,7 +25,9 @@ h3. Manual installation of mbrola and mbrola voices (From the espeak/mbrola docs
 <h3>Linux Installation</h3>
 
 From eSpeak version 1.44 onwards, eSpeak calls the mbrola program directly, rather than passing phoneme data to it using a pipe.
-<ol>
+
+
+
 <li>To install the Linux Mbrola binary, download:
 <a href="http://www.tcts.fpms.ac.be/synthesis/mbrola/bin/pclinux/mbr301h.zip"> http://www.tcts.fpms.ac.be/synthesis/mbrola/bin/pclinux/mbr301h.zip</a>.
 Unpack the archive, and copy and rename the file from: <code>mbrola-linux-i386</code> to
@@ -41,9 +43,9 @@ directory) to <code>/usr/share/mbrola/en1</code>.<p>eSpeak will look for mbrola 
 
 
 <li>If you use the eSpeak voice such as "<b>mb-en1</b>" then eSpeak will use the mbrola "en1" voice, eg:<br>
-<code>espeak -v mb-en1 "Hello world"
-</code>
-</ol>
+<code>espeak -v mb-en1 "Hello world"</code>
+
+
 
 h3. Obtaining and running the app.
 
