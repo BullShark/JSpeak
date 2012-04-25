@@ -1,11 +1,22 @@
-Install needed software:
+Installation and Usage
 
-Ubuntu/Debian:
-$ sudo apt-get install libmiglayout
-$ sudo apt-get install espeak
+Ubuntu/Debian/Mint:
+
+Note: There is a bug in Mint with it's espeak and pulseaudio, not the app itself. However these bugs do not affect the program, and it still opperates just fine and good.
+
+$ sudo apt-get install espeak mbrola git-core
+
+Choose your voices. There are many, but for all english ones, do
+
+$ sudo apt-get install mbrola-us1 mbrola-us2 mbrola-us3 mbrola-en1
+
+$ git clone git://github.com/BullShark/JSpeak.git
+
+$ cd JSpeak/dist
+
+$ Java -jar JSpeak.jar
 
 Fedora/Suse:
-# yum install miglayout
 # yum install espeak
 
 Windows Users:
