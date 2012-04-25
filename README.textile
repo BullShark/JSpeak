@@ -13,6 +13,7 @@ Choose your voices. There are many, but for all english ones, do
 Many mbrola voices can be installed through apt-get in Ubuntu/Mint. Some such as mbrola-mx1 are not available through apt. If you wish to install those. Follow the manual installation below for them.
 
 h3. Fedora/Suse:
+
 @# yum install espeak git@
 
 Fedora and other rpm based systems do not have mbrola and mbrola packages afaik. However this is not a problem. Continue to follow the manual installation for them.
