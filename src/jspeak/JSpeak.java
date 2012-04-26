@@ -77,8 +77,10 @@ public class JSpeak extends JPanel
   public JSpeak() {
     defaultvc = "Default"; // Used for default espeak voice
     voices = new MbrolaVoices();
-    if(voices != null) {
+    if(voices.getVoices() != null) {
       voiceComBox = new JComboBox(voices.getVoices());
+    } else {
+      voiceComBox = new JComboBox();
     }
     voiceComBox.addItem(defaultvc);
     voiceComBox.setSelectedItem(defaultvc);
