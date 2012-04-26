@@ -93,6 +93,7 @@ public class MbrolaVoices {
 
   /*
    * JComboBox's constructor takes a String Array
+   * Returns null when there are no voices
    */
   public String[] getVoices() {
     return fstrArr;

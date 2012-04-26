@@ -160,7 +160,7 @@ public class JSpeak extends JPanel
 
     // Show Activity
     readProgress = new JProgressBar();
-    readProgress.setPreferredSize(new Dimension(290, 25));
+    readProgress.setPreferredSize(new Dimension(291, 25));
 
     /*
      * Some components need to be disabled until and only when
@@ -265,11 +265,11 @@ public class JSpeak extends JPanel
     } else if(e.getSource() == expandTButton) {
       if(e.getStateChange() == ItemEvent.SELECTED) {
         lowerPanel.setVisible(false);
-        frame.setSize(new Dimension(323, 143));
+        frame.pack();
         expandTButton.setIcon(expandIcon);
       } else {
         lowerPanel.setVisible(true);
-        frame.setSize(new Dimension(323, 378));
+        frame.pack();
         expandTButton.setIcon(retractIcon);
       }
     } else if(e.getSource() == topTButton) {
