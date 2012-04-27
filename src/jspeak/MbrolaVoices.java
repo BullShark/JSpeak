@@ -49,9 +49,9 @@ import java.util.Arrays;
  * @author Christopher Lemire <christopher.lemire@gmail.com>
  */
 public class MbrolaVoices {
-  private File espeakDir, mbrolaDir;
+  private final File espeakDir, mbrolaDir;
   private final FilenameFilter ff;
-  private File[] fileArr;
+  private final File[] fileArr;
   private String[] fstrArr;
 
   public MbrolaVoices() {

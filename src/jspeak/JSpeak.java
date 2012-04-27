@@ -60,18 +60,18 @@ public class JSpeak extends JPanel
                     implements ActionListener,
                     ItemListener, ChangeListener {
   private static Thread clipThread, rpThread;
-  private JButton rpButton, stopButton, resetButton;
-  private JToggleButton scanTButton, expandTButton, topTButton;
-  private JComboBox voiceComBox;
-  private JProgressBar readProgress;
+  private final JButton rpButton, stopButton, resetButton;
+  private final JToggleButton scanTButton, expandTButton, topTButton;
+  private final JComboBox voiceComBox;
+  private final JProgressBar readProgress;
   private static ClipReader clipReader;
   private static Replay replayer;
   private static ClipboardScanner clipScan;
-  private JPanel lowerPanel;
-  private JSlider ampSlider, wgSlider, pitSlider, spSlider;
+  private final JPanel lowerPanel;
+  private final JSlider ampSlider, wgSlider, pitSlider, spSlider;
   private static JFrame frame;
-  private ImageIcon scanIcon, rpIcon, stopIcon, expandIcon, retractIcon, topIcon;
-  private MbrolaVoices voices;
+  private final ImageIcon scanIcon, rpIcon, stopIcon, expandIcon, retractIcon, topIcon;
+  private final MbrolaVoices voices;
   private final String defaultvc;
 
   public JSpeak() {
