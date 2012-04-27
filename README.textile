@@ -63,7 +63,7 @@ h3. Obtaining and running the app.
 
 h3. Usage
 
-1. Toggle on the scan button (has a diamond icon). Hove your mouse over other buttons for descriptions.
+1. Toggle on the scan button (has a diamond icon). Hover your mouse over other buttons for descriptions.
 
 2. (Optional) Change the voice from the drop down menu of the combo box to set a better sounding mbrola voice.
 
