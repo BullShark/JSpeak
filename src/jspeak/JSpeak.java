@@ -345,6 +345,11 @@ public class JSpeak extends JPanel
       System.exit(-1);
     }
 
+    if(args.length == 1 && (args[0].equals("-g") || args[0].equals("--debug"))) {
+//      clipReader.
+      ;
+    }
+
     /*
      * TODO Read args; External processes stderr/stdout doesn't get printed unless -g|--debug used
      * set a boolean for this option
@@ -356,7 +361,8 @@ public class JSpeak extends JPanel
 
     System.out.println("This software was created by Christopher Lemire "
             + "<christopher.lemire@gmail.com>\n"
-            + "Feedback is appreciated!");
+            + "Feedback is appreciated!\n\n"
+            + "For command output and error, use -g or --debug\n");
 
     //Schedule a job for the event dispatch thread:
     //creating and showing this application's GUI.

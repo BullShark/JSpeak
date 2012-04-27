@@ -56,6 +56,7 @@ public class ClipReader {
   private Process ps;
   private InputStream in;
   private Scanner scan;
+  private boolean debug;
 
   public ClipReader() {
     // Options get default values to start with
@@ -63,6 +64,7 @@ public class ClipReader {
     str = ""; // Used for toString()
     ps = null;
     scan = null;
+    debug = false;
   }
   //TODO Read http://www.javaworld.com/javaworld/jw-12-2000/jw-1229-traps.html?page=2
 
@@ -82,7 +84,9 @@ public class ClipReader {
       Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
     }
 
-    printPsOutErr(ps);
+    if(debug) {
+      printPsOutErr(ps);
+    }
   }
 
   public void replay() {
@@ -100,9 +104,11 @@ public class ClipReader {
      * Tries to kill espeak
      * If no espeak is running, user doesn't need to see an error
      * 
-     * Only uncomment if you need to see output/error
+     * Only enable if you need to see output/error
      */
-//    printPsOutErr(ps);
+    if(debug) {
+      printPsOutErr(ps);
+    }
   }
 
   public void printPsOutErr(Process ps) {
@@ -187,6 +193,10 @@ public class ClipReader {
       + "The words per minute must be set between 1 and 200 inclusive.");
       return false;
     }
+  }
+
+  public void setDebug(boolean debug) {
+    this.debug = debug;
   }
 
   /*
