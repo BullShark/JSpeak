@@ -70,8 +70,7 @@ public class ClipboardScanner implements Runnable {
 
   //TODO Read http://docs.oracle.com/javase/tutorial/essential/concurrency/interrupt.html
   
-  @Override
-  public void run() {
+  @Override public void run() {
     while(!Thread.interrupted()) {
       transfer = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
 

@@ -189,11 +189,10 @@ public class ClipReader {
     }
   }
 
-  @Override
   /*
    * Conceptial view of the command being executed as an Array
    */
-  public String toString() {
+  @Override public String toString() {
     str = "{";
 
     // Espeak Command

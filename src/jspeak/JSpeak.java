@@ -207,8 +207,7 @@ public class JSpeak extends JPanel
     add(lowerPanel);
   }
 
-  @Override
-  public void actionPerformed(ActionEvent e) {
+  @Override public void actionPerformed(ActionEvent e) {
     if(e.getSource() == rpButton) {
         replayer = new Replay(clipReader);
         rpThread = new Thread(replayer);
@@ -234,8 +233,7 @@ public class JSpeak extends JPanel
   /*
    * For the JToggleButton(s)
    */
-  @Override
-  public void itemStateChanged(ItemEvent e) {
+  @Override public void itemStateChanged(ItemEvent e) {
     if(e.getSource() == scanTButton) {
       if(e.getStateChange() == ItemEvent.SELECTED) {
         clipScan = new ClipboardScanner();
@@ -292,8 +290,7 @@ public class JSpeak extends JPanel
   /*
    * For JSlider(s)
    */
-  @Override
-  public void stateChanged(ChangeEvent e) {
+  @Override public void stateChanged(ChangeEvent e) {
     JSlider source = (JSlider)e.getSource();
     if(!source.getValueIsAdjusting()) {
       int value = source.getValue();
@@ -339,7 +336,6 @@ public class JSpeak extends JPanel
   }
 
   public static void main(String[] args) {
-/*
     try {
       UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
     } catch (Exception ex) {
@@ -348,7 +344,6 @@ public class JSpeak extends JPanel
               + "Install it to use this application.");
       System.exit(-1);
     }
-*/
 
     /*
      * TODO Read args; External processes stderr/stdout doesn't get printed unless -g|--debug used
