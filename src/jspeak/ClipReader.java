@@ -92,7 +92,7 @@ public class ClipReader {
 
   public void stopPlayBack() {
     try {
-      ps = Runtime.getRuntime().exec("killall espeak"); //TODO *nix only
+      ps = Runtime.getRuntime().exec("killall espeak"); // *nix only
     } catch (IOException ex) {
       Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
     }

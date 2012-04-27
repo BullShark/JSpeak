@@ -45,8 +45,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -85,6 +83,9 @@ public class JSpeak extends JPanel
     voiceComBox.addItem(defaultvc);
     voiceComBox.setSelectedItem(defaultvc);
     voiceComBox.addActionListener(this);
+    
+    // Used for buttons' size
+    Dimension size = new Dimension(44, 44);
 
     /*
      * Create icons
@@ -130,26 +131,31 @@ public class JSpeak extends JPanel
      */
     // Scan for Changes
     scanTButton = new JToggleButton(scanIcon, false);
+    scanTButton.setMaximumSize(size);
     scanTButton.setToolTipText("Scan/Watch for Clipboard Changes");
     scanTButton.addItemListener(this);
 
     // Replay
     rpButton = new JButton(rpIcon);
+    rpButton.setMaximumSize(size);
     rpButton.setToolTipText("Replay");
     rpButton.addActionListener(this);
 
     // Stop
     stopButton = new JButton(stopIcon);
+    stopButton.setMaximumSize(size);
     stopButton.setToolTipText("Stop Playback");
     stopButton.addActionListener(this);
 
     // Expand
     expandTButton = new JToggleButton(retractIcon, false);
+    expandTButton.setMaximumSize(size);
     expandTButton.setToolTipText("Expand/Retract");
     expandTButton.addItemListener(this);
 
     // Always On Top
     topTButton = new JToggleButton(topIcon, false);
+    topTButton.setMaximumSize(size);
     topTButton.setToolTipText("Always On Top");
     topTButton.addItemListener(this);
 
@@ -331,14 +337,20 @@ public class JSpeak extends JPanel
   }
 
   public static void main(String[] args) {
-    try {
+/*    try {
       UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
     } catch (Exception ex) {
       Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
       System.err.println("GTK+ version 2.2 or later was not found on your system.\n"
               + "Install it to use this application.");
       System.exit(-1);
-    } //TODO try JFrame.pack() to fit other LFs
+    }
+*/
+
+    /*
+     * TODO Read args; External processes stderr/stdout doesn't get printed unless -g|--debug used
+     * set a boolean for this option
+     */
     
     Runtime.getRuntime().addShutdownHook(new Thread() {
       public void run() { if(clipReader != null) clipReader.stopPlayBack(); }
