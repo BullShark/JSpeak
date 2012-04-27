@@ -363,6 +363,7 @@ public class JSpeak extends JPanel
             + "<christopher.lemire@gmail.com>\n"
             + "Feedback is appreciated!\n\n"
             + "For command output and error, use -g or --debug\n");
+    //TODO Run debugger to find out why espeak sometimes reads only a segment and why replay doesn't always work
 
     //Schedule a job for the event dispatch thread:
     //creating and showing this application's GUI.
