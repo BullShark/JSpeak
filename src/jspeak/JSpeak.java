@@ -45,6 +45,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -337,7 +339,7 @@ public class JSpeak extends JPanel
   }
 
   public static void main(String[] args) {
-/*    try {
+    try {
       UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
     } catch (Exception ex) {
       Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
@@ -345,7 +347,7 @@ public class JSpeak extends JPanel
               + "Install it to use this application.");
       System.exit(-1);
     }
-*/
+
 
     /*
      * TODO Read args; External processes stderr/stdout doesn't get printed unless -g|--debug used
