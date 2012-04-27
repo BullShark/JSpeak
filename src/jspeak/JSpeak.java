@@ -346,14 +346,10 @@ public class JSpeak extends JPanel
     }
 
     if(args.length == 1 && (args[0].equals("-g") || args[0].equals("--debug"))) {
-//      clipReader.
+      clipReader.setDebug(true);
       ;
     }
 
-    /*
-     * TODO Read args; External processes stderr/stdout doesn't get printed unless -g|--debug used
-     * set a boolean for this option
-     */
     
     Runtime.getRuntime().addShutdownHook(new Thread() {
       public void run() { if(clipReader != null) clipReader.stopPlayBack(); }
