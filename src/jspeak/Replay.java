@@ -50,8 +50,7 @@ public class Replay implements Runnable {
     this.clipReader = clipReader;
   }
 
-  @Override
-  public void run() {
+  @Override public void run() {
     clipReader.replay();
   }
 
