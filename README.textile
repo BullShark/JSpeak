@@ -74,7 +74,7 @@ Install Linux
 
 h3. Help/Support
 
-If you enjoy this software, please consider making a small donation to the programmer.
+If you enjoy this software, please consider making a small donation to the programmer, so he can continue to maintain and create new software to help everyday users.
 
   <html>
   <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
