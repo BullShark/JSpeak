@@ -255,6 +255,7 @@ public class JSpeak extends JPanel
         clipReader.setWordGap(wgSlider.getValue());
         clipReader.setPitch(pitSlider.getValue());
         clipReader.setSpeed(spSlider.getValue());
+        clipReader.setVoice((String)voiceComBox.getSelectedItem());
       } else {
         readProgress.setIndeterminate(false);
         clipThread.interrupt();
@@ -347,7 +348,6 @@ public class JSpeak extends JPanel
 
     if(args.length == 1 && (args[0].equals("-g") || args[0].equals("--debug"))) {
       clipReader.setDebug(true);
-      ;
     }
 
     
@@ -358,7 +358,7 @@ public class JSpeak extends JPanel
     System.out.println("This software was created by Christopher Lemire "
             + "<christopher.lemire@gmail.com>\n"
             + "Feedback is appreciated!\n\n"
-            + "For command output and error, use -g or --debug\n");
+            + "For command output and error use -g or --debug\n");
 
     //Schedule a job for the event dispatch thread:
     //creating and showing this application's GUI.
