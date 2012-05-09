@@ -71,32 +71,4 @@
     nbproject/build-impl.xml file. 
 
     -->
-
-<target name="-unjar-and-copy-lib-jars">
-    <unjar dest="${build.classes.dir}">
-      <fileset dir="dist/lib">
-            <include name="**/*.jar"/>
-        </fileset>
-        <patternset>
-            <exclude name="META-INF/**"/>
-            <exclude name="/*"/>
-        </patternset>
-    </unjar>
-</target>
-
-<target depends="init,compile,-pre-pre-jar,-pre-jar,-unjar-and-copy-lib-jars" name="fat-jar">
-    <property location="${build.classes.dir}" name="build.classes.dir.resolved"/>
-    <jar destfile="${dist.jar}">
-        <fileset dir="${build.classes.dir}"/>
-        <manifest>
-            <attribute name="Main-Class" value="${main.class}"/>
-        </manifest>
-    </jar>
-    <echo>To run this application from the command line without Ant, try:</echo>
-    <property location="${dist.jar}" name="dist.jar.resolved"/>
-    <echo>java -jar "${dist.jar.resolved}"</echo>
-</target>
-
-<target depends="clean,fat-jar" name="clean-and-fat-jar"/>
-
 </project>
