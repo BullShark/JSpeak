@@ -6,7 +6,7 @@ h3. Ubuntu/Debian/Mint:
 
 *Note:* Do not copy and paste the *$* at the beginning of the commands or the *#*. The *$* means run as your user. The *#* means run as the root user or use sudo if on an Ubuntu/Mint box.
 
-@$ sudo apt-get install espeak mbrola git-core@
+@$ sudo apt-get install espeak mbrola@
 
 Choose your voices. There are many, but for all english ones, do
 
@@ -16,7 +16,7 @@ Many mbrola voices can be installed through apt-get in Ubuntu/Mint. Some such as
 
 h3. Fedora/Suse:
 
-@# yum install espeak git@
+@# yum install espeak@
 
 Fedora and other rpm based systems do not have mbrola and mbrola packages afaik. However this is not a problem. Continue to follow the manual installation for them.
 
@@ -54,6 +54,16 @@ eSpeak will look for mbrola voices firstly in @espeak-data/mbrola@ and then in @
 
 
 h3. Obtaining and running the app.
+
+@$ wget https://github.com/downloads/BullShark/JSpeak/JSpeak.tbz@
+
+@$ tar -xf JSpeak.jar@ 
+
+@$ cd JSpeak@
+
+@$ java -jar JSpeak.jar@
+
+h3. OR Obtain the app from git and run.
 
 @$ git clone git://github.com/BullShark/JSpeak.git@
 
