@@ -1,3 +1,7 @@
+h3. JSpeak Demo
+
+<iframe width="560" height="315" src="http://www.youtube.com/embed/raEUJraXvwY" frameborder="0" allowfullscreen></iframe>
+
 h2. Installation and Usage
 
 h3. Ubuntu/Debian/Mint:
