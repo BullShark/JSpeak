@@ -1,6 +1,9 @@
 h3. JSpeak Demo
 
-<iframe width="560" height="315" src="http://www.youtube.com/embed/raEUJraXvwY" frameborder="0" allowfullscreen></iframe>
+    <object width="425" height="350">
+    <param name="movie" value="http://www.youtube.com/v/crfrKqFp0Zg"></param>
+
+[kml_flashembed movie="http://www.youtube.com/embed/raEUJraXvwY" height="315" width="560" /]
 
 h2. Installation and Usage
 
