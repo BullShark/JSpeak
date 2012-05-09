@@ -1,9 +1,6 @@
-h3. JSpeak Demo
+h2. JSpeak Demo
 
-    <object width="425" height="350">
-    <param name="movie" value="http://www.youtube.com/v/crfrKqFp0Zg"></param>
-
-[kml_flashembed movie="http://www.youtube.com/embed/raEUJraXvwY" height="315" width="560" /]
+http://www.youtube.com/embed/raEUJraXvwY
 
 h2. Installation and Usage
 
