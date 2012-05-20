@@ -130,8 +130,9 @@ public class JSpeak extends JPanel
 
     /*
      * Buttons
+     * 
+     * Scan for Changes
      */
-    // Scan for Changes
     scanTButton = new JToggleButton(scanIcon, false);
     scanTButton.setMaximumSize(size);
     scanTButton.setToolTipText("Scan/Watch for Clipboard Changes");
@@ -209,9 +210,9 @@ public class JSpeak extends JPanel
 
   @Override public void actionPerformed(ActionEvent e) {
     if(e.getSource() == rpButton) {
-        replayer = new Replay(clipReader);
-        rpThread = new Thread(replayer);
-        rpThread.start();
+      replayer = new Replay(clipReader);
+      rpThread = new Thread(replayer);
+      rpThread.start();
     } else if(e.getSource() == stopButton) {
       clipReader.stopPlayBack();
     } else if(e.getSource() == resetButton) {
