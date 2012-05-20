@@ -1,3 +1,7 @@
+h2. JSpeak Demo
+
+http://www.youtube.com/embed/raEUJraXvwY
+
 h2. Installation and Usage
 
 h3. Ubuntu/Debian/Mint:
