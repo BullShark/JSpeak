@@ -59,12 +59,12 @@ public class ClipboardScanner implements Runnable {
   private static ClipReader clipReader;
   private boolean firstRun;
 
-  public ClipboardScanner() {
+  public ClipboardScanner(boolean debug) {
     transfer = null;
     contents = "";
     tempContents = "";
     pollTime = 500; // In millisecons
-    clipReader = new ClipReader();
+    clipReader = new ClipReader(debug);
     firstRun = true;
   }
 

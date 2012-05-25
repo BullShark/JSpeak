@@ -73,6 +73,7 @@ public class JSpeak extends JPanel
   private final ImageIcon scanIcon, rpIcon, stopIcon, expandIcon, retractIcon, topIcon;
   private final MbrolaVoices voices;
   private final String defaultvc;
+  private static boolean debug;
 
   public JSpeak() {
     defaultvc = "Default"; // Used for default espeak voice
@@ -237,7 +238,7 @@ public class JSpeak extends JPanel
   @Override public void itemStateChanged(ItemEvent e) {
     if(e.getSource() == scanTButton) {
       if(e.getStateChange() == ItemEvent.SELECTED) {
-        clipScan = new ClipboardScanner();
+        clipScan = new ClipboardScanner(debug);
         clipThread = new Thread(clipScan);
         clipReader = ClipboardScanner.getClipReader();
         clipThread.start();
@@ -325,14 +326,14 @@ public class JSpeak extends JPanel
    * event dispatch thread.
    */
   private static void createAndShowGUI() {
-    //Create and set up the window.
+    // Create and set up the window.
     frame = new JFrame("JSpeak");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    //Add content to the window.
+    // Add content to the window.
     frame.add(new JSpeak());
 
-    //Display the window.
+    // Display the window.
     frame.pack();
     frame.setVisible(true);
   }
@@ -348,7 +349,7 @@ public class JSpeak extends JPanel
     }
 
     if(args.length == 1 && (args[0].equals("-g") || args[0].equals("--debug"))) {
-      clipReader.setDebug(true);
+      debug = true;
     }
 
     
@@ -363,7 +364,6 @@ public class JSpeak extends JPanel
 
     /*
      * Schedule a job for the event dispatch thread:
-     * 
      * Creating and showing this application's GUI.
      */
     SwingUtilities.invokeLater(new Runnable() {
