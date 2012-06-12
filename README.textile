@@ -1,15 +1,6 @@
 h2. JSpeak Demo
 
-<script type="text/javascript" src="http://s3.www.universalsubtitles.org/embed.js">
-  ({
-       video_url: "http://www.youtube.com/embed/raEUJraXvwY",
-       video_config: {
-           color1: '0xFF0000',
-           width: 640,
-           height: 480
-       }
-  })
-</script>
+http://www.youtube.com/embed/raEUJraXvwY
 
 h2. Installation and Usage
 
