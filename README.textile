@@ -1,6 +1,6 @@
 h2. JSpeak Demo
 
-http://www.youtube.com/embed/raEUJraXvwY
+<iframe width="1280" height="720" src="http://www.youtube.com/embed/raEUJraXvwY" frameborder="0" allowfullscreen></iframe>
 
 h2. Installation and Usage
 
