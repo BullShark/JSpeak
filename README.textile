@@ -87,6 +87,7 @@ h3. Windows Users:
 Install Linux
 
 h3. Development
+
 This project can be built from source with
 @$ ant build@
 and run
