@@ -4,6 +4,14 @@ http://www.youtube.com/embed/raEUJraXvwY
 
 h2. Installation and Usage
 
+h2. JSpeak in Action
+
+![Compact GUI](http://i.imagebanana.com/img/8bqnnbah/JSpeak_025.png)
+
+![Button Hints](http://i.imagebanana.com/img/s31ofq39/JSpeak_024.png)
+
+![Voices](http://i.imagebanana.com/img/i36ea15x/JSpeak_026.png)
+
 h3. Ubuntu/Debian/Mint:
 
 *Note:* There is a bug in Mint with it's espeak and pulseaudio, not the app itself. However these bugs do not affect the program, and it still opperates just fine and good.
