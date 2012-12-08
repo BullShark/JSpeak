@@ -1,10 +1,10 @@
-h2. JSpeak Demo
+## JSpeak Demo
 
 http://www.youtube.com/embed/raEUJraXvwY
 
-h2. Installation and Usage
+## Installation and Usage
 
-h2. JSpeak in Action
+## JSpeak in Action
 
 ![Compact GUI](http://i.imagebanana.com/img/8bqnnbah/JSpeak_025.png)
 
@@ -12,7 +12,7 @@ h2. JSpeak in Action
 
 ![Voices](http://i.imagebanana.com/img/i36ea15x/JSpeak_026.png)
 
-h3. Ubuntu/Debian/Mint:
+### Ubuntu/Debian/Mint:
 
 *Note:* There is a bug in Mint with it's espeak and pulseaudio, not the app itself. However these bugs do not affect the program, and it still opperates just fine and good.
 
@@ -26,13 +26,13 @@ Choose your voices. There are many, but for all english ones, do
 
 Many mbrola voices can be installed through apt-get in Ubuntu/Mint. Some such as mbrola-mx1 are not available through apt. If you wish to install those. Follow the manual installation below for them.
 
-h3. Fedora/Suse:
+### Fedora/Suse:
 
 @# yum install espeak@
 
 Fedora and other rpm based systems do not have mbrola and mbrola packages afaik. However this is not a problem. Continue to follow the manual installation for them.
 
-h3. Manual installation of mbrola and mbrola voices (From the espeak/mbrola docs)
+### Manual installation of mbrola and mbrola voices (From the espeak/mbrola docs)
 
 *Linux Installation*
 
@@ -91,10 +91,10 @@ h3. Usage
 
 3. Start copying text from your favorite ebook, the web, email, etc. to begin having the text read to you.
 
-h3. Windows Users:
+### Windows Users:
 Install Linux
 
-h3. Development
+### Development
 
 This project can be built from source with
 @$ ant build@
@@ -103,6 +103,6 @@ and run
 
 This project was developed using Netbeans and can be opened with Netbeans.
 
-h3. Help/Support
+### Help/Support
 
 If you enjoy this software, please consider making a small donation to the programmer, so he can continue to maintain and create new software to help everyday users. Donations can be made the developer's blog, http://linuxinnovations.blogspot.com .
