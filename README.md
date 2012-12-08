@@ -50,7 +50,7 @@ mbrola somewhere in your executable path (eg. /usr/local/bin/mbrola ).
 2. Get the en1 voice from:
 http://www.tcts.fpms.ac.be/synthesis/mbrola/mbrcopybin.html
 Unpack the archive, and copy the *en1* data file (not the whole "en1"
-directory) to @/usr/share/mbrola/en1@.
+directory) to /usr/share/mbrola/en1 .
 
 eSpeak will look for mbrola voices firstly in espeak-data/mbrola and then in /usr/share/mbrola
 
@@ -69,7 +69,7 @@ eSpeak will look for mbrola voices firstly in espeak-data/mbrola and then in /us
 
     $ wget https://github.com/downloads/BullShark/JSpeak/JSpeak.tbz
 
-    $ tar -xf JSpeak.tbz@
+    $ tar -xf JSpeak.tbz
 
     $ cd JSpeak
 
