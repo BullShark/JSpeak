@@ -97,8 +97,11 @@ Install Linux
 ### Development
 
 This project can be built from source with
+
     $ ant build
+
 and run
+
     $ ant run
 
 This project was developed using Netbeans and can be opened with Netbeans.
