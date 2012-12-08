@@ -18,17 +18,17 @@ http://www.youtube.com/embed/raEUJraXvwY
 
 *Note:* Do not copy and paste the *$* at the beginning of the commands or the *#*. The *$* means run as your user. The *#* means run as the root user or use sudo if on an Ubuntu/Mint box.
 
-@$ sudo apt-get install espeak mbrola@
+    $ sudo apt-get install espeak mbrola
 
 Choose your voices. There are many, but for all english ones, do
 
-@$ sudo apt-get install mbrola-us1 mbrola-us2 mbrola-us3 mbrola-en1@
+    $ sudo apt-get install mbrola-us1 mbrola-us2 mbrola-us3 mbrola-en1
 
 Many mbrola voices can be installed through apt-get in Ubuntu/Mint. Some such as mbrola-mx1 are not available through apt. If you wish to install those. Follow the manual installation below for them.
 
 ### Fedora/Suse:
 
-@# yum install espeak@
+    # yum install espeak
 
 Fedora and other rpm based systems do not have mbrola and mbrola packages afaik. However this is not a problem. Continue to follow the manual installation for them.
 
@@ -42,8 +42,8 @@ From eSpeak version 1.44 onwards, eSpeak calls the mbrola program directly, rath
 
 1. To install the Linux Mbrola binary, download:
 http://www.tcts.fpms.ac.be/synthesis/mbrola/bin/pclinux/mbr301h.zip
-Unpack the archive, and copy and rename the file from: @mbrola-linux-i386@ to
-@mbrola@ somewhere in your executable path (eg. @/usr/bin/mbrola@ ).
+Unpack the archive, and copy and rename the file from: mbrola-linux-i386 to
+mbrola somewhere in your executable path (eg. /usr/local/bin/mbrola ).
 
 
 
@@ -52,7 +52,7 @@ http://www.tcts.fpms.ac.be/synthesis/mbrola/mbrcopybin.html
 Unpack the archive, and copy the *en1* data file (not the whole "en1"
 directory) to @/usr/share/mbrola/en1@.
 
-eSpeak will look for mbrola voices firstly in @espeak-data/mbrola@ and then in @/usr/share/mbrola@
+eSpeak will look for mbrola voices firstly in espeak-data/mbrola and then in /usr/share/mbrola
 
 *Note:* Get as many voices as you like. Each will show in the voice selection combo box.
 
@@ -60,30 +60,30 @@ eSpeak will look for mbrola voices firstly in @espeak-data/mbrola@ and then in @
 
 3. If you use the eSpeak voice such as "*mb-en1*" then eSpeak will use the mbrola "en1" voice, eg:
 
-@$ espeak -v mb-en1 "Hello world"@
+    $ espeak -v mb-en1 "Hello world"
 
 *Note:* This step is just for testing that everything is setup and working correctly.
 
 
-h3. Obtaining and running the app.
+### Obtaining and running the app.
 
-@$ wget https://github.com/downloads/BullShark/JSpeak/JSpeak.tbz@
+    $ wget https://github.com/downloads/BullShark/JSpeak/JSpeak.tbz
 
-@$ tar -xf JSpeak.tbz@ 
+    $ tar -xf JSpeak.tbz@
 
-@$ cd JSpeak@
+    $ cd JSpeak
 
-@$ java -jar JSpeak.jar@
+    $ java -jar JSpeak.jar
 
-h3. OR Obtain the app from git and run.
+### OR Obtain the app from git and run.
 
-@$ git clone git://github.com/BullShark/JSpeak.git@
+    $ git clone git://github.com/BullShark/JSpeak.git
 
-@$ cd JSpeak/dist@
+    $ cd JSpeak/dist
 
-@$ java -jar JSpeak.jar@
+    $ java -jar JSpeak.jar
 
-h3. Usage
+### Usage
 
 1. Toggle on the scan button (has a diamond icon). Hover your mouse over other buttons for descriptions.
 
@@ -97,9 +97,9 @@ Install Linux
 ### Development
 
 This project can be built from source with
-@$ ant build@
+    $ ant build
 and run
-@$ ant run@
+    $ ant run
 
 This project was developed using Netbeans and can be opened with Netbeans.
 
