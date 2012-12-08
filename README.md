@@ -52,17 +52,17 @@ http://www.tcts.fpms.ac.be/synthesis/mbrola/mbrcopybin.html
 Unpack the archive, and copy the *en1* data file (not the whole "en1"
 directory) to /usr/share/mbrola/en1 .
 
-eSpeak will look for mbrola voices firstly in espeak-data/mbrola and then in /usr/share/mbrola
+  eSpeak will look for mbrola voices firstly in espeak-data/mbrola and then in /usr/share/mbrola
 
-*Note:* Get as many voices as you like. Each will show in the voice selection combo box.
+  *Note:* Get as many voices as you like. Each will show in the voice selection combo box.
 
 
 
 3. If you use the eSpeak voice such as "*mb-en1*" then eSpeak will use the mbrola "en1" voice, eg:
 
-    $ espeak -v mb-en1 "Hello world"
+   $ espeak -v mb-en1 "Hello world"
 
-*Note:* This step is just for testing that everything is setup and working correctly.
+  *Note:* This step is just for testing that everything is setup and working correctly.
 
 
 ### Obtaining and running the app.
