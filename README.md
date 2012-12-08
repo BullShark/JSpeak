@@ -2,8 +2,6 @@
 
 http://www.youtube.com/embed/raEUJraXvwY
 
-## Installation and Usage
-
 ## JSpeak in Action
 
 ![Compact GUI](http://i.imagebanana.com/img/8bqnnbah/JSpeak_025.png)
@@ -11,6 +9,8 @@ http://www.youtube.com/embed/raEUJraXvwY
 ![Button Hints](http://i.imagebanana.com/img/s31ofq39/JSpeak_024.png)
 
 ![Voices](http://i.imagebanana.com/img/i36ea15x/JSpeak_026.png)
+
+## Installation and Usage
 
 ### Ubuntu/Debian/Mint:
 
