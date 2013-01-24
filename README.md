@@ -1,3 +1,7 @@
+## About this Application
+
+At the time of creating this software, I created it because nothing like it existed for Linux. I was tired of using a dual boot and rebooting to Windows to use 2nd speach center (ReadAloud is similar). This software enables you to have text spoken to you from any text that can be copied to the clipboard including ebooks, email, web pages, use your imagination. Along with that is many features I demonstrated in screenshots and a youtube video.
+
 ## JSpeak Demo
 
 http://www.youtube.com/embed/raEUJraXvwY
