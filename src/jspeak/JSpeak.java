@@ -227,7 +227,7 @@ public class JSpeak extends JPanel
       clipReader.setSpeed(160);
       voiceComBox.setSelectedItem(defaultvc);
       clipReader.setVoice(defaultvc);
-    } else if((JComboBox)e.getSource() == voiceComBox) {
+    } else if(e.getSource() == voiceComBox) {
       clipReader.setVoice((String)voiceComBox.getSelectedItem());
     }
   }
@@ -348,11 +348,15 @@ public class JSpeak extends JPanel
       System.exit(-1);
     }
 
-    if(args.length == 1 && (args[0].equals("-g") || args[0].equals("--debug"))) {
-      debug = true;
+    if(args.length == 1) {
+      if (args[0].equals("-g") || args[0].equals("--debug")) {
+        debug = true;
+      } else {
+        System.err.println("Usage: java -jar JSpeak.jar [-g|--debug]");
+        System.exit(-1);
+      }
     }
 
-    
     Runtime.getRuntime().addShutdownHook(new Thread() {
       public void run() { if(clipReader != null) clipReader.stopPlayBack(); }
     });
