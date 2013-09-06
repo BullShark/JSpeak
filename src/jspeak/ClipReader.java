@@ -13,29 +13,6 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- * 
- * 
- * A TTS frontend to espeak and mbrola. Features include:
- * 
- * -Scanning the clipboard/watching it for changes and then reading the text aloud
- * 
- * -Toggle button to start and stop and starts the scanning of the clipboard
- * 
- * -Buttons to replay what's on the clipboard and stop playback
- * 
- * -Toggle buttons for switching to a mini gui and another for "Always on top"
- * 
- * -Progress bar for showing activity
- * 
- * -Sliders for Amplitutde (Volume), Word Gap (Delay), Pitch, and Speed (WPM)
- * 
- * -ComboBox for voice selection from installed voices
- * 
- * -Button for resetting to default options (sliders and voice)
- * 
- * History at:
- * https://github.com/BullShark/JSpeak
- *  
  */
 
 package jspeak;
@@ -97,14 +74,10 @@ public class ClipReader {
   }
 
   public void stopPlayBack() {
-    try {
-      ps = Runtime.getRuntime().exec("killall espeak"); // *nix only
-    } catch (IOException ex) {
-      Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    ps.destroy();
     /*
      * Tries to kill espeak
-     * If no espeak is running, user doesn't need to see an error
+     * Only shows an error if espeak fails to stop
      * 
      * Only enable if you need to see output/error
      */
@@ -161,7 +134,7 @@ public class ClipReader {
 
   public boolean setAmplitude(int amp) {
     if(amp > 0 && amp <= 200) {
-      espeakcmd[2] = "-a " + new Integer(amp).toString();
+      espeakcmd[2] = "-a " + amp;
 
       return true;
     } else {
@@ -173,7 +146,7 @@ public class ClipReader {
 
   public boolean setWordGap(int wg) {
     if(wg > 0 && wg <= 10) {
-      espeakcmd[3] = "-g " + new Integer(wg).toString();
+      espeakcmd[3] = "-g " + wg;
 
       return true;
     } else {
@@ -185,7 +158,7 @@ public class ClipReader {
 
   public boolean setPitch(int pit) {
     if(pit > 0 && pit <= 100) {
-    espeakcmd[4] = "-p " + new Integer(pit).toString();
+    espeakcmd[4] = "-p " + pit;
 
     return true;
     } else {
@@ -197,7 +170,7 @@ public class ClipReader {
 
   public boolean setSpeed(int wpm) {
     if(wpm > 0 && wpm <= 200) {
-    espeakcmd[5] = "-s " + new Integer(wpm).toString();
+    espeakcmd[5] = "-s " + wpm;
 
     return true;
     } else {

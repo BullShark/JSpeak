@@ -13,29 +13,6 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- * 
- * 
- * A TTS frontend to espeak and mbrola. Features include:
- * 
- * -Scanning the clipboard/watching it for changes and then reading the text aloud
- * 
- * -Toggle button to start and stop and starts the scanning of the clipboard
- * 
- * -Buttons to replay what's on the clipboard and stop playback
- * 
- * -Toggle buttons for switching to a mini gui and another for "Always on top"
- * 
- * -Progress bar for showing activity
- * 
- * -Sliders for Amplitutde (Volume), Word Gap (Delay), Pitch, and Speed (WPM)
- * 
- * -ComboBox for voice selection from installed voices
- * 
- * -Button for resetting to default options (sliders and voice)
- * 
- * History at:
- * https://github.com/BullShark/JSpeak
- *  
  */
 
 package jspeak;
