@@ -1,6 +1,6 @@
 ## About this Application
 
-At the time of creating this software, I created it because nothing like it existed for Linux. I was tired of using a dual boot and rebooting to Windows to use 2nd speech center (ReadAloud is similar). This software enables you to have text spoken to you from any text that can be copied to the clipboard including ebooks, email, web pages, use your imagination. Along with that is many features I demonstrated in screenshots and a youtube video.
+Nothing else like this software exists for platforms running Linux. This software enables the user to have text spoken aloud from any text that can be highlighted including ebooks, email, web pages, use your imagination. Along with that are features I demonstrated in screenshots and a youtube video.
 
 ## JSpeak Demo
 
@@ -17,8 +17,6 @@ http://www.youtube.com/embed/raEUJraXvwY
 ## Installation and Usage
 
 ### Ubuntu/Debian/Mint:
-
-*Note:* There is a bug in Mint with it's espeak and pulseaudio, not the app itself. However these bugs do not affect the program, and it still opperates just fine and good.
 
 *Note:* Do not copy and paste the *$* at the beginning of the commands or the *#*. The *$* means run as your user. The *#* means run as the root user or use sudo if on an Ubuntu/Mint box.
 
@@ -42,16 +40,12 @@ Fedora and other rpm based systems do not have mbrola and mbrola packages afaik.
 
 From eSpeak version 1.44 onwards, eSpeak calls the mbrola program directly, rather than passing phoneme data to it using a pipe.
 
-
-
 1. To install the Linux Mbrola binary, download:
 http://www.tcts.fpms.ac.be/synthesis/mbrola/bin/pclinux/mbr301h.zip
 Unpack the archive, and copy and rename the file from: mbrola-linux-i386 to
 mbrola somewhere in your executable path (eg. /usr/local/bin/mbrola ).
 
-
-
-2. Get the en1 voice from:
+2. Get the English 1 (en1) voice from:
 http://www.tcts.fpms.ac.be/synthesis/mbrola/mbrcopybin.html
 Unpack the archive, and copy the *en1* data file (not the whole "en1"
 directory) to /usr/share/mbrola/en1 .
@@ -59,8 +53,6 @@ directory) to /usr/share/mbrola/en1 .
   eSpeak will look for mbrola voices firstly in espeak-data/mbrola and then in /usr/share/mbrola
 
   *Note:* Get as many voices as you like. Each will show in the voice selection combo box.
-
-
 
 3. If you use the eSpeak voice such as "*mb-en1*" then eSpeak will use the mbrola "en1" voice, eg:
 
@@ -95,22 +87,10 @@ directory) to /usr/share/mbrola/en1 .
 
 3. Start copying text from your favorite ebook, the web, email, etc. to begin having the text read to you.
 
-### Windows Users:
-Install Linux
+### Windows Users
 
-### Development
-
-This project can be built from source with
-
-    $ ant build
-
-and run
-
-    $ ant run
-
-This project was developed using Netbeans and can be opened with Netbeans.
+![Email me](mailto:christopher.lemire@gmail.com)
 
 ### Help/Support
 
-If you enjoy this software, please consider making a small donation to the programmer, so he can continue to maintain and create new software to help everyday users. Donations can be made the developer's blog, http://linuxinnovations.blogspot.com .
- 
+![Email](mailto:christopher.lemire@gmail.com) or submit a bug report
