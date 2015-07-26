@@ -89,8 +89,4 @@ directory) to /usr/share/mbrola/en1 .
 
 ### Windows Users
 
-![Email me](mailto:christopher.lemire@gmail.com)
-
-### Help/Support
-
-![Email](mailto:christopher.lemire@gmail.com) or submit a bug report
+<a href="mailto://christopher.lemire@gmail.com">Send an email to me.</a>
