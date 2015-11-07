@@ -47,7 +47,10 @@ public class ClipReader {
 
   public void readIt(String readme) {
     // Incase espeak is already running, kill it
-    stopPlayBack();
+    // Unless it's not initialized
+    if(ps != null) {
+      stopPlayBack();
+    }
 
     // Set the text to be read
     espeakcmd[6] = readme;
