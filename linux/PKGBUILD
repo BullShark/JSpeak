@@ -1,5 +1,13 @@
+# https://wiki.archlinux.org/index.php/Java_package_guidelines
+# https://github.com/BullShark/JSpeak
+# Examples for libmiglayout-java
+# Ubuntu Example:
+# http://mirrors.kernel.org/ubuntu/pool/universe/libm/libmiglayout-java/libmiglayout-java_5.1-2_all.deb
+# Gentoo Example:
+# https://packages.gentoo.org/packages/dev-java/miglayout
 dependency:             espeak
-optional dependencies:  mbrola
+			libmiglayout-java (Does not exist in an Arch package yet)
+optional dependencies:	aur/mbrola
                         aur/mbrola-voices-us1
                         aur/mbrola-voices-us2
                         aur/mbrola-voices-us3
@@ -75,3 +83,4 @@ optional dependencies:  mbrola
                         aur/mbrola-voices-tr1
                         aur/mbrola-voices-tr2
                         aur/mbrola-voices-vz1
+

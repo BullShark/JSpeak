@@ -1,0 +1,8 @@
+#!/bin/sh
+
+#for name in /usr/share/java/myprogram/*.jar ; do
+#  CP=$CP:$name
+#done
+#CP=$CP:/usr/share/java/dep1/dep1.jar
+
+exec /usr/bin/java -jar -cp $CP '/usr/share/java/myprogram/JSpeak.jar' "$@"
