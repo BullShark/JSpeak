@@ -91,4 +91,4 @@ directory) to /usr/share/mbrola/en1 .
 
 ### Windows Users
 
-<a href="mailto://christopher.lemire@gmail.com">Send an email to me.</a>
+<a href="mailto://goodbye300@aim.com">Send an email to me.</a>
