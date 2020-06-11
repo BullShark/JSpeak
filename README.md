@@ -1,4 +1,4 @@
-![JSpeak Banner](http://odin.root.sx/JSpeak.png)
+![JSpeak Banner](https://github.com/BullShark/JSpeak/raw/master/artwork/JSpeak.png)
 
 ## About this Application
 
