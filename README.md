@@ -12,7 +12,7 @@ http://www.youtube.com/embed/raEUJraXvwY
 
 ![Compact GUI](https://raw.githubusercontent.com/BullShark/JSpeak/master/artwork/JSpeak-Minimode.png)
 
-![Button Hints](http://i.imagebanana.com/img/s31ofq39/JSpeak_024.png)
+![Button Hints](https://raw.githubusercontent.com/BullShark/JSpeak/master/artwork/JSpeak-Button-Hints.png)
 
 ![Voices](https://raw.githubusercontent.com/BullShark/JSpeak/master/artwork/JSpeak-Mbrola-Voices.png)
 
