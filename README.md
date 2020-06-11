@@ -10,11 +10,11 @@ http://www.youtube.com/embed/raEUJraXvwY
 
 ## JSpeak in Action
 
-![Compact GUI](http://i.imagebanana.com/img/8bqnnbah/JSpeak_025.png)
+![Compact GUI](https://raw.githubusercontent.com/BullShark/JSpeak/master/artwork/JSpeak-Minimode.png)
 
 ![Button Hints](http://i.imagebanana.com/img/s31ofq39/JSpeak_024.png)
 
-![Voices](http://i.imagebanana.com/img/i36ea15x/JSpeak_026.png)
+![Voices](https://raw.githubusercontent.com/BullShark/JSpeak/master/artwork/JSpeak-Mbrola-Voices.png)
 
 ## Installation and Usage
 
