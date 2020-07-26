@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=JSpeak
+Comment=A Text to Speech Reader Front-end that Reads from the Clipboard and with Exceptionable Features
+Icon=jspeak
+Exec=jspeak
+Terminal=false
+Categories=Network;InstantMessaging;
+StartupWMClass=JSpeak
