@@ -79,6 +79,10 @@ directory) to /usr/share/mbrola/en1 .
     $ cd JSpeak/dist
 
     $ java -jar JSpeak.jar
+    
+    If fonts look ugly under Linux with big pixels, it's a bug with Java and Linux, not JSpeak. Run this fix instead.
+    
+    $ java -jar -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true JSpeak.jar
 
 
 ### Or build a jar and run it
