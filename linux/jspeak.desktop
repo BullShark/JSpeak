@@ -5,5 +5,5 @@ Comment=A Text to Speech Reader Front-end that Reads from the Clipboard and with
 Icon=jspeak
 Exec=jspeak
 Terminal=false
-Categories=Network;InstantMessaging;
+Categories=Network;Audio;
 StartupWMClass=JSpeak
