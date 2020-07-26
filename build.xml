@@ -74,7 +74,7 @@
 
 <target name="-unjar-and-copy-lib-jars">
     <unjar dest="${build.classes.dir}">
-      <fileset dir="dist/lib">
+      <fileset dir="lib">
             <include name="**/*.jar"/>
         </fileset>
         <patternset>
