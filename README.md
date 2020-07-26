@@ -72,7 +72,7 @@ directory) to /usr/share/mbrola/en1 .
 
   *Note:* This step is just for testing that everything is setup and working correctly.
 
-### Obtain the app from git and run.
+### Obtain the app from git and run
 
     $ git clone git://github.com/BullShark/JSpeak.git
 
