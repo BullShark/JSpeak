@@ -41,6 +41,10 @@ Fedora and other rpm based systems do not have mbrola and mbrola packages afaik.
 https://aur.archlinux.org/packages/jspeak/
 
     # yay -S jspeak
+    
+    Not required: Add some better voices for JSpeak to use.
+    
+    # yay -S mbrola-voices-us1 mbrola-voices-us2 mbrola-voices-us3 mbrola-voices-en1
 
 ### Manual installation of mbrola and mbrola voices (From the espeak/mbrola docs)
 
@@ -84,6 +88,8 @@ directory) to /usr/share/mbrola/en1 .
     $ ant fat-jar 
 
     $ ant run
+
+    You must have Apache Ant and Java JDK installed.
 
 ### Usage
 
