@@ -339,7 +339,7 @@ public class JSpeak extends JPanel
     });
 
     System.out.println("This software was created by Christopher Lemire "
-            + "<christopher.lemire@gmail.com>\n"
+            + "<goodbye300@aim.com>\n"
             + "Feedback is appreciated!\n\n"
             + "For command output and error use -g or --debug\n");
 
