@@ -36,6 +36,12 @@ Many mbrola voices can be installed through apt-get in Ubuntu/Mint. Some such as
 
 Fedora and other rpm based systems do not have mbrola and mbrola packages afaik. However this is not a problem. Continue to follow the manual installation for them.
 
+### Arch/Manjaro
+
+https://aur.archlinux.org/packages/jspeak/
+
+    # yay -S jspeak
+
 ### Manual installation of mbrola and mbrola voices (From the espeak/mbrola docs)
 
 *Linux Installation*
@@ -62,24 +68,22 @@ directory) to /usr/share/mbrola/en1 .
 
   *Note:* This step is just for testing that everything is setup and working correctly.
 
-
-### Obtaining and running the app.
-
-    $ wget https://github.com/downloads/BullShark/JSpeak/JSpeak.tbz
-
-    $ tar -xf JSpeak.tbz
-
-    $ cd JSpeak
-
-    $ java -jar JSpeak.jar
-
-### OR Obtain the app from git and run.
+### Obtain the app from git and run.
 
     $ git clone git://github.com/BullShark/JSpeak.git
 
     $ cd JSpeak/dist
 
     $ java -jar JSpeak.jar
+
+
+### Or build a jar and run it
+
+    $ git clone git://github.com/BullShark/JSpeak.git
+
+    $ ant fat-jar 
+
+    $ ant run
 
 ### Usage
 
