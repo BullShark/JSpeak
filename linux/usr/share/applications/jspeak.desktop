@@ -1,9 +1,15 @@
 [Desktop Entry]
-Type=Application
-Name=JSpeak
-Comment=A Text to Speech Reader Front-end that Reads from the Clipboard and with Exceptionable Features
-Icon=jspeak
-Exec=jspeak
-Terminal=false
 Categories=AudioVideo;Audio;Player;GTK;
+Comment=A Java Text to Speech Clipboard Reader with Exceptionable Features
+Exec=jspeak
+Icon=/usr/share/piximaps/jspeak.png
+Name=JSpeak
+NoDisplay=false
+Path[$e]=
+StartupNotify=true
 StartupWMClass=JSpeak
+Terminal=0
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=
