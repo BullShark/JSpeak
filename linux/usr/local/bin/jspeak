@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-
-opts="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"  # Fixes font problems with Java Apps in Linux
-
-exec /usr/bin/java -jar $opts '/usr/lib/jspeak/JSpeak.jar' "$@" 2>/dev/null
-
