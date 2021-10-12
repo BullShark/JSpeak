@@ -324,8 +324,6 @@ public class JSpeak extends JPanel
 
     } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
       Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
-      System.err.println("GTK+ version 2.2 or later was not found on your system.\n"
-              + "Install it to use this application.");
       System.exit(-1);
     }
 
