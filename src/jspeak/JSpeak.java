@@ -317,8 +317,12 @@ public class JSpeak extends JPanel
 
   public static void main(String[] args) {
     try {
-      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-    } catch (Exception ex) {
+//      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+            // Set System L&F
+        UIManager.setLookAndFeel(
+            UIManager.getSystemLookAndFeelClassName());
+
+    } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
       Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
       System.err.println("GTK+ version 2.2 or later was not found on your system.\n"
               + "Install it to use this application.");
