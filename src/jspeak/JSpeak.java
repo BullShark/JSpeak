@@ -31,7 +31,7 @@ import net.miginfocom.swing.MigLayout;
 
 /**
  *
- * @author Christopher Lemire <christopher.lemire@gmail.com>
+ * @author Christopher Lemire {@literal <goodbye300@aim.com>}
  */
 public class JSpeak extends JPanel
                     implements ActionListener,
