@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Christopher Lemire <christopher.lemire@gmail.com>
+ * Copyright (C) 2012 Christopher Lemire <goodbye300@aim.com>
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@ package jspeak;
 
 /**
  *
- * @author Christopher Lemire <christopher.lemire@gmail.com>
+ * @author Christopher Lemire {@literal <goodbye300@aim.com>}
  */
 public class Replay implements Runnable {
   private final ClipReader clipReader;

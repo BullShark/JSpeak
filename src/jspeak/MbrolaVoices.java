@@ -23,7 +23,7 @@ import java.util.Arrays;
 
 /**
  *
- * @author Christopher Lemire <christopher.lemire@gmail.com>
+ * @author Christopher Lemire {@literal <goodbye300@aim.com>}
  */
 public class MbrolaVoices {
   private final File espeakDir, mbrolaDir;
