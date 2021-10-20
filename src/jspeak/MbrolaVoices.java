@@ -26,22 +26,38 @@ import java.util.Arrays;
  * @author Christopher Lemire {@literal <goodbye300@aim.com>}
  */
 public class MbrolaVoices {
-  private final File espeakDir, mbrolaDir;
-  private final FilenameFilter ff;
-  private final File[] fileArr;
+  private File espeakDir, mbrolaDir;
+  private final FilenameFilter FF;
+  private final File[] FILEARR;
   private String[] fstrArr;
 
   public MbrolaVoices() {
-    ff = new FilenameFilter() {
+    FF = new FilenameFilter() {
       @Override public boolean accept(File dir, String name) {
         return name.matches("[a-z]{2}[1-9]");
       }
     };
 
-    //TODO Windows PATH after building:
-    //TODO C:\Users\Christopher Lemire\source\repos\MBROLA\VisualC\Win32\Debug1
-    mbrolaDir = new File("/usr/share/espeak-data/voices/mbrola");
-    espeakDir = new File("/usr/share/mbrola");
+    String os = System.getProperty("os.name");
+    mbrolaDir = null;
+    espeakDir = null;
+    
+    /* Debug */
+    System.out.println("System OS is :" + os);
+    
+      switch (os) {
+          case "Linux":
+              mbrolaDir = new File("/usr/share/espeak-data/voices/mbrola");
+              espeakDir = new File("/usr/share/mbrola");
+              break;
+          case "Windows":
+              mbrolaDir = new File(System.getProperty("user.home") + "\\source\\repos\\MBROLA\\VisualC\\Win32\\Debug");
+              espeakDir = new File("C:\\Program Files\\eSpeak\\espeak-data\\mbrola");
+              break;
+          default:
+              System.err.println("Unsupported operating system!");
+              System.exit(-1);
+      }
 
     /*
      * Do not need to handle an arbitrary number of directories
@@ -49,23 +65,23 @@ public class MbrolaVoices {
      * For mbrola voices
      */
     if(espeakDir.exists() && mbrolaDir.exists()) {
-      fileArr = concatAll(espeakDir.listFiles(ff), mbrolaDir.listFiles(ff));
+      FILEARR = concatAll(espeakDir.listFiles(FF), mbrolaDir.listFiles(FF));
     } else if(espeakDir.exists()) {
-      fileArr = espeakDir.listFiles(ff);
+      FILEARR = espeakDir.listFiles(FF);
     } else if(mbrolaDir.exists()) {
-      fileArr = mbrolaDir.listFiles(ff);
+      FILEARR = mbrolaDir.listFiles(FF);
     } else {
       System.err.println("Mbrola voices directory not found. Install espeak.\n"
               + "If espeak is installed, and you still see this message, "
               + "please report a bug at\n"
               + "https://github.com/BullShark/JSpeak/issues");
-      fileArr = null;
+      FILEARR = null;
     }
 
-    if(fileArr != null) {
-      fstrArr = new String[fileArr.length];
-      for(int j=0; j<fileArr.length; j++) {
-        fstrArr[j] = fileArr[j].getName();
+    if(FILEARR != null) {
+      fstrArr = new String[FILEARR.length];
+      for(int j=0; j<FILEARR.length; j++) {
+        fstrArr[j] = FILEARR[j].getName();
       }
     }
   }
