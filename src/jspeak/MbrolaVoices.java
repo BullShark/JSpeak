@@ -38,6 +38,8 @@ public class MbrolaVoices {
       }
     };
 
+    //TODO Windows PATH after building:
+    //TODO C:\Users\Christopher Lemire\source\repos\MBROLA\VisualC\Win32\Debug1
     mbrolaDir = new File("/usr/share/espeak-data/voices/mbrola");
     espeakDir = new File("/usr/share/mbrola");
 
