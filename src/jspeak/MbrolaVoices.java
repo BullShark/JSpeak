@@ -50,7 +50,15 @@ public class MbrolaVoices {
               mbrolaDir = new File("/usr/share/espeak-data/voices/mbrola");
               espeakDir = new File("/usr/share/mbrola");
               break;
-          case "Windows":
+          case "Windows 95":
+          case "Windows 98":
+          case "Windows XP":
+          case "Windows Vista":
+          case "Windows NT (unknown)":
+          case "Windows 7":
+          case "Windows 8":
+          case "Windows 8.1":
+          case "Windows 10":
               mbrolaDir = new File(System.getProperty("user.home") + "\\source\\repos\\MBROLA\\VisualC\\Win32\\Debug");
               espeakDir = new File("C:\\Program Files\\eSpeak\\espeak-data\\mbrola");
               break;
