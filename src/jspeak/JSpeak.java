@@ -316,9 +316,19 @@ public class JSpeak extends JPanel
     frame.setVisible(true);
   }
 
+  /**
+   * Try to set L&F to GTK+ first.If that fails, set the System L&F. Otherwise, Linux gets the ugly metal L&F.
+   * @param args Use -g or --debug for debugging output.
+   */
   public static void main(String[] args) {
+    
     try {
-//      UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+        UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+          Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    try {
             // Set System L&F
         UIManager.setLookAndFeel(
             UIManager.getSystemLookAndFeelClassName());
