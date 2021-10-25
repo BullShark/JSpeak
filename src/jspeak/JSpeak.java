@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package expectusafterlun.ch.jspeak;
+package jspeak;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -71,6 +71,7 @@ public class JSpeak extends JPanel
      * Create icons
      */
     String loc = "/jspeak/resources/";
+
     scanIcon = createImageIcon(loc + "scan.png");
     rpIcon = createImageIcon(loc + "replay.png");
     stopIcon = createImageIcon(loc + "stop.png");

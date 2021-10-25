@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package expectusafterlun.ch.jspeak;
+package jspeak;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
