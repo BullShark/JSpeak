@@ -322,20 +322,27 @@ public class JSpeak extends JPanel
    */
   public static void main(String[] args) {
     
+    boolean lookAndFeel = false;
     try {
         UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+        lookAndFeel = true;
+
     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-          Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+        lookAndFeel = false;
     }
 
-    try {
-            // Set System L&F
-        UIManager.setLookAndFeel(
-            UIManager.getSystemLookAndFeelClassName());
+    /* Only set the Look and Feel if it has not already successfully been set */
+    if(!lookAndFeel) {
+        try {
+                // Set System L&F
+            UIManager.setLookAndFeel(
+                UIManager.getSystemLookAndFeelClassName());
 
-    } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
-      Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
-      System.exit(-1);
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
+          Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+          System.exit(-1);
+        }
     }
 
     if(args.length == 1) {
