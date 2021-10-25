@@ -328,7 +328,7 @@ public class JSpeak extends JPanel
         lookAndFeel = true;
 
     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-        Logger.getLogger(JSpeak.class.getName()).log(Level.SEVERE, null, ex);
+        System.err.println("GTK+ not found, Using System Look and Feel\n");
         lookAndFeel = false;
     }
 
