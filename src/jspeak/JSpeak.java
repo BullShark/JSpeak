@@ -322,7 +322,7 @@ public class JSpeak extends JPanel
    */
   public static void main(String[] args) {
     
-    boolean lookAndFeel = false;
+    boolean lookAndFeel;
     try {
         UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
         lookAndFeel = true;
