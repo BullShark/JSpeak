@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package jspeak;
+package expectusafterlun.ch.jspeak;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -46,25 +46,18 @@ public class MbrolaVoices {
     System.out.println("System OS is :" + os);
     
       switch (os) {
-          case "Linux":
-              mbrolaDir = new File("/usr/share/espeak-data/voices/mbrola");
-              espeakDir = new File("/usr/share/mbrola");
-              break;
-          case "Windows 95":
-          case "Windows 98":
-          case "Windows XP":
-          case "Windows Vista":
-          case "Windows NT (unknown)":
-          case "Windows 7":
-          case "Windows 8":
-          case "Windows 8.1":
-          case "Windows 10":
-              mbrolaDir = new File(System.getProperty("user.home") + "\\source\\repos\\MBROLA\\VisualC\\Win32\\Debug");
-              espeakDir = new File("C:\\Program Files (x86)\\eSpeak\\espeak-data\\mbrola");
-              break;
-          default:
-              System.err.println("Unsupported operating system!");
-              System.exit(-1);
+          case "Linux" -> {
+		  mbrolaDir = new File("/usr/share/espeak-data/voices/mbrola");
+		  espeakDir = new File("/usr/share/mbrola");
+		  }
+          case "Windows 95", "Windows 98", "Windows XP", "Windows Vista", "Windows NT (unknown)", "Windows 7", "Windows 8", "Windows 8.1", "Windows 10" -> {
+		  mbrolaDir = new File(System.getProperty("user.home") + "\\source\\repos\\MBROLA\\VisualC\\Win32\\Debug");
+		  espeakDir = new File("C:\\Program Files (x86)\\eSpeak\\espeak-data\\mbrola");
+		  }
+          default -> {
+		  System.err.println("Unsupported operating system!");
+		  System.exit(-1);
+		  }
       }
 
     /*
@@ -79,10 +72,10 @@ public class MbrolaVoices {
     } else if(mbrolaDir.exists()) {
       FILEARR = mbrolaDir.listFiles(FF);
     } else {
-      System.err.println("Mbrola voices directory not found. Install espeak.\n"
-              + "If espeak is installed, and you still see this message, "
-              + "please report a bug at\n"
-              + "https://github.com/BullShark/JSpeak/issues");
+      System.err.println("""
+			 Mbrola voices directory not found. Install espeak.
+			 If espeak is installed, and you still see this message, please report a bug at
+			 https://github.com/BullShark/JSpeak/issues""");
       FILEARR = null;
     }
 
