@@ -43,7 +43,7 @@ public class MbrolaVoices {
     espeakDir = null;
     
     /* Debug */
-    System.out.println("System OS is :" + os);
+    System.out.println("System OS is: " + os);
     
       switch (os) {
           case "Linux" -> {
