@@ -81,15 +81,19 @@ directory) to /usr/share/mbrola/en1 .
     $ java -jar -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true JSpeak.jar
 
 
-### Or build a jar and run it
+### Or build and run with Gradle
 
     $ git clone git://github.com/BullShark/JSpeak.git
 
-    $ ant fat-jar 
+    $ cd JSpeak
 
-    $ ant run
+    $ ./gradlew clean
 
-    You must have Apache Ant and Java JDK installed.
+    $ ./gradlew build
+
+    $ ./gradlew run
+
+    You must have Java JDK installed.
 
 ### Usage
 
