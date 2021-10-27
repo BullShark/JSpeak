@@ -60,7 +60,7 @@ public class MbrolaVoices {
           case "Windows 8.1":
           case "Windows 10":
               mbrolaDir = new File(System.getProperty("user.home") + "\\source\\repos\\MBROLA\\VisualC\\Win32\\Debug");
-              espeakDir = new File("C:\\Program Files\\eSpeak\\espeak-data\\mbrola");
+              espeakDir = new File("C:\\Program Files (x86)\\eSpeak\\espeak-data\\mbrola");
               break;
           default:
               System.err.println("Unsupported operating system!");
