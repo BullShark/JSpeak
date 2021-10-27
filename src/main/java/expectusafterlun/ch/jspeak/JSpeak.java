@@ -79,25 +79,8 @@ public class JSpeak extends JPanel
     /*
      * Create icons
      */
-//    String loc = "jspeak/resources/";
-    String loc = "src/main/java/resources/";
+    String loc = "resources/";
 
-    /* Debug */
-    out.println("[+++]\tReading Configuration File (" + loc + ")");
-    out.println("[+++]\tAbsolute path: " + new File(loc).getAbsolutePath());
-    out.println("[+++]\tSystem user directory: " + System.getProperty("user.dir"));
-    out.println("[+++]\tReading File (" + loc + ")");
-
-        try (Stream<Path> walk = Files.walk(Paths.get(loc))) {
-            // We want to find only regular files
-            List<String> result = walk.filter(Files::isRegularFile)
-                    .map(x -> x.toString()).collect(Collectors.toList());
-
-            result.forEach(System.out::println);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    
     scanIcon = createImageIcon(loc + "scan.png");
     rpIcon = createImageIcon(loc + "replay.png");
     stopIcon = createImageIcon(loc + "stop.png");
@@ -315,6 +298,7 @@ public class JSpeak extends JPanel
   }
 
   private static ImageIcon createImageIcon(String path) {
+/*
     java.net.URL imgURL = JSpeak.class.getResource(path);
     if (imgURL != null) {
       return new ImageIcon(imgURL);
@@ -322,6 +306,8 @@ public class JSpeak extends JPanel
       System.err.println("Couldn't find file: " + path);
       return null;
     }
+*/
+      return new ImageIcon(path);
   }
 
   /**
