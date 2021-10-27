@@ -14,9 +14,3 @@ dependencies {
     implementation group: 'com.miglayout', name: 'miglayout-swing', version: '5.0'
     testImplementation     'junit:junit:4.13'
 }
-
-jar {
-  into 'resources', {
-    from 'resources'
-  }
-}
