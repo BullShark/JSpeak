@@ -370,10 +370,12 @@ public class JSpeak extends JPanel
       public void run() { if(clipReader != null) clipReader.stopPlayBack(); }
     });
 
-    System.out.println("This software was created by Christopher Lemire "
-            + "<goodbye300@aim.com>\n"
-            + "Feedback is appreciated!\n\n"
-            + "For command output and error use -g or --debug\n");
+    System.out.println("""
+		       This software was created by Christopher Lemire <goodbye300@aim.com>
+		       Feedback is appreciated!
+		       
+		       For command output and error use -g or --debug
+		       """);
 
     /*
      * Schedule a job for the event dispatch thread:
