@@ -14,3 +14,12 @@ dependencies {
     implementation group: 'com.miglayout', name: 'miglayout-swing', version: '5.0'
     testImplementation     'junit:junit:4.13'
 }
+
+// https://stackoverflow.com/questions/55433883/how-to-enable-java-12-preview-features-with-gradle
+tasks.withType(JavaCompile).each {
+    it.options.compilerArgs.add('--enable-preview')
+}
+
+test {
+    jvmArgs(['--enable-preview'])
+}
