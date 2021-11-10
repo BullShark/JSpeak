@@ -70,7 +70,7 @@ public class JSpeak extends JPanel
     /*
      * Create icons
      */
-    String location = "resources/";
+    String location = "/expectusafterlun/ch/jspeak/";
 
     scanIcon = createImageIcon(location + "scan.png");
     rpIcon = createImageIcon(location + "replay.png");
@@ -289,7 +289,6 @@ public class JSpeak extends JPanel
   }
 
   private static ImageIcon createImageIcon(String path) {
-/*
     java.net.URL imgURL = JSpeak.class.getResource(path);
     if (imgURL != null) {
       return new ImageIcon(imgURL);
@@ -297,8 +296,6 @@ public class JSpeak extends JPanel
       System.err.println("Couldn't find file: " + path);
       return null;
     }
-*/
-      return new ImageIcon(path);
   }
 
   /**
