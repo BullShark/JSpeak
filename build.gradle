@@ -37,4 +37,3 @@ plugins {
 application {
     mainClass = 'expectusafterlun.ch.jspeak.JSpeak'
 }
-
