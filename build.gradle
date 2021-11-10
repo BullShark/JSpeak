@@ -23,8 +23,3 @@ tasks.withType(JavaCompile).each {
 test {
     jvmArgs(['--enable-preview'])
 }
-
-// https://stackoverflow.com/questions/61849514/how-to-set-the-use-enable-preview-compile-and-run-flags-from-gradle
-tasks.withType(JavaExec) {
-    jvmArgs += '--enable-preview'
-}
