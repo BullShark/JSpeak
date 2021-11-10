@@ -36,4 +36,5 @@ plugins {
 
 application {
     mainClass = 'expectusafterlun.ch.jspeak.JSpeak'
+    applicationDefaultJvmArgs = ['--enable-preview']
 }
