@@ -29,3 +29,12 @@ tasks.withType(JavaExec) {
     jvmArgs += '--enable-preview'
 }
 
+// https://docs.gradle.org/current/userguide/application_plugin.html
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass = 'expectusafterlun.ch.jspeak.JSpeak'
+}
+
