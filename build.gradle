@@ -1,7 +1,16 @@
+// https://docs.gradle.org/current/userguide/application_plugin.html
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass = 'expectusafterlun.ch.jspeak.JSpeak'
+    applicationDefaultJvmArgs = ['--enable-preview']
+}
+
 apply plugin: 'java'
 apply plugin: 'jacoco'
 apply plugin: 'application'
-
 
 mainClassName = 'expectusafterlun.ch.jspeak.JSpeak'
 
@@ -29,12 +38,3 @@ tasks.withType(JavaExec) {
     jvmArgs += '--enable-preview'
 }
 
-// https://docs.gradle.org/current/userguide/application_plugin.html
-plugins {
-    id 'application'
-}
-
-application {
-    mainClass = 'expectusafterlun.ch.jspeak.JSpeak'
-    applicationDefaultJvmArgs = ['--enable-preview']
-}
