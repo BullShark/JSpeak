@@ -70,14 +70,14 @@ public class JSpeak extends JPanel
     /*
      * Create icons
      */
-    String loc = "resources/";
+    String location = "resources/";
 
-    scanIcon = createImageIcon(loc + "scan.png");
-    rpIcon = createImageIcon(loc + "replay.png");
-    stopIcon = createImageIcon(loc + "stop.png");
-    expandIcon = createImageIcon(loc + "expand.png");
-    retractIcon = createImageIcon(loc + "retract.png");
-    topIcon = createImageIcon(loc + "ontop.png");
+    scanIcon = createImageIcon(location + "scan.png");
+    rpIcon = createImageIcon(location + "replay.png");
+    stopIcon = createImageIcon(location + "stop.png");
+    expandIcon = createImageIcon(location + "expand.png");
+    retractIcon = createImageIcon(location + "retract.png");
+    topIcon = createImageIcon(location + "ontop.png");
 
     /*
      * Setting hidemode 2 helps prevent the
