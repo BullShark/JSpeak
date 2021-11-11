@@ -193,10 +193,10 @@ public class ClipReader {
   @Override public String toString() {
     str = "{";
 
-    // Espeak Command
-    for(int x = 0; x < ESPEAKCMD.length; x++) {
-        str += "\"" + ESPEAKCMD[x] + "\", ";
-    }
+      // Espeak Command
+      for (String s : ESPEAKCMD) {
+          str += "\"" + s + "\", ";
+      }
 
     str = str.replaceFirst(", $", "");
 
