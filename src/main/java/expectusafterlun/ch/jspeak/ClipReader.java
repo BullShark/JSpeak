@@ -194,11 +194,12 @@ public class ClipReader {
     str = "{";
 
       // Espeak Command
-      for (String str : ESPEAKCMD) {
-          str += "\"" + str + "\", ";
+      for (String s : ESPEAKCMD) {
+          str += "\"" + s + "\", ";
       }
 
     str = str.replaceFirst(", $", "");
+
     str += "}";
 
     return str;

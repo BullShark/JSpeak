@@ -22,6 +22,11 @@ dependencies {
     // https://mvnrepository.com/artifact/com.miglayout/miglayout-swing
     implementation group: 'com.miglayout', name: 'miglayout-swing', version: '5.0'
     testImplementation     'junit:junit:4.13'
+
+    // https://www.oreilly.com/library/view/gradle-beyond-the/9781449373801/ch04.html
+    // Example 4-12. Declaring dependencies on subprojects
+//    compile project(':espeak')
+//    compile project(':mbrola')
 }
 
 // https://stackoverflow.com/questions/55433883/how-to-enable-java-12-preview-features-with-gradle
