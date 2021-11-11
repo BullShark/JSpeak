@@ -20,7 +20,7 @@ http://www.youtube.com/embed/raEUJraXvwY
 
 ### Ubuntu/Debian/Mint:
 
-*Note:* Do not copy and paste the *$* at the beginning of the commands or the *#*. The *$* means run as your user. The *#* means run as the root user or use sudo if on an Ubuntu/Mint box.
+*Note:* I have had problems with some versions of Java. Java version 16 works best for me. I recommend you get that version. 
 
     $ sudo apt-get install espeak mbrola
 
