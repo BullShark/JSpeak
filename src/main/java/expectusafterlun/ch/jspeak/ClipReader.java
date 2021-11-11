@@ -28,7 +28,7 @@ import java.util.logging.Logger;
  * @author Christopher Lemire {@literal <goodbye300@aim.com>}
  */
 public class ClipReader {
-  private final String[] ESPEAKCMD;
+  private String[] espeakcmd;
   private String str;
   private Process ps;
   private InputStream in;
@@ -37,7 +37,7 @@ public class ClipReader {
 
   public ClipReader(boolean debug) {
     // Options get default values to start with
-    ESPEAKCMD = new String[]{"espeak", "-v en", "-a 100", "-g 1", "-p 50", "-s 160", ""};
+    espeakcmd = new String[]{"espeak", "-v en", "-a 100", "-g 1", "-p 50", "-s 160", ""};
     str = ""; // Used for toString()
     ps = null;
     scan = null;
@@ -53,16 +53,16 @@ public class ClipReader {
     }
 
     // Set the text to be read
-    ESPEAKCMD[6] = readme;
+    espeakcmd[6] = readme;
 
     try {
       /*
        * Removes the space to prevent java from interpretting it
        * As part of the voice filename
        */
-      ESPEAKCMD[1] = ESPEAKCMD[1].replace(" ", "");
+      espeakcmd[1] = espeakcmd[1].replace(" ", "");
 
-      ps = Runtime.getRuntime().exec(ESPEAKCMD);
+      ps = Runtime.getRuntime().exec(espeakcmd);
     } catch (IOException ex) {
       Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -73,7 +73,7 @@ public class ClipReader {
   }
 
   public void replay() {
-    readIt(ESPEAKCMD[6]);
+    readIt(espeakcmd[6]);
   }
 
   public void stopPlayBack() {
@@ -128,16 +128,16 @@ public class ClipReader {
    */
   public boolean setVoice(String voice) {
     if(voice.equals("Default")) {
-      ESPEAKCMD[1] = "-v en";
+      espeakcmd[1] = "-v en";
     } else {
-      ESPEAKCMD[1] = "-v mb-" + voice;
+      espeakcmd[1] = "-v mb-" + voice;
     }
     return true;
   }
 
   public boolean setAmplitude(int amp) {
     if(amp > 0 && amp <= 200) {
-      ESPEAKCMD[2] = "-a " + amp;
+      espeakcmd[2] = "-a " + amp;
 
       return true;
     } else {
@@ -149,7 +149,7 @@ public class ClipReader {
 
   public boolean setWordGap(int wg) {
     if(wg > 0 && wg <= 10) {
-      ESPEAKCMD[3] = "-g " + wg;
+      espeakcmd[3] = "-g " + wg;
 
       return true;
     } else {
@@ -161,7 +161,7 @@ public class ClipReader {
 
   public boolean setPitch(int pit) {
     if(pit > 0 && pit <= 100) {
-    ESPEAKCMD[4] = "-p " + pit;
+    espeakcmd[4] = "-p " + pit;
 
     return true;
     } else {
@@ -173,7 +173,7 @@ public class ClipReader {
 
   public boolean setSpeed(int wpm) {
     if(wpm > 0 && wpm <= 200) {
-    ESPEAKCMD[5] = "-s " + wpm;
+    espeakcmd[5] = "-s " + wpm;
 
     return true;
     } else {
@@ -194,7 +194,7 @@ public class ClipReader {
     str = "{";
 
       // Espeak Command
-      for (String str : ESPEAKCMD) {
+      for (String str : espeakcmd) {
           str += "\"" + str + "\", ";
       }
 
