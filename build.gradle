@@ -1,6 +1,7 @@
 // https://docs.gradle.org/current/userguide/application_plugin.html
 plugins {
     id 'application'
+    id "de.gesellix.debian" version "2021-04-05T21-19-00"
 }
 
 application {
@@ -13,6 +14,8 @@ apply plugin: 'jacoco'
 apply plugin: 'application'
 
 mainClassName = 'expectusafterlun.ch.jspeak.JSpeak'
+// Should give the start script a lowercase name
+applicationName = 'jspeak'
 
 repositories {
     mavenCentral()
@@ -27,6 +30,17 @@ dependencies {
     // Example 4-12. Declaring dependencies on subprojects
 //    compile project(':espeak')
 //    compile project(':mbrola')
+}
+
+tasks.register('uberJar', Jar) {
+    archiveClassifier = 'uber'
+
+    from sourceSets.main.output
+
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
 }
 
 // https://stackoverflow.com/questions/55433883/how-to-enable-java-12-preview-features-with-gradle
