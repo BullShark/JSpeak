@@ -40,8 +40,10 @@ dependencies {
 
     // https://www.oreilly.com/library/view/gradle-beyond-the/9781449373801/ch04.html
     // Example 4-12. Declaring dependencies on subprojects
-//    compile project(':espeak')
-//    compile project(':mbrola')
+    //compile project(':espeak')
+    //compile project(':mbrola')
+
+//    implementation 'com.harium.hci:espeak:1.0.3'
 }
 
 tasks.register('uberJar', Jar) {
@@ -68,4 +70,3 @@ test {
 tasks.withType(JavaExec) {
     jvmArgs += '--enable-preview -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 }
-

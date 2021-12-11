@@ -95,6 +95,9 @@ public class MbrolaVoices {
     return fstrArr;
   }
 
+  /*
+   * Combine two or more arrays
+   */
   public static <T> T[] concatAll(T[] first, T[]... rest) {
     int totalLength = first.length;
     for (T[] array : rest) {
