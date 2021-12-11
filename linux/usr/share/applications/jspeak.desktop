@@ -2,7 +2,7 @@
 Categories=AudioVideo;Audio;Player;GTK;
 Comment=A Java Text to Speech Clipboard Reader with Exceptionable Features
 Exec=jspeak
-Icon=/usr/share/piximaps/jspeak.png
+Icon=/usr/share/pixmaps/jspeak.png
 Name=JSpeak
 NoDisplay=false
 Path[$e]=
