@@ -7,7 +7,8 @@ plugins {
 
 application {
     mainClass = 'expectusafterlun.ch.jspeak.JSpeak'
-    applicationDefaultJvmArgs = ['--enable-preview -J-Dawt.useSystemAAFontSettings=gasp -J-Dswing.aatext=true']
+//    applicationDefaultJvmArgs = ['-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true --enable-preview']
+    mainClass.set("expectusafterlun.ch.jspeak.JSpeak")
 }
 
 apply plugin: 'java'
@@ -55,11 +56,12 @@ tasks.register('uberJar', Jar) {
         configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
     }
 }
-
+/*
 // https://stackoverflow.com/questions/55433883/how-to-enable-java-12-preview-features-with-gradle
 tasks.withType(JavaCompile).each {
     it.options.compilerArgs.add('--enable-preview')
 }
+
 
 test {
     jvmArgs(['--enable-preview'])
@@ -67,5 +69,6 @@ test {
 
 // https://stackoverflow.com/questions/61849514/how-to-set-the-use-enable-preview-compile-and-run-flags-from-gradle
 tasks.withType(JavaExec) {
-    jvmArgs += '--enable-preview -J-Dawt.useSystemAAFontSettings=gasp -J-Dswing.aatext=true'
+    jvmArgs += '-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true --enable-preview'
 }
+*/
