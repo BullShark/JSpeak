@@ -322,6 +322,10 @@ public class JSpeak extends JPanel
    */
   public static void main(String[] args) {
     
+    // This makes the font use antialiasing
+    System.setProperty("awt.useSystemAAFontSettings", "on");
+    System.setProperty("swing.aatext", "true");
+
     boolean lookAndFeel;
     try {
         UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
