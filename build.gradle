@@ -7,6 +7,7 @@ plugins {
 
 application {
     mainClass = 'expectusafterlun.ch.jspeak.JSpeak'
+    // Use _JAVA_OPTIONS instead
 //    applicationDefaultJvmArgs = ['-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true --enable-preview']
     mainClass.set("expectusafterlun.ch.jspeak.JSpeak")
 }
@@ -42,8 +43,8 @@ dependencies {
     // Example 4-12. Declaring dependencies on subprojects
     //compile project(':espeak')
     //compile project(':mbrola')
-
-//    implementation 'com.harium.hci:espeak:1.0.3'
+    compile fileTree(dir: 'setup', include: ['*.exe'])
+    compile fileTree(dir: 'setup', include: ['*.zip'])
 }
 
 tasks.register('uberJar', Jar) {
@@ -56,19 +57,3 @@ tasks.register('uberJar', Jar) {
         configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
     }
 }
-/*
-// https://stackoverflow.com/questions/55433883/how-to-enable-java-12-preview-features-with-gradle
-tasks.withType(JavaCompile).each {
-    it.options.compilerArgs.add('--enable-preview')
-}
-
-
-test {
-    jvmArgs(['--enable-preview'])
-}
-
-// https://stackoverflow.com/questions/61849514/how-to-set-the-use-enable-preview-compile-and-run-flags-from-gradle
-tasks.withType(JavaExec) {
-    jvmArgs += '-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true --enable-preview'
-}
-*/
