@@ -43,8 +43,8 @@ dependencies {
     // Example 4-12. Declaring dependencies on subprojects
     //compile project(':espeak')
     //compile project(':mbrola')
-    compile fileTree(dir: 'setup', include: ['*.exe'])
-    compile fileTree(dir: 'setup', include: ['*.zip'])
+    //compile fileTree(dir: 'setup', include: ['*.exe'])
+    //compile fileTree(dir: 'setup', include: ['*.zip'])
 }
 
 tasks.register('uberJar', Jar) {
