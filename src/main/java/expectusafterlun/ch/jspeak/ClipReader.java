@@ -1,20 +1,19 @@
 /*
- * Copyright (C) 2012 Christopher Lemire <goodbye300@aim.com>
- * 
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+* Copyright (C) 2012 Christopher Lemire <goodbye300@aim.com>
+* 
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package expectusafterlun.ch.jspeak;
 
 import java.io.IOException;
@@ -28,180 +27,183 @@ import java.util.logging.Logger;
  * @author Christopher Lemire {@literal <goodbye300@aim.com>}
  */
 public class ClipReader {
-  private final String[] ESPEAKCMD;
-  private String str;
-  private Process ps;
-  private InputStream in;
-  private Scanner scan;
-  private boolean debug;
 
-  public ClipReader(boolean debug) {
-    // Options get default values to start with
-    ESPEAKCMD = new String[]{"espeak", "-v en", "-a 100", "-g 1", "-p 50", "-s 160", ""};
-    str = ""; // Used for toString()
-    ps = null;
-    scan = null;
-    this.debug = debug;
-  }
-  //TODO Read http://www.javaworld.com/javaworld/jw-12-2000/jw-1229-traps.html?page=2
+	private final String[] ESPEAKCMD;
+	private String str;
+	private Process ps;
+	private InputStream in;
+	private Scanner scan;
+	private boolean debug;
 
-  public void readIt(String readme) {
-    // Incase espeak is already running, kill it
-    // Unless it's not initialized
-    if(ps != null) {
-      stopPlayBack();
-    }
+	public ClipReader(boolean debug) {
+		// Options get default values to start with
+		ESPEAKCMD = new String[]{"espeak", "-v en", "-a 100", "-g 1", "-p 50", "-s 160", ""};
+		str = ""; // Used for toString()
+		ps = null;
+		scan = null;
+		this.debug = debug;
+	}
 
-    // Set the text to be read
-    ESPEAKCMD[6] = readme;
+	//TODO Read http://www.javaworld.com/javaworld/jw-12-2000/jw-1229-traps.html?page=2
 
-    try {
-      /*
-       * Removes the space to prevent java from interpretting it
-       * As part of the voice filename
-       */
-      ESPEAKCMD[1] = ESPEAKCMD[1].replace(" ", "");
+	public void readIt(String readme) {
+		// Incase espeak is already running, kill it
+		// Unless it's not initialized
+		if (ps != null) {
+			stopPlayBack();
+		}
 
-      ps = Runtime.getRuntime().exec(ESPEAKCMD);
-    } catch (IOException ex) {
-      Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
-    }
+		// Set the text to be read
+		ESPEAKCMD[6] = readme;
 
-    if(debug) {
-      printPsOutErr(ps);
-    }
-  }
+		try {
+			/*
+			 * Removes the space to prevent java from interpretting it
+			 * As part of the voice filename
+			 */
+			ESPEAKCMD[1] = ESPEAKCMD[1].replace(" ", "");
 
-  public void replay() {
-    readIt(ESPEAKCMD[6]);
-  }
+			ps = Runtime.getRuntime().exec(ESPEAKCMD);
+		} catch (IOException ex) {
+			Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
+		}
 
-  public void stopPlayBack() {
-    ps.destroy();
-    /*
-     * Tries to kill espeak
-     * Only shows an error if espeak fails to stop
-     * 
-     * Only enable if you need to see output/error
-     */
-    if(debug) {
-      printPsOutErr(ps);
-    }
+		if (debug) {
+			printPsOutErr(ps);
+		}
+	}
 
-    /*
-     * Prevents a new espeak instance from starting before the current
-     * If any espeak process running, is killed
-     */
-    try {
-      ps.waitFor();
-    } catch (InterruptedException ex) {
-      Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
-    }
-  }
+	public void replay() {
+		readIt(ESPEAKCMD[6]);
+	}
 
-  public void printPsOutErr(Process ps) {
-    // Print command output
-    in = ps.getInputStream();
-    scan = new Scanner(in);
-    scan.useDelimiter("\\n");
+	public void stopPlayBack() {
+		ps.destroy();
+		/*
+		 * Tries to kill espeak
+		 * Only shows an error if espeak fails to stop
+		 * 
+		 * Only enable if you need to see output/error
+		 */
+		if (debug) {
+			printPsOutErr(ps);
+		}
 
-    while(scan.hasNext()) {
-      System.out.println(scan.nextLine());
-    }
+		/*
+		 * Prevents a new espeak instance from starting before the current
+		 * If any espeak process running, is killed
+		 */
+		try {
+			ps.waitFor();
+		} catch (InterruptedException ex) {
+			Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 
-    System.out.println();
+	public void printPsOutErr(Process ps) {
+		// Print command output
+		in = ps.getInputStream();
+		scan = new Scanner(in);
+		scan.useDelimiter("\\n");
 
-    // Print command output
-    in = ps.getErrorStream();
-    scan = new Scanner(in);
-    scan.useDelimiter("\\n");
+		while (scan.hasNext()) {
+			System.out.println(scan.nextLine());
+		}
 
-    while(scan.hasNext()) {
-      System.out.println(scan.nextLine());
-    }
+		System.out.println();
 
-    System.out.println();
-  }
+		// Print command output
+		in = ps.getErrorStream();
+		scan = new Scanner(in);
+		scan.useDelimiter("\\n");
 
-  /*
-   * Begin all set methods for espeak options
-   */
-  public boolean setVoice(String voice) {
-    if(voice.equals("Default")) {
-      ESPEAKCMD[1] = "-v en";
-    } else {
-      ESPEAKCMD[1] = "-v mb-" + voice;
-    }
-    return true;
-  }
+		while (scan.hasNext()) {
+			System.out.println(scan.nextLine());
+		}
 
-  public boolean setAmplitude(int amp) {
-    if(amp > 0 && amp <= 200) {
-      ESPEAKCMD[2] = "-a " + amp;
+		System.out.println();
+	}
 
-      return true;
-    } else {
-      System.err.println("Cannot set amplitude to " + amp + ";\n"
-      + "The amplitude must be set between 1 and 200 inclusive.");
-      return false;
-    }
-  }
+	/*
+	 * Begin all set methods for espeak options
+	 */
+	public boolean setVoice(String voice) {
+		if (voice.equals("Default")) {
+			ESPEAKCMD[1] = "-v en";
+		} else {
+			ESPEAKCMD[1] = "-v mb-" + voice;
+		}
+		return true;
+	}
 
-  public boolean setWordGap(int wg) {
-    if(wg > 0 && wg <= 10) {
-      ESPEAKCMD[3] = "-g " + wg;
+	public boolean setAmplitude(int amp) {
+		if (amp > 0 && amp <= 200) {
+			ESPEAKCMD[2] = "-a " + amp;
 
-      return true;
-    } else {
-      System.err.println("Cannot set speed to " + wg + ";\n"
-      + "The amplitude must be set between 1 and 10 inclusive.");
-      return false;
-    }
-  }
+			return true;
+		} else {
+			System.err.println("Cannot set amplitude to " + amp + ";\n"
+				+ "The amplitude must be set between 1 and 200 inclusive.");
+			return false;
+		}
+	}
 
-  public boolean setPitch(int pit) {
-    if(pit > 0 && pit <= 100) {
-    ESPEAKCMD[4] = "-p " + pit;
+	public boolean setWordGap(int wg) {
+		if (wg > 0 && wg <= 10) {
+			ESPEAKCMD[3] = "-g " + wg;
 
-    return true;
-    } else {
-      System.err.println("Cannot set speed to " + pit + ";\n"
-      + "The pitch must be set between 1 and 100 inclusive.");
-      return false;
-    }
-  }
+			return true;
+		} else {
+			System.err.println("Cannot set speed to " + wg + ";\n"
+				+ "The amplitude must be set between 1 and 10 inclusive.");
+			return false;
+		}
+	}
 
-  public boolean setSpeed(int wpm) {
-    if(wpm > 0 && wpm <= 200) {
-    ESPEAKCMD[5] = "-s " + wpm;
+	public boolean setPitch(int pit) {
+		if (pit > 0 && pit <= 100) {
+			ESPEAKCMD[4] = "-p " + pit;
 
-    return true;
-    } else {
-      System.err.println("Cannot set speed to " + wpm + ";"
-      + "The words per minute must be set between 1 and 200 inclusive.");
-      return false;
-    }
-  }
+			return true;
+		} else {
+			System.err.println("Cannot set speed to " + pit + ";\n"
+				+ "The pitch must be set between 1 and 100 inclusive.");
+			return false;
+		}
+	}
 
-  public void setDebug(boolean debug) {
-    this.debug = debug;
-  }
+	public boolean setSpeed(int wpm) {
+		if (wpm > 0 && wpm <= 200) {
+			ESPEAKCMD[5] = "-s " + wpm;
 
-  /*
-   * Conceptial view of the command being executed as an Array
-   */
-  @Override public String toString() {
-    str = "{";
+			return true;
+		} else {
+			System.err.println("Cannot set speed to " + wpm + ";"
+				+ "The words per minute must be set between 1 and 200 inclusive.");
+			return false;
+		}
+	}
 
-      // Espeak Command
-      for (String s : ESPEAKCMD) {
-          str += "\"" + s + "\", ";
-      }
+	public void setDebug(boolean debug) {
+		this.debug = debug;
+	}
 
-    str = str.replaceFirst(", $", "");
+	/*
+	 * Conceptial view of the command being executed as an Array
+	 */
+	@Override
+	public String toString() {
+		str = "{";
 
-    str += "}";
+		// Espeak Command
+		for (String s : ESPEAKCMD) {
+			str += "\"" + s + "\", ";
+		}
 
-    return str;
-  }
+		str = str.replaceFirst(", $", "");
+
+		str += "}";
+
+		return str;
+	}
 }
