@@ -327,7 +327,7 @@ public class JSpeak extends JPanel
 	public static void main(String[] args) {
 
 		// This makes the font use antialiasing
-		System.setProperty("awt.useSystemAAFontSettings", "on");
+		System.setProperty("awt.useSystemAAFontSettings", "gasp");
 		System.setProperty("swing.aatext", "true");
 
 		boolean lookAndFeel;
@@ -343,7 +343,7 @@ public class JSpeak extends JPanel
 		/* Only set the Look and Feel if it has not already successfully been set */
 		if (!lookAndFeel) {
 			try {
-// Set System L&F
+				// Set System L&F
 				UIManager.setLookAndFeel(
 					UIManager.getSystemLookAndFeelClassName());
 
