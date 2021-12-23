@@ -57,3 +57,18 @@ tasks.register('uberJar', Jar) {
         configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
     }
 }
+
+task executeScript(type:Exec) {
+    println 'Executing espeak installer...'
+
+    //on windows:
+//    commandLine 'cmd', '/c', 'stop.bat'
+
+    commandLine './setup/setup_espeak-1.48.04.exe'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'expectusafterlun.ch.jspeak.JSpeak'
+    }
+}
