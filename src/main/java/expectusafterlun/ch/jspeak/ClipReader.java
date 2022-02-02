@@ -78,7 +78,7 @@ public class ClipReader {
 	}
 
 	public void stopPlayBack() {
-		ps.destroy();
+		if(ps != null) { ps.destroy(); }
 		/*
 		 * Tries to kill espeak
 		 * Only shows an error if espeak fails to stop
@@ -94,7 +94,7 @@ public class ClipReader {
 		 * If any espeak process running, is killed
 		 */
 		try {
-			ps.waitFor();
+			if(ps != null) { ps.waitFor();}
 		} catch (InterruptedException ex) {
 			Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
 		}
