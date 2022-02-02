@@ -101,6 +101,8 @@ public class ClipReader {
 	}
 
 	public void printPsOutErr(Process ps) {
+		if(ps == null) { return; }
+		
 		// Print command output
 		in = ps.getInputStream();
 		scan = new Scanner(in);
