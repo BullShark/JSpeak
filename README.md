@@ -22,7 +22,7 @@ http://www.youtube.com/embed/raEUJraXvwY
 
 *Note:* I have had problems with some versions of Java. Java version 16 works best for me. I recommend you get that version. 
 
-    $ wget https://github.com/BullShark/JSpeak/releases/download/2020.12.06/jspeak-2021.12.04-any.deb
+    $ wget https://github.com/BullShark/JSpeak/releases/download/2020.12.06/jspeak-2022.02.02-1-any.deb
     $ sudo dpkg -i jspeak-2021.12.04-any.deb
     $ sudo apt-get install espeak mbrola
 
