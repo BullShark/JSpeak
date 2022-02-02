@@ -50,11 +50,11 @@ public class JSpeak extends JPanel
 	private final ImageIcon scanIcon, rpIcon, stopIcon, expandIcon, retractIcon, topIcon;
 	private final MbrolaVoices voices;
 	private final String defaultvc;
-	private static boolean debug;
+	private boolean debug = false, quiet = false;
 
 	public JSpeak() {
 		defaultvc = "Default"; // Used for default espeak voice
-		voices = new MbrolaVoices();
+		voices = new MbrolaVoices(debug, quiet);
 		if (voices.getVoices() != null) {
 			voiceComBox = new JComboBox(voices.getVoices());
 		} else {
@@ -218,7 +218,7 @@ public class JSpeak extends JPanel
 	public void itemStateChanged(ItemEvent e) {
 		if (e.getSource() == scanTButton) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
-				clipScan = new ClipboardScanner(debug);
+				clipScan = new ClipboardScanner(debug, quiet);
 				clipThread = new Thread(clipScan);
 				clipReader = ClipboardScanner.getClipReader();
 				clipThread.start();
@@ -322,13 +322,28 @@ public class JSpeak extends JPanel
 	 * Try to set L&F to GTK+ first.If that fails, set the System L&F.
 	 * Otherwise, Linux gets the ugly metal L&F.
 	 *
-	 * @param args Use -g or --debug for debugging output.
+	 * @param args Use -g or --debug for debugging output and -q or --quiet for silence in the console.
 	 */
 	public static void main(String[] args) {
 
 		// This makes the font use antialiasing
 		System.setProperty("awt.useSystemAAFontSettings", "gasp");
 		System.setProperty("swing.aatext", "true");
+
+		// Process command line arguments
+		for(String s: args) {
+			if(s.equals("-q") || s.equals("--quiet")) {
+				quiet = true;
+			} else if(s.equals("-g") || s.equals("--debug")) {
+				debug = true;
+			}
+		}
+
+		if(debug && quiet) {
+				System.err.println("Both quiet and debug options cannot be used together.\n");
+				System.err.println("Usage: java -jar JSpeak.jar [(-g|--debug) | (-q|--quiet)]");
+				System.exit(-1);
+		}
 
 		boolean lookAndFeel;
 		try {
@@ -353,14 +368,6 @@ public class JSpeak extends JPanel
 			}
 		}
 
-		if (args.length == 1) {
-			if (args[0].equals("-g") || args[0].equals("--debug")) {
-				debug = true;
-			} else {
-				System.err.println("Usage: java -jar JSpeak.jar [-g|--debug]");
-				System.exit(-1);
-			}
-		}
 
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			public void run() {
@@ -370,18 +377,21 @@ public class JSpeak extends JPanel
 			}
 		});
 
-		System.out.println("""
+		if(!quiet) {
+			System.out.println("""
 				This software was created by Christopher Lemire <goodbye300@aim.com>
 				Feedback is appreciated!
 
 				For command output and error use -g or --debug
 				""");
+		}
 
 		/*
 		 * Schedule a job for the event dispatch thread:
 		 * Creating and showing this application's GUI.
 		 */
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				createAndShowGUI();
 			}

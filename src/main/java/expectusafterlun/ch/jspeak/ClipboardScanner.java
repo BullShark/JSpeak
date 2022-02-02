@@ -32,19 +32,26 @@ public class ClipboardScanner implements Runnable {
 
 	private Transferable transfer;
 	private String contents, tempContents;
-	private long pollTime;
+	private final long POLL_TIME;
 	private static ClipReader clipReader;
 	private boolean firstRun;
+	private boolean debug = false, quiet = false;
 
-	public ClipboardScanner(boolean debug) {
+	public ClipboardScanner(boolean debug, boolean quiet) {
 		transfer = null;
 		contents = "";
 		tempContents = "";
-		pollTime = 500; // In millisecons
-		clipReader = new ClipReader(debug);
+		POLL_TIME = 500; // In milliseconds
+		clipReader = new ClipReader(debug, quiet);
 		firstRun = true;
+		this.debug = debug;
+		this.quiet = quiet;
 	}
 
+	/**
+	 * Get the clipboard contents. Compare it with the previous contents. Readit() if the clipboard content has changed.
+	 * Loop and do it again, but wait while sleeping this Thread for POLL_TIME milliseconds.
+	 */
 	@Override
 	public void run() {
 		while (!Thread.interrupted()) {
@@ -57,7 +64,7 @@ public class ClipboardScanner implements Runnable {
 					contents = (String) transfer.getTransferData(DataFlavor.stringFlavor);
 					if (hasChanged() && !firstRun) {
 						clipReader.readIt(contents);
-						System.out.println("New Content:\n\n" + clipReader.toString() + "\n");
+						if(!quiet) { System.out.println("New Content:\n\n" + clipReader.toString() + "\n"); }
 					} else {
 						tempContents = contents;
 						firstRun = false;
@@ -71,30 +78,32 @@ public class ClipboardScanner implements Runnable {
 			 * Wait before checking the clipboard again
 			 */
 			try {
-				Thread.sleep(pollTime);
+				Thread.sleep(POLL_TIME);
 			} catch (InterruptedException ex) {
-				// Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex);
+				if(debug && !quiet) { Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex); }
 				return;
 			}
 		}
 	}
 
-	/*
-	 * Return whether the clipboard contents have changed
+	/**
+	 * @return Return whether the clipboard contents have changed
 	 */
 	public boolean hasChanged() {
 		return !(tempContents.equals(contents));
 	}
 
-	/*
-	 * Return the clipboard contents
+	/**
+	 * @return Return the clipboard contents
 	 */
 	public String getClipboardContents() {
 		return contents;
 	}
 
-	/*
+	/**
 	 * Useful for calling its methods from the GUI
+	 * 
+	 * @return A ClipReader object with methods readit(), replay(), setOptions(), stopPlayBack(), and toString()
 	 */
 	public static ClipReader getClipReader() {
 		return clipReader;

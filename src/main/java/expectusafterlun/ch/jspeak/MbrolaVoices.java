@@ -30,8 +30,19 @@ public class MbrolaVoices {
 	private final FilenameFilter FF;
 	private final File[] FILEARR;
 	private String[] fstrArr;
+	private boolean debug = false, quiet = false;
 
-	public MbrolaVoices() {
+	/**
+	 * Get a list of installed voices by checking the voice files for the current running OS.
+	 * 
+	 * @param debug Verbose debugging output
+	 * @param quiet Silence all output except critical errors.
+	 */
+	public MbrolaVoices(boolean debug, boolean quiet) {
+		// Set debug and quiet
+		this.debug = debug;
+		this.quiet = quiet;
+
 		FF = new FilenameFilter() {
 			@Override public boolean accept(File dir, String name) {
 				return name.matches("[a-z]{2}[1-9]");
@@ -43,7 +54,8 @@ public class MbrolaVoices {
 		espeakDir = null;
 
 		/* Debug */
-		System.out.println("System OS is: " + os);
+		if (debug || !quiet) { System.out.println("System OS is: " + os); }
+		
 
 		switch (os) {
 			case "Linux" -> {
@@ -91,16 +103,22 @@ public class MbrolaVoices {
 		}
 	}
 
-	/*
-	 * JComboBox's constructor takes a String Array
-	 * Returns null when there are no voices
+	/**
+	 * Note: JComboBox's constructor takes a String Array
+	 * 
+	 * @return String array of available voices, null if none
 	 */
 	public String[] getVoices() {
 		return fstrArr;
 	}
 
-	/*
+	/**
 	 * Combine two or more arrays
+	 * 
+	 * @param <T> The type of element in the Array
+	 * @param first The first array of Type T
+	 * @param rest The rest of the array of Type T
+	 * @return An Array of concatenated Arrays
 	 */
 	public static <T> T[] concatAll(T[] first, T[]... rest) {
 		int totalLength = first.length;

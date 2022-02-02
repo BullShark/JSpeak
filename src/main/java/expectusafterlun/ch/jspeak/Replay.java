@@ -24,10 +24,18 @@ public class Replay implements Runnable {
 
 	private final ClipReader clipReader;
 
+	/**
+	 * Sets up this object but does not replay until run() is executed.
+	 *
+	 * @param clipReader The ClipReader containing the streams, Process, ESPEAKCMD String Array
+	 */
 	public Replay(ClipReader clipReader) {
 		this.clipReader = clipReader;
 	}
 
+	/**
+	 * Replays the last spoken audio message.
+	 */
 	@Override
 	public void run() {
 		clipReader.replay();

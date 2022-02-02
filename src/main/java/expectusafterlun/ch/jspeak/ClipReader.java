@@ -33,19 +33,29 @@ public class ClipReader {
 	private Process ps;
 	private InputStream in;
 	private Scanner scan;
-	private boolean debug;
+	private boolean debug = false, quiet = false;
 
-	public ClipReader(boolean debug) {
+	/**
+	 * Sets up the espeak command String Array containing the text to speak and the espeak command options and sets other global vars.
+	 * 
+	 * @param debug Verbose debugging output
+	 * @param quiet Silence all output except critical errors.
+	 */
+	public ClipReader(boolean debug, boolean quiet) {
 		// Options get default values to start with
 		ESPEAKCMD = new String[]{"espeak", "-v en", "-a 100", "-g 1", "-p 50", "-s 160", ""};
 		str = ""; // Used for toString()
 		ps = null;
 		scan = null;
 		this.debug = debug;
+		this.quiet = quiet;
 	}
 
-	//TODO Read http://www.javaworld.com/javaworld/jw-12-2000/jw-1229-traps.html?page=2
-
+	/**
+	 * Read aloud the text in "readme".
+	 *
+	 * @param readme The string of text to be read
+	 */
 	public void readIt(String readme) {
 		// Incase espeak is already running, kill it
 		// Unless it's not initialized
@@ -68,15 +78,21 @@ public class ClipReader {
 			Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-		if (debug) {
+		if (debug && !quiet) {
 			printPsOutErr(ps);
 		}
 	}
 
+	/**
+	 * Do a replay of the last thing spoken.
+	 */
 	public void replay() {
 		readIt(ESPEAKCMD[6]);
 	}
 
+	/**
+	 * Stop the playback.
+	 */
 	public void stopPlayBack() {
 		if(ps != null) { ps.destroy(); }
 		/*
@@ -85,7 +101,7 @@ public class ClipReader {
 		 * 
 		 * Only enable if you need to see output/error
 		 */
-		if (debug) {
+		if (debug && !quiet) {
 			printPsOutErr(ps);
 		}
 
@@ -100,8 +116,14 @@ public class ClipReader {
 		}
 	}
 
+	/**
+	 * Print the error and output streams of ps. Return from this function if not debug or quiet.
+	 * 
+	 * @param ps The process used for printing stream
+	 */
 	public void printPsOutErr(Process ps) {
 		if(ps == null) { return; }
+		if(!debug || quiet) { return; }
 		
 		// Print command output
 		in = ps.getInputStream();
@@ -126,8 +148,11 @@ public class ClipReader {
 		System.out.println();
 	}
 
-	/*
+	/**
 	 * Begin all set methods for espeak options
+	 *
+	 * @param voice The voice to be set
+	 * @return Whether setting the voice was successful
 	 */
 	public boolean setVoice(String voice) {
 		if (voice.equals("Default")) {
@@ -138,6 +163,12 @@ public class ClipReader {
 		return true;
 	}
 
+	/**
+	 * Sets the amplitude.
+	 *
+	 * @param amp The amplitude value between 0 and 200 (included)
+	 * @return Whether setting the amplitude was successful
+	 */
 	public boolean setAmplitude(int amp) {
 		if (amp > 0 && amp <= 200) {
 			ESPEAKCMD[2] = "-a " + amp;
@@ -150,6 +181,12 @@ public class ClipReader {
 		}
 	}
 
+	/**
+	 * Set the Word Gap, the gap between spoken words.
+	 *
+	 * @param wg The Word Gap to be set
+	 * @return Whether setting the Word Gap was successful
+	 */
 	public boolean setWordGap(int wg) {
 		if (wg > 0 && wg <= 10) {
 			ESPEAKCMD[3] = "-g " + wg;
@@ -162,6 +199,12 @@ public class ClipReader {
 		}
 	}
 
+	/**
+	 * Set the pitch of the spoken voice.
+	 *
+	 * @param pit Valid pit values are between 0 and 100 (included).
+	 * @return true if success setting the speed, false otherwise
+	 */
 	public boolean setPitch(int pit) {
 		if (pit > 0 && pit <= 100) {
 			ESPEAKCMD[4] = "-p " + pit;
@@ -174,6 +217,12 @@ public class ClipReader {
 		}
 	}
 
+	/**
+	 * Set the speech speed in Words Per Minute.
+	 *
+	 * @param wpm Words Per Minute
+	 * @return true if success setting the speed, false otherwise
+	 */
 	public boolean setSpeed(int wpm) {
 		if (wpm > 0 && wpm <= 200) {
 			ESPEAKCMD[5] = "-s " + wpm;
@@ -186,8 +235,22 @@ public class ClipReader {
 		}
 	}
 
+	/**
+	 * Set debug to true or false for this class.
+	 * 
+	 * @param debug Whether or not to be verbose with messages
+	 */
 	public void setDebug(boolean debug) {
 		this.debug = debug;
+	}
+
+	/**
+	 * Set quiet to true or false for this class.
+	 * 
+	 * @param quiet Whether or not to be quiet with messages
+	 */
+	public void setQuiet(boolean quiet) {
+		this.quiet = quiet;
 	}
 
 	/*
