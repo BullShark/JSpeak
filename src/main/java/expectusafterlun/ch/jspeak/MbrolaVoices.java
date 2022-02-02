@@ -30,7 +30,7 @@ public class MbrolaVoices {
 	private final FilenameFilter FF;
 	private final File[] FILEARR;
 	private String[] fstrArr;
-	private boolean debug = false, quiet = false;
+	private static boolean debug = false, quiet = false;
 
 	/**
 	 * Get a list of installed voices by checking the voice files for the current running OS.

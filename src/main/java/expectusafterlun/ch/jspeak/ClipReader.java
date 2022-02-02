@@ -33,7 +33,7 @@ public class ClipReader {
 	private Process ps;
 	private InputStream in;
 	private Scanner scan;
-	private boolean debug = false, quiet = false;
+	private static boolean debug = false, quiet = false;
 
 	/**
 	 * Sets up the espeak command String Array containing the text to speak and the espeak command options and sets other global vars.

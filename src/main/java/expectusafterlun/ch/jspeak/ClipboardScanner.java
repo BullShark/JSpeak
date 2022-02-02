@@ -35,7 +35,7 @@ public class ClipboardScanner implements Runnable {
 	private final long POLL_TIME;
 	private static ClipReader clipReader;
 	private boolean firstRun;
-	private boolean debug = false, quiet = false;
+	private static boolean debug = false, quiet = false;
 
 	public ClipboardScanner(boolean debug, boolean quiet) {
 		transfer = null;

@@ -50,7 +50,7 @@ public class JSpeak extends JPanel
 	private final ImageIcon scanIcon, rpIcon, stopIcon, expandIcon, retractIcon, topIcon;
 	private final MbrolaVoices voices;
 	private final String defaultvc;
-	private boolean debug = false, quiet = false;
+	private static boolean debug = false, quiet = false;
 
 	public JSpeak() {
 		defaultvc = "Default"; // Used for default espeak voice
@@ -211,7 +211,7 @@ public class JSpeak extends JPanel
 		}
 	}
 
-	/*
+	/**
 	 * For the JToggleButton(s)
 	 */
 	@Override
