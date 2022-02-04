@@ -103,7 +103,7 @@ public class ClipboardScanner implements Runnable {
 	/**
 	 * Useful for calling its methods from the GUI
 	 * 
-	 * @return A ClipReader object with methods readit(), replay(), setOptions(), stopPlayBack(), and toString()
+	 * @return A ClipReader object with methods readIt(), replay(), setOptions(), stopPlayBack(), and toString()
 	 */
 	public static ClipReader getClipReader() {
 		return clipReader;
