@@ -30,17 +30,14 @@ public class MbrolaVoices {
 	private final FilenameFilter FF;
 	private final File[] FILEARR;
 	private String[] fstrArr;
-	private static boolean debug = false, quiet = false;
+	private static boolean quiet = false;
 
 	/**
 	 * Get a list of installed voices by checking the voice files for the current running OS.
 	 * 
-	 * @param debug Verbose debugging output
 	 * @param quiet Silence all output except critical errors.
 	 */
-	public MbrolaVoices(boolean debug, boolean quiet) {
-		// Set debug and quiet
-		this.debug = debug;
+	public MbrolaVoices(boolean quiet) {
 		this.quiet = quiet;
 
 		FF = new FilenameFilter() {
@@ -54,7 +51,7 @@ public class MbrolaVoices {
 		espeakDir = null;
 
 		/* Debug */
-		if (debug || !quiet) { System.out.println("System OS is: " + os); }
+		if (!quiet) { System.out.println("System OS is: " + os); }
 		
 
 		switch (os) {

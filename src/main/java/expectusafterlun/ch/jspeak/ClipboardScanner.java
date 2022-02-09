@@ -35,16 +35,15 @@ public class ClipboardScanner implements Runnable {
 	private final long POLL_TIME;
 	private static ClipReader clipReader;
 	private boolean firstRun;
-	private static boolean debug = false, quiet = false;
+	private static boolean quiet = false;
 
-	public ClipboardScanner(boolean debug, boolean quiet) {
+	public ClipboardScanner(boolean quiet) {
 		transfer = null;
 		contents = "";
 		tempContents = "";
 		POLL_TIME = 500; // In milliseconds
-		clipReader = new ClipReader(debug, quiet);
+		clipReader = new ClipReader(quiet);
 		firstRun = true;
-		this.debug = debug;
 		this.quiet = quiet;
 	}
 
@@ -80,7 +79,7 @@ public class ClipboardScanner implements Runnable {
 			try {
 				Thread.sleep(POLL_TIME);
 			} catch (InterruptedException ex) {
-				if(debug && !quiet) { Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex); }
+				if(!quiet) { Logger.getLogger(ClipboardScanner.class.getName()).log(Level.SEVERE, null, ex); }
 				return;
 			}
 		}

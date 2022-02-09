@@ -50,11 +50,11 @@ public class JSpeak extends JPanel
 	private final ImageIcon scanIcon, rpIcon, stopIcon, expandIcon, retractIcon, topIcon;
 	private final MbrolaVoices voices;
 	private final String defaultvc;
-	private static boolean debug = false, quiet = false;
+	private static boolean quiet = false;
 
 	public JSpeak() {
 		defaultvc = "Default"; // Used for default espeak voice
-		voices = new MbrolaVoices(debug, quiet);
+		voices = new MbrolaVoices(quiet);
 		if (voices.getVoices() != null) {
 			voiceComBox = new JComboBox(voices.getVoices());
 		} else {
@@ -218,7 +218,7 @@ public class JSpeak extends JPanel
 	public void itemStateChanged(ItemEvent e) {
 		if (e.getSource() == scanTButton) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
-				clipScan = new ClipboardScanner(debug, quiet);
+				clipScan = new ClipboardScanner(quiet);
 				clipThread = new Thread(clipScan);
 				clipReader = ClipboardScanner.getClipReader();
 				clipThread.start();
@@ -322,7 +322,7 @@ public class JSpeak extends JPanel
 	 * Try to set L&F to GTK+ first.If that fails, set the System L&F.
 	 * Otherwise, Linux gets the ugly metal L&F.
 	 *
-	 * @param args Use -g or --debug for debugging output and -q or --quiet for silence in the console.
+	 * @param args Use -q or --quiet to silence messages the console.
 	 */
 	public static void main(String[] args) {
 
@@ -334,15 +334,7 @@ public class JSpeak extends JPanel
 		for(String s: args) {
 			if(s.equals("-q") || s.equals("--quiet")) {
 				quiet = true;
-			} else if(s.equals("-g") || s.equals("--debug")) {
-				debug = true;
 			}
-		}
-
-		if(debug && quiet) {
-				System.err.println("Both quiet and debug options cannot be used together.\n");
-				System.err.println("Usage: java -jar JSpeak.jar [(-g|--debug) | (-q|--quiet)]");
-				System.exit(-1);
 		}
 
 		boolean lookAndFeel;
@@ -382,7 +374,7 @@ public class JSpeak extends JPanel
 				This software was created by Christopher Lemire <goodbye300@aim.com>
 				Feedback is appreciated!
 
-				For command output and error use -g or --debug
+				To silence output and error use -q or --quiet
 				""");
 		}
 

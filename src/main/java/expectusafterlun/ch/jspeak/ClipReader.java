@@ -33,21 +33,19 @@ public class ClipReader {
 	private Process ps;
 	private InputStream in;
 	private Scanner scan;
-	private static boolean debug = false, quiet = false;
+	private static boolean quiet = false;
 
 	/**
 	 * Sets up the espeak command String Array containing the text to speak and the espeak command options and sets other global vars.
 	 * 
-	 * @param debug Verbose debugging output
 	 * @param quiet Silence all output except critical errors.
 	 */
-	public ClipReader(boolean debug, boolean quiet) {
+	public ClipReader(boolean quiet) {
 		// Options get default values to start with
 		ESPEAKCMD = new String[]{"espeak", "-v en", "-a 100", "-g 1", "-p 50", "-s 160", ""};
 		str = ""; // Used for toString()
 		ps = null;
 		scan = null;
-		this.debug = debug;
 		this.quiet = quiet;
 	}
 
@@ -78,7 +76,7 @@ public class ClipReader {
 			Logger.getLogger(ClipReader.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-		if (debug && !quiet) {
+		if (!quiet) {
 			printPsOutErr(ps);
 		}
 	}
@@ -101,7 +99,7 @@ public class ClipReader {
 		 * 
 		 * Only enable if you need to see output/error
 		 */
-		if (debug && !quiet) {
+		if (!quiet) {
 			printPsOutErr(ps);
 		}
 
@@ -117,13 +115,13 @@ public class ClipReader {
 	}
 
 	/**
-	 * Print the error and output streams of ps. Return from this function if not debug or quiet.
+	 * Print the error and output streams of ps. Return from this function if quiet is true.
 	 * 
 	 * @param ps The process used for printing stream
 	 */
 	public void printPsOutErr(Process ps) {
 		if(ps == null) { return; }
-		if(!debug || quiet) { return; }
+		if(quiet) { return; }
 		
 		// Print command output
 		in = ps.getInputStream();
@@ -233,15 +231,6 @@ public class ClipReader {
 				+ "The words per minute must be set between 1 and 200 inclusive.");
 			return false;
 		}
-	}
-
-	/**
-	 * Set debug to true or false for this class.
-	 * 
-	 * @param debug Whether or not to be verbose with messages
-	 */
-	public void setDebug(boolean debug) {
-		this.debug = debug;
 	}
 
 	/**
