@@ -46,7 +46,7 @@ public class ClipReader {
 		str = ""; // Used for toString()
 		ps = null;
 		scan = null;
-		this.quiet = quiet;
+		ClipReader.quiet = quiet;
 	}
 
 	/**
@@ -239,7 +239,7 @@ public class ClipReader {
 	 * @param quiet Whether or not to be quiet with messages
 	 */
 	public void setQuiet(boolean quiet) {
-		this.quiet = quiet;
+		ClipReader.quiet = quiet;
 	}
 
 	/*

@@ -44,7 +44,7 @@ public class ClipboardScanner implements Runnable {
 		POLL_TIME = 500; // In milliseconds
 		clipReader = new ClipReader(quiet);
 		firstRun = true;
-		this.quiet = quiet;
+		ClipboardScanner.quiet = quiet;
 	}
 
 	/**

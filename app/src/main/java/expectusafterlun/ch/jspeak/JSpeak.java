@@ -39,7 +39,7 @@ public class JSpeak extends JPanel
 	private static Thread clipThread, rpThread;
 	private final JButton rpButton, stopButton, resetButton;
 	private final JToggleButton scanTButton, expandTButton, topTButton;
-	private final JComboBox voiceComBox;
+	private final JComboBox<String> voiceComBox;
 	private final JProgressBar readProgress;
 	private static ClipReader clipReader;
 	private static Replay replayer;
@@ -56,9 +56,9 @@ public class JSpeak extends JPanel
 		defaultvc = "Default"; // Used for default espeak voice
 		voices = new MbrolaVoices(quiet);
 		if (voices.getVoices() != null) {
-			voiceComBox = new JComboBox(voices.getVoices());
+			voiceComBox = new JComboBox<String>(voices.getVoices());
 		} else {
-			voiceComBox = new JComboBox();
+			voiceComBox = new JComboBox<String>();
 		}
 		voiceComBox.addItem(defaultvc);
 		voiceComBox.setSelectedItem(defaultvc);

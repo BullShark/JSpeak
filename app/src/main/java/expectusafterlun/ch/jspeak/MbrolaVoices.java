@@ -30,7 +30,6 @@ public class MbrolaVoices {
 	private final FilenameFilter FF;
 	private final File[] FILEARR;
 	private String[] fstrArr;
-	private static boolean quiet = false;
 
 	/**
 	 * Get a list of installed voices by checking the voice files for the current running OS.
@@ -38,8 +37,6 @@ public class MbrolaVoices {
 	 * @param quiet Silence all output except critical errors.
 	 */
 	public MbrolaVoices(boolean quiet) {
-		this.quiet = quiet;
-
 		FF = new FilenameFilter() {
 			@Override public boolean accept(File dir, String name) {
 				return name.matches("[a-z]{2}[1-9]");
@@ -117,6 +114,7 @@ public class MbrolaVoices {
 	 * @param rest The rest of the array of Type T
 	 * @return An Array of concatenated Arrays
 	 */
+	@SafeVarargs
 	public static <T> T[] concatAll(T[] first, T[]... rest) {
 		int totalLength = first.length;
 		for (T[] array : rest) {
