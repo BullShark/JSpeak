@@ -55,9 +55,38 @@ public class MbrolaVoices {
 			espeakDir = new File("/usr/share/mbrola");
 			System.setProperty("mbrola.base", mbrolaDir.toString());
 		} else if (isSupportedWindowsOs(os)) {
-			mbrolaDir = new File(System.getProperty("user.home") + "\\source\\repos\\MBROLA\\VisualC\\Win32\\Debug");
-			espeakDir = new File("C:\\Program Files (x86)\\eSpeak\\espeak-data\\mbrola");
-			System.setProperty("mbrola.base", mbrolaDir.toString());
+			String mbrolaBase = System.getProperty("mbrola.base");
+			String jspeakWinRoot = System.getProperty("jspeak.windows.root");
+			String espeakDataRoot = System.getProperty("jspeak.espeak.data.root");
+
+			if (mbrolaBase != null && !mbrolaBase.isBlank()) {
+				mbrolaDir = new File(mbrolaBase);
+			} else {
+				mbrolaDir = resolveExistingWindowsAsset(
+					new File(System.getProperty("user.home") + "\\source\\repos\\MBROLA\\VisualC\\Win32\\Debug"),
+					new File(System.getenv("ProgramFiles") + "\\eSpeak\\espeak-data\\mbrola"),
+					new File(System.getenv("ProgramFiles(x86)") + "\\eSpeak\\espeak-data\\mbrola"),
+					new File(jspeakWinRoot == null ? "" : jspeakWinRoot + "\\native\\mbrola"),
+					new File(jspeakWinRoot == null ? "" : jspeakWinRoot + "\\mbrola")
+				);
+			}
+
+			if (espeakDataRoot != null && !espeakDataRoot.isBlank()) {
+				espeakDir = new File(espeakDataRoot);
+			} else {
+				espeakDir = resolveExistingWindowsAsset(
+					new File("C:\\Program Files (x86)\\eSpeak\\espeak-data\\mbrola"),
+					new File("C:\\Program Files\\eSpeak\\espeak-data\\mbrola"),
+					new File(System.getenv("ProgramFiles") + "\\eSpeak\\espeak-data\\mbrola"),
+					new File(System.getenv("ProgramFiles(x86)") + "\\eSpeak\\espeak-data\\mbrola"),
+					new File(jspeakWinRoot == null ? "" : jspeakWinRoot + "\\native\\espeak-data\\mbrola"),
+					new File(jspeakWinRoot == null ? "" : jspeakWinRoot + "\\espeak-data\\mbrola")
+				);
+			}
+
+			if (mbrolaDir != null) {
+				System.setProperty("mbrola.base", mbrolaDir.toString());
+			}
 		} else {
 			System.err.println("Unsupported operating system!");
 			System.exit(-1);
@@ -104,6 +133,15 @@ public class MbrolaVoices {
 			case "Windows 95", "Windows 98", "Windows XP", "Windows Vista", "Windows NT (unknown)", "Windows 7", "Windows 8", "Windows 8.1", "Windows 10", "Windows 11" -> true;
 			default -> false;
 		};
+	}
+
+	private static File resolveExistingWindowsAsset(File... candidates) {
+		for (File candidate : candidates) {
+			if (candidate != null && candidate.exists() && candidate.isDirectory()) {
+				return candidate;
+			}
+		}
+		return null;
 	}
 
 	public String[] getVoices() {
