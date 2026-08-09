@@ -17,6 +17,8 @@
 package expectusafterlun.ch.jspeak;
 
 import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -337,6 +339,12 @@ public class JSpeak extends JPanel
 			}
 		}
 
+		if (GraphicsEnvironment.isHeadless()) {
+			System.err.println("JSpeak requires a desktop session with graphics support. "
+				+ "No X11 DISPLAY or Windows GUI environment is available.");
+			System.exit(1);
+		}
+
 		boolean lookAndFeel;
 		try {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
@@ -385,7 +393,13 @@ public class JSpeak extends JPanel
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				createAndShowGUI();
+				try {
+					createAndShowGUI();
+				} catch (HeadlessException ex) {
+					System.err.println("JSpeak cannot start in headless mode. "
+						+ "Missing desktop graphics support (no X11 display or GUI library support) prevents JFrame creation.");
+					System.exit(1);
+				}
 			}
 		});
 	}
