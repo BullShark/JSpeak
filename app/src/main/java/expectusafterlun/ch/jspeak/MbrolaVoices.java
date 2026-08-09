@@ -49,25 +49,18 @@ public class MbrolaVoices {
 
 		/* Debug */
 		if (!quiet) { System.out.println("System OS is: " + os); }
-		
 
-		switch (os) {
-			case "Linux" -> {
-				mbrolaDir = new File("/usr/share/espeak-data/voices/mb");
-				espeakDir = new File("/usr/share/mbrola");
-
-				System.setProperty("mbrola.base", mbrolaDir.toString());
-			}
-			case "Windows 95", "Windows 98", "Windows XP", "Windows Vista", "Windows NT (unknown)", "Windows 7", "Windows 8", "Windows 8.1", "Windows 10" -> {
-				mbrolaDir = new File(System.getProperty("user.home") + "\\source\\repos\\MBROLA\\VisualC\\Win32\\Debug");
-				espeakDir = new File("C:\\Program Files (x86)\\eSpeak\\espeak-data\\mbrola");
-
-				System.setProperty("mbrola.base", mbrolaDir.toString());
-			}
-			default -> {
-				System.err.println("Unsupported operating system!");
-				System.exit(-1);
-			}
+		if ("Linux".equals(os)) {
+			mbrolaDir = new File("/usr/share/espeak-data/voices/mb");
+			espeakDir = new File("/usr/share/mbrola");
+			System.setProperty("mbrola.base", mbrolaDir.toString());
+		} else if (isSupportedWindowsOs(os)) {
+			mbrolaDir = new File(System.getProperty("user.home") + "\\source\\repos\\MBROLA\\VisualC\\Win32\\Debug");
+			espeakDir = new File("C:\\Program Files (x86)\\eSpeak\\espeak-data\\mbrola");
+			System.setProperty("mbrola.base", mbrolaDir.toString());
+		} else {
+			System.err.println("Unsupported operating system!");
+			System.exit(-1);
 		}
 
 		/*
@@ -102,6 +95,17 @@ public class MbrolaVoices {
 	 * 
 	 * @return String array of available voices, null if none
 	 */
+	public static boolean isSupportedWindowsOs(String osName) {
+		if (osName == null) {
+			return false;
+		}
+
+		return switch (osName) {
+			case "Windows 95", "Windows 98", "Windows XP", "Windows Vista", "Windows NT (unknown)", "Windows 7", "Windows 8", "Windows 8.1", "Windows 10", "Windows 11" -> true;
+			default -> false;
+		};
+	}
+
 	public String[] getVoices() {
 		return fstrArr;
 	}
