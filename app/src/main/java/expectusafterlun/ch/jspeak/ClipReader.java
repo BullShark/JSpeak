@@ -42,7 +42,12 @@ public class ClipReader {
 	 */
 	public ClipReader(boolean quiet) {
 		// Options get default values to start with
-		ESPEAKCMD = new String[]{"espeak", "-v en", "-a 100", "-g 1", "-p 50", "-s 160", ""};
+		String espeakBin = System.getProperty("jspeak.espeak.bin", "espeak");
+		if (System.getProperty("os.name").toLowerCase().contains("win")) {
+			String exeOverride = System.getProperty("jspeak.espeak.bin", "espeak.exe");
+			espeakBin = exeOverride;
+		}
+		ESPEAKCMD = new String[]{espeakBin, "-v en", "-a 100", "-g 1", "-p 50", "-s 160", ""};
 		str = ""; // Used for toString()
 		ps = null;
 		scan = null;
